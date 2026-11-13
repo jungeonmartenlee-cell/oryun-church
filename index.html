@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>오륜교회 — 행복한 교회 건강한 교회</title>
+<meta name="description" content="오륜교회 소개 — 비전, 담임목사 인사말, 걸어온 길, 섬기는 분들, 심벌 이야기">
+<meta name="theme-color" content="#f4f7fb">
+<link rel="icon" href="assets/symbol.png">
+<link rel="preload" as="image" href="assets/bg-exterior.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root{
+  --bg:#f4f7fb;
+  --paper:#ffffff;
+  --ink:#101c36;
+  --ink-2:#44506a;
+  --ink-3:#8590a6;
+  --line:rgba(16,28,54,.1);
+  --blue:#1f56a8;
+  --blue-deep:#0b3c8f;
+  --sky:#8ccbee;
+  --glow:#dcecfb;
+  --warm:#fff3e2;
+  --pad:50px;
+  --head:56px;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+
+/* ── RESET ── */
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;}
+button{font-family:inherit;cursor:pointer;color:inherit;}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px;}
+
+/* ── CURSOR (마우스 기기에서만) ── */
+#cur,#cur2{display:none;}
+@media (hover:hover) and (pointer:fine){
+  html,body,a,button{cursor:none;}
+  #cur{display:block;position:fixed;z-index:9999;width:6px;height:6px;background:var(--blue);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);}
+  #cur2{display:block;position:fixed;z-index:9998;width:36px;height:36px;border:1px solid rgba(31,86,168,.35);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;}
+  body.hovering #cur2{width:56px;height:56px;background:rgba(31,86,168,.08);}
+}
+
+/* ── HEADER ── */
+#header{
+  position:fixed;top:0;left:0;right:0;height:var(--head);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--pad);z-index:400;
+  background:rgba(244,247,251,.72);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;}
+.logo img{height:26px;width:auto;display:block;}
+.marquee-wrap{flex:1;overflow:hidden;margin:0 40px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);}
+.marquee-track{display:flex;white-space:nowrap;width:max-content;animation:mq 40s linear infinite;}
+.marquee-track p{font-size:11px;letter-spacing:.15em;color:var(--ink-3);padding:0 32px;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.menu-btn{
+  background:none;border:none;color:var(--ink-2);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  display:flex;align-items:center;gap:10px;padding:10px 0;
+}
+.menu-btn:hover{color:var(--blue);}
+.menu-lines{display:flex;flex-direction:column;gap:5px;}
+.menu-lines span{display:block;height:1.5px;background:currentColor;transition:width .3s;}
+.menu-lines span:nth-child(1){width:22px;}
+.menu-lines span:nth-child(2){width:14px;}
+.menu-btn:hover .menu-lines span{width:22px;}
+
+/* ── BIG TITLE (좌측 하단 고정) ── */
+#main-slider-header{position:fixed;left:var(--pad);bottom:150px;z-index:50;transition:opacity .18s;}
+#header-link{display:inline-block;text-decoration:none;color:inherit;}
+.block-text{line-height:.95;}
+.block-text__line{overflow:hidden;display:block;}
+.mask-text{display:inline-block;overflow:hidden;max-height:1.1em;}
+.mask-text span{display:inline-block;animation:slideInDown .9s var(--ease) both;}
+.word{
+  display:inline-block;position:relative;
+  font-family:'Bebas Neue',sans-serif;font-weight:400;
+  font-size:clamp(64px,9.5vw,160px);letter-spacing:-.01em;line-height:1;
+  color:var(--ink);
+}
+.word::before{
+  content:'';position:absolute;bottom:.08em;left:0;height:.06em;width:0;
+  background:var(--blue);opacity:.8;
+  transition:width .25s cubic-bezier(.47,0,.745,.715);
+}
+#header-link:hover .word::before{width:100%;transition:width .6s var(--ease);}
+@keyframes slideInDown{from{transform:translateY(100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.title-cta{
+  display:inline-flex;align-items:center;gap:12px;margin-top:22px;
+  font-size:13px;font-weight:500;letter-spacing:.04em;color:#fff;
+  background:var(--blue);padding:13px 22px;border-radius:999px;
+  box-shadow:0 10px 30px -10px rgba(31,86,168,.6);
+  transition:background .25s,transform .4s var(--ease);
+}
+#header-link:hover .title-cta{background:var(--blue-deep);transform:translateX(6px);}
+.title-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;}
+
+/* ── SLIDER ── */
+#slider{position:fixed;inset:0;margin-top:var(--head);overflow:hidden;}
+.slide{position:absolute;inset:0;transform:translateY(100%);pointer-events:none;transition:transform 1s var(--ease);}
+.slide.slide-above{transform:translateY(-100%);}
+.slide.slide-notransition{transition:none!important;}
+.slide.active{transform:translateY(0);pointer-events:all;}
+.slide-bg{position:absolute;inset:0;overflow:hidden;background:var(--bg);}
+/* 영상을 넣고 싶을 때: .slide-bg 안에 <video class="video-layer" muted loop playsinline src="videos/..."> 추가 */
+.video-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+.slide-dim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(244,247,251,.92) 0%,rgba(244,247,251,.35) 38%,transparent 62%),linear-gradient(to right,rgba(244,247,251,.6) 0%,transparent 55%);}
+
+/* 배경 빛 */
+.blob{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform;animation:drift 22s ease-in-out infinite alternate;}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1);}to{transform:translate3d(-4vw,3vh,0) scale(1.12);}}
+.s1 .slide-bg{background:linear-gradient(160deg,#fbfdff 0%,#e6f1fc 55%,#d3e6f9 100%);}
+.s2 .slide-bg{background:linear-gradient(170deg,#fffaf2 0%,#fdf1e0 45%,#e9f2fc 100%);}
+.s3 .slide-bg{background:linear-gradient(150deg,#f7f9fc 0%,#e9eef6 60%,#dfe8f5 100%);}
+.s4 .slide-bg{background:linear-gradient(165deg,#f6fcfb 0%,#e3f4f3 50%,#dcebfa 100%);}
+.s5 .slide-bg{background:linear-gradient(155deg,#fafcff 0%,#e4eefb 50%,#cfe2f8 100%);}
+
+/* 슬라이드별 아트 */
+.art{position:absolute;z-index:1;right:6vw;top:50%;transform:translateY(-54%);width:min(52vh,40vw);aspect-ratio:1;display:grid;place-items:center;}
+.art-symbol img{width:76%;height:auto;filter:drop-shadow(0 40px 60px rgba(11,60,143,.28));animation:float 9s ease-in-out infinite alternate;}
+@keyframes float{from{transform:translateY(-8px);}to{transform:translateY(12px);}}
+.ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(31,86,168,.18);}
+.ring.r2{inset:-12%;border-color:rgba(31,86,168,.1);}
+.ring.r3{inset:-26%;border-color:rgba(31,86,168,.06);}
+.art-rays{border-radius:50%;background:
+  radial-gradient(circle at 50% 50%,#fff 0 9%,rgba(255,236,200,.9) 10%,rgba(255,220,170,.35) 30%,transparent 62%),
+  repeating-conic-gradient(from 0deg,rgba(255,200,130,.28) 0 4deg,transparent 4deg 15deg);
+  -webkit-mask-image:radial-gradient(circle,#000 30%,transparent 70%);mask-image:radial-gradient(circle,#000 30%,transparent 70%);
+  animation:spin 120s linear infinite;}
+@keyframes spin{to{transform:translateY(-54%) rotate(360deg);}}
+.art-year{font-family:'Bebas Neue',sans-serif;font-size:min(34vh,26vw);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(31,86,168,.38);letter-spacing:.01em;width:auto;aspect-ratio:auto;right:5vw;}
+.art-year small{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;color:var(--ink-3);-webkit-text-stroke:0;margin-bottom:22px;}
+.art-orbit .dot{position:absolute;border-radius:50%;}
+.art-orbit .d1{width:46%;height:46%;left:8%;top:18%;background:radial-gradient(circle at 35% 30%,#bfe3f7,#1f56a8);opacity:.9;box-shadow:0 30px 60px -20px rgba(31,86,168,.5);}
+.art-orbit .d2{width:38%;height:38%;right:8%;bottom:14%;background:radial-gradient(circle at 35% 30%,#d9f3ee,#3aa6a0);opacity:.85;mix-blend-mode:multiply;box-shadow:0 30px 60px -20px rgba(58,166,160,.5);}
+.art-orbit .d3{width:14%;height:14%;right:22%;top:10%;background:#ffd9a0;}
+.art-orbit{animation:float 11s ease-in-out infinite alternate;}
+.art-mark img{width:44%;opacity:.95;filter:drop-shadow(0 24px 40px rgba(11,60,143,.25));}
+.art-mark .ring{border-style:dashed;animation:rot 80s linear infinite;}
+.art-mark .ring.r2{animation-duration:140s;animation-direction:reverse;}
+@keyframes rot{to{transform:rotate(360deg);}}
+
+.s6 .slide-bg{background:linear-gradient(160deg,#fbfaff 0%,#ebeafb 50%,#dbe8fb 100%);}
+.s7 .slide-bg{background:linear-gradient(160deg,#f8fcf8 0%,#e6f3ea 45%,#dcebfa 100%);}
+.art-clock .face{position:absolute;inset:6%;border-radius:50%;background:rgba(255,255,255,.55);border:1px solid rgba(31,86,168,.22);box-shadow:0 40px 80px -30px rgba(11,60,143,.35);}
+.art-clock .ticks{position:absolute;inset:10%;border-radius:50%;background:repeating-conic-gradient(from -1deg,rgba(31,86,168,.55) 0 2deg,transparent 2deg 30deg);-webkit-mask-image:radial-gradient(circle,transparent 62%,#000 63%,#000 68%,transparent 69%);mask-image:radial-gradient(circle,transparent 62%,#000 63%,#000 68%,transparent 69%);}
+.art-clock .hand{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;border-radius:4px;background:var(--ink);}
+.art-clock .h{width:5px;height:22%;margin-left:-2.5px;transform:rotate(300deg);}
+.art-clock .m{width:3px;height:33%;margin-left:-1.5px;background:var(--blue);animation:rot 60s linear infinite;}
+.art-clock .pin{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--blue);}
+.art-clock .lbl{position:absolute;bottom:22%;left:0;right:0;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;color:var(--ink-3);}
+.art-map{border-radius:36px;overflow:hidden;background:
+  linear-gradient(rgba(31,86,168,.1) 1px,transparent 1px) 0 0/12.5% 12.5%,
+  linear-gradient(90deg,rgba(31,86,168,.1) 1px,transparent 1px) 0 0/12.5% 12.5%,
+  rgba(255,255,255,.5);border:1px solid rgba(31,86,168,.18);box-shadow:0 40px 80px -30px rgba(11,60,143,.3);}
+.art-map .road{position:absolute;background:#fff;box-shadow:0 0 0 1px rgba(31,86,168,.12);}
+.art-map .r1{left:-10%;right:-10%;top:58%;height:9%;transform:rotate(-8deg);}
+.art-map .r2{top:-10%;bottom:-10%;left:30%;width:7%;transform:rotate(12deg);}
+.art-map .park{position:absolute;left:52%;top:8%;width:40%;height:34%;border-radius:40% 55% 45% 60%;background:rgba(120,200,160,.35);}
+.art-map .marker{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-54px 0 0 -27px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--blue);box-shadow:0 14px 24px -8px rgba(11,60,143,.6);animation:bob 2.4s ease-in-out infinite alternate;}
+.art-map .marker::after{content:'';position:absolute;inset:16px;border-radius:50%;background:#fff;}
+.art-map .pulse{position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-9px 0 0 -13px;border-radius:50%;border:2px solid var(--blue);animation:pulse 2.4s ease-out infinite;}
+@keyframes bob{from{transform:translateY(-6px) rotate(-45deg);}to{transform:translateY(2px) rotate(-45deg);}}
+@keyframes pulse{from{transform:scale(.6);opacity:.9;}to{transform:scale(3.4);opacity:0;}}
+
+/* 캡션 */
+.slide-caption{position:absolute;bottom:64px;left:var(--pad);z-index:3;display:flex;align-items:center;gap:18px;flex-wrap:wrap;max-width:min(640px,calc(100vw - 2*var(--pad) - 80px));}
+.slide-num{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.2em;color:var(--blue);}
+.slide-caption-tag{font-size:13px;letter-spacing:.06em;color:var(--ink-2);font-weight:400;line-height:1.6;}
+.slide-caption-tag::before{content:'';display:inline-block;width:22px;height:1px;background:var(--blue);vertical-align:middle;margin-right:14px;}
+
+/* ── 사진 배경 슬라이드 ── */
+.slide.photo .slide-bg{background:#0b1220;}
+.photo-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transform:scale(1.08);}
+.slide.active .photo-layer{animation:kenburns 26s ease-out both;}
+@keyframes kenburns{from{transform:scale(1.08);}to{transform:scale(1);}}
+.slide.photo .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.88) 0%,rgba(8,16,34,.5) 38%,rgba(8,16,34,.08) 72%),linear-gradient(to right,rgba(8,16,34,.5) 0%,transparent 55%);}
+.slide.photo.s1 .slide-dim,.slide.photo.s7 .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.72) 0%,rgba(8,16,34,.22) 34%,rgba(8,16,34,0) 60%),linear-gradient(to right,rgba(8,16,34,.34) 0%,rgba(8,16,34,0) 46%);}
+.slide.photo.s1 .photo-layer,.slide.photo.s7 .photo-layer{filter:brightness(1.06) saturate(1.08);}
+.slide.photo .slide-num{color:var(--sky);}
+.slide.photo .slide-caption-tag{color:rgba(255,255,255,.88);}
+.slide.photo .slide-caption-tag::before{background:var(--sky);}
+.word{transition:color .4s;}
+body.on-photo .word{color:#fff;text-shadow:0 2px 28px rgba(8,16,34,.45);}
+body.on-photo #control{text-shadow:0 1px 10px rgba(8,16,34,.6);}
+body.on-photo .word::before{background:var(--sky);}
+body.on-photo .title-cta{background:#fff;color:var(--blue-deep);box-shadow:0 14px 34px -14px rgba(0,0,0,.6);}
+body.on-photo #header-link:hover .title-cta{background:var(--glow);}
+body.on-photo #control{color:#fff;}
+body.on-photo .ctrl-total{color:rgba(255,255,255,.65);}
+body.on-photo .ctrl-total::before{background:#fff;}
+body.on-photo .ctrl-arrow svg{stroke:#fff;}
+body.on-photo #scrollbar-thumb{background:#fff;}
+
+/* ── RIGHT CONTROL ── */
+#control{position:fixed;right:var(--pad);bottom:50px;z-index:50;display:flex;flex-direction:column;align-items:center;color:var(--ink);}
+.ctrl-number{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;display:flex;flex-direction:column;align-items:center;margin-bottom:6px;}
+.ctrl-total::before{content:'';display:block;width:1px;height:28px;background:var(--ink);opacity:.25;margin:10px auto;}
+.ctrl-total{color:var(--ink-3);text-align:center;}
+.ctrl-arrow{display:block;width:40px;height:40px;background:none;border:none;}
+.ctrl-arrow svg{width:100%;height:100%;stroke:var(--ink);stroke-width:1.5;fill:none;opacity:.5;transition:opacity .25s,stroke .25s;}
+.ctrl-arrow:hover svg{opacity:1;stroke:var(--blue);}
+#scrollbar{position:fixed;right:0;top:var(--head);bottom:0;width:4px;z-index:40;background:rgba(16,28,54,.05);}
+#scrollbar-thumb{width:100%;background:var(--blue);opacity:.55;border-radius:2px;transition:height .5s,transform .5s;}
+#prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:600;}
+#prog-bar{height:100%;width:0;background:var(--blue);transition:width .4s;}
+
+/* ── MENU OVERLAY ── */
+#menu{position:fixed;inset:0;background:var(--paper);z-index:500;display:grid;grid-template-columns:1.5fr 1fr;opacity:0;visibility:hidden;transition:opacity .4s cubic-bezier(.4,0,.2,1),visibility 0s .4s;overflow-y:auto;}
+#menu.open{opacity:1;visibility:visible;transition:opacity .4s cubic-bezier(.4,0,.2,1);}
+.menu-left{padding:110px 80px 60px;}
+.menu-nav{list-style:none;}
+.menu-nav li{overflow:hidden;border-bottom:1px solid var(--line);}
+.menu-nav li:first-child{border-top:1px solid var(--line);}
+.menu-nav a{
+  display:flex;align-items:center;justify-content:space-between;padding:clamp(12px,2vh,20px) 0;
+  font-size:clamp(20px,2.6vw,36px);font-weight:300;letter-spacing:-.03em;
+  color:var(--ink-3);text-decoration:none;transition:color .25s,padding .4s var(--ease);
+  transform:translateY(60px);opacity:0;
+}
+.menu-nav a:hover{color:var(--ink);padding-left:14px;}
+#menu.open .menu-nav a{animation:menuUp .5s var(--ease) forwards;animation-delay:calc(var(--i) * .06s);}
+@keyframes menuUp{to{transform:translateY(0);opacity:1;}}
+.menu-item-left{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.menu-eng{font-family:'JetBrains Mono',monospace;font-size:clamp(9px,.9vw,12px);letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;}
+.menu-nav a:hover .menu-eng{color:var(--blue);}
+.menu-num{font-size:10px;letter-spacing:.18em;color:var(--ink-3);font-family:'JetBrains Mono',monospace;}
+.menu-right{padding:110px 56px 60px;background:var(--bg);border-left:1px solid var(--line);display:flex;flex-direction:column;gap:36px;}
+.menu-right h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);font-weight:400;margin-bottom:14px;}
+.menu-right p,.menu-right li{font-size:14px;line-height:1.9;color:var(--ink-2);}
+.menu-right ul{list-style:none;}
+.time-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 20px;}
+.time-grid li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:5px 0;}
+.time-grid b{font-weight:500;color:var(--ink);}
+.menu-links{display:flex;flex-wrap:wrap;gap:8px;}
+.menu-links a{font-size:12.5px;text-decoration:none;color:var(--blue);border:1px solid rgba(31,86,168,.3);padding:8px 14px;border-radius:999px;transition:background .2s,color .2s;}
+.menu-links a:hover{background:var(--blue);color:#fff;}
+.menu-close{position:fixed;top:14px;right:var(--pad);background:none;border:none;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:8px;padding:10px 0;z-index:2;}
+.menu-close:hover{color:var(--blue);}
+
+/* ── PAGES ── */
+#pages{position:fixed;inset:0;margin-top:var(--head);background:var(--paper);z-index:300;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s;-webkit-overflow-scrolling:touch;}
+#pages.open{opacity:1;visibility:visible;transition:opacity .35s;}
+.page{display:none;}
+.page.show{display:block;}
+.p-back{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:8px;width:100%;background:rgba(255,255,255,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:none;border-bottom:1px solid var(--line);padding:16px var(--pad);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--ink-2);}
+.p-back:hover{color:var(--blue);}
+.p-hero{padding:88px var(--pad) 64px;background:linear-gradient(180deg,var(--bg),var(--paper));position:relative;overflow:hidden;}
+.p-hero::after{content:'';position:absolute;right:-8vw;top:-30%;width:46vw;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 65%);pointer-events:none;}
+.p-wrap{max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+.p-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:20px;}
+.p-title{font-family:'Noto Serif KR',serif;font-size:clamp(34px,5.2vw,68px);font-weight:300;letter-spacing:-.03em;line-height:1.2;color:var(--ink);}
+.p-lead{margin-top:28px;max-width:680px;font-size:clamp(16px,1.5vw,19px);line-height:1.95;color:var(--ink-2);word-break:keep-all;}
+.p-body{padding:24px var(--pad) 110px;}
+.sec-lbl{font-size:13px;font-weight:500;letter-spacing:.08em;color:var(--blue);padding:56px 0 20px;border-bottom:1px solid var(--line);margin-bottom:28px;}
+.grid{display:grid;gap:16px;}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr));}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr));}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:20px;padding:30px 26px;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background .3s;}
+.card:hover{transform:translateY(-6px);background:#fff;box-shadow:0 24px 50px -24px rgba(11,60,143,.35);}
+.card-n{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.18em;color:var(--blue);}
+.card-t{font-family:'Noto Serif KR',serif;font-size:23px;font-weight:400;letter-spacing:-.02em;margin:18px 0 10px;color:var(--ink);}
+.card-b{font-size:14.5px;line-height:1.9;color:var(--ink-2);word-break:keep-all;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+.chip{font-size:12px;color:var(--blue);background:rgba(31,86,168,.08);padding:6px 12px;border-radius:999px;}
+.rows{list-style:none;}
+.rows li{display:grid;grid-template-columns:70px 170px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+.tt{width:100%;border-collapse:collapse;font-size:15px;}
+.tt th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;font-weight:400;color:var(--ink-3);padding:0 12px 12px 0;border-bottom:1px solid var(--line);}
+.tt td{padding:15px 12px 15px 0;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6;vertical-align:top;}
+.tt td:first-child{color:var(--ink);font-weight:500;white-space:nowrap;}
+.tt td.tm{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;color:var(--blue);white-space:nowrap;line-height:1.1;}
+.tt-wrap{overflow-x:auto;}
+.line-badge{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 6px;border-radius:12px;color:#fff;font-size:12px;font-weight:700;margin-right:8px;}
+.addr{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);font-weight:400;letter-spacing:-.02em;line-height:1.5;color:var(--ink);}
+.rows .n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:.12em;}
+.rows .t{font-size:16px;font-weight:500;color:var(--ink);}
+.rows .b{font-size:14.5px;line-height:1.9;color:var(--ink-2);word-break:keep-all;}
+.quote{margin:8px 0 0;padding:44px 40px;border-radius:24px;background:linear-gradient(135deg,#eaf3fd,#fff6ea);}
+.quote p{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,36px);font-weight:300;line-height:1.55;letter-spacing:-.02em;color:var(--ink);word-break:keep-all;}
+.quote cite{display:block;margin-top:20px;font-style:normal;font-size:13px;color:var(--ink-2);letter-spacing:.04em;}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:20px;overflow:hidden;}
+.stat{padding:30px 24px;border-right:1px solid var(--line);}
+.stat:last-child{border-right:none;}
+.stat b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1;color:var(--blue);letter-spacing:.01em;}
+.stat span{display:block;margin-top:10px;font-size:13px;color:var(--ink-2);line-height:1.6;}
+.tl{list-style:none;position:relative;margin-left:8px;}
+.tl::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:1px;background:var(--line);}
+.tl li{position:relative;padding:0 0 34px 36px;display:grid;grid-template-columns:92px 1fr;gap:18px;align-items:baseline;}
+.tl li::before{content:'';position:absolute;left:-4px;top:12px;width:9px;height:9px;border-radius:50%;background:#fff;border:2px solid var(--blue);}
+.tl .y{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--ink);letter-spacing:.03em;}
+.tl .e{font-size:15px;line-height:1.85;color:var(--ink-2);word-break:keep-all;}
+.tl .e strong{font-weight:500;color:var(--ink);}
+.person{display:grid;grid-template-columns:96px 1fr;gap:24px;align-items:start;}
+.avatar{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--sky),var(--blue));color:#fff;font-family:'Noto Serif KR',serif;font-size:30px;}
+.role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;}
+.symbol-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:center;}
+.symbol-box{aspect-ratio:1;border-radius:32px;background:linear-gradient(160deg,#fff,#e4eefb);border:1px solid var(--line);display:grid;place-items:center;}
+.symbol-box img{width:52%;height:auto;filter:drop-shadow(0 30px 40px rgba(11,60,143,.25));}
+.swatches{display:flex;gap:12px;flex-wrap:wrap;}
+.swatch{flex:1;min-width:120px;border-radius:16px;padding:54px 16px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:#fff;}
+.src{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);line-height:1.9;}
+.src a{color:var(--blue);text-underline-offset:3px;}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-size:13.5px;font-weight:500;text-decoration:none;color:#fff;background:var(--blue);padding:13px 22px;border-radius:999px;transition:background .2s;}
+.btn:hover{background:var(--blue-deep);}
+.btn.ghost{background:none;color:var(--blue);border:1px solid rgba(31,86,168,.35);margin-left:8px;}
+.btn.ghost:hover{background:rgba(31,86,168,.08);}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:980px){
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .g3{grid-template-columns:1fr;}
+  #menu{grid-template-columns:1fr;}
+  .menu-left{padding:96px 40px 30px;}
+  .menu-right{padding:36px 40px 60px;border-left:none;border-top:1px solid var(--line);}
+  .symbol-stage{grid-template-columns:1fr;}
+  .symbol-box{max-width:340px;}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .stat:nth-child(2){border-right:none;}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line);}
+}
+@media(max-width:680px){
+  :root{--pad:22px;}
+  .marquee-wrap{display:none;}
+  .logo img{height:22px;}
+  #main-slider-header{bottom:150px;}
+  .word{font-size:clamp(54px,17vw,96px);}
+  .art{right:50%;top:30%;transform:translate(50%,-50%);width:min(64vw,36vh);opacity:.9;}
+  .art-year{font-size:34vw;right:50%;}
+  @keyframes spin{to{transform:translate(50%,-50%) rotate(360deg);}}
+  .slide-caption{bottom:42px;max-width:calc(100vw - 110px);}
+  .slide-caption-tag{font-size:12px;}
+  #control{bottom:30px;}
+  .g2,.g4{grid-template-columns:1fr;}
+  .p-hero{padding:56px var(--pad) 44px;}
+  .rows li{grid-template-columns:1fr;gap:6px;}
+  .tt{font-size:14px;}
+  .tt td:first-child{white-space:normal;}
+  .tl li{grid-template-columns:1fr;gap:6px;}
+  .quote{padding:32px 24px;}
+  .menu-left{padding:86px 22px 24px;}
+  .menu-right{padding:30px 22px 50px;}
+  .person{grid-template-columns:64px 1fr;gap:16px;}
+  .avatar{width:64px;height:64px;font-size:22px;}
+  .btn.ghost{margin-left:0;}
+}
+@media(max-height:560px){
+  #main-slider-header{bottom:96px;}
+  .word{font-size:clamp(44px,13vh,90px);}
+  .title-cta{margin-top:12px;padding:10px 18px;}
+  .slide-caption{bottom:30px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  .marquee-track{animation:none;}
+  .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div><div id="cur2"></div>
+<div id="prog"><div id="prog-bar"></div></div>
+
+<!-- HEADER -->
+<div id="header">
+  <a class="logo" href="#" onclick="closePage();go(0);return false;" aria-label="오륜교회 홈">
+    <img src="assets/logo-dark.png" alt="오륜교회">
+  </a>
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <p>HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · 주일예배 1~7부 · 강동대로 235 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
+      <p>HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · 주일예배 1~7부 · 강동대로 235 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
+    </div>
+  </div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="메뉴 열기">
+    <span class="menu-lines"><span></span><span></span></span>Menu
+  </button>
+</div>
+
+<!-- BIG TITLE -->
+<div id="main-slider-header">
+  <a href="#" id="header-link">
+    <div class="block-text" id="block-text"></div>
+    <span class="title-cta"><span id="cta-text">자세히 보기</span>
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </a>
+</div>
+
+<!-- SLIDER -->
+<div id="slider">
+  <section class="slide photo s1 active" id="s0">
+    <div class="slide-bg">
+      <img class="photo-layer" src="assets/bg-exterior.jpg" alt="오륜교회 비전센터 전경" style="object-position:62% 45%">
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">01</span><span class="slide-caption-tag">비전 — 행복한 교회, 건강한 교회</span></div>
+  </section>
+
+  <section class="slide s2" id="s1">
+    <div class="slide-bg">
+      <div class="blob" style="width:44vw;height:44vw;right:-4vw;top:-6vw;background:#ffe4bd;"></div>
+      <div class="blob" style="width:34vw;height:34vw;left:30vw;bottom:-16vw;background:#cfe4f9;animation-delay:-6s;"></div>
+      <div class="art art-rays"></div>
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">02</span><span class="slide-caption-tag">담임목사 인사말 — 주님과 동행할 때 길이 열립니다</span></div>
+  </section>
+
+  <section class="slide s3" id="s2">
+    <div class="slide-bg">
+      <div class="blob" style="width:40vw;height:40vw;right:4vw;top:-10vw;background:#d5e2f5;"></div>
+      <div class="art art-year"><small>SINCE</small>19<br>89</div>
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">03</span><span class="slide-caption-tag">걸어온 길 — 1989년부터 오늘까지</span></div>
+  </section>
+
+  <section class="slide s4" id="s3">
+    <div class="slide-bg">
+      <div class="blob" style="width:42vw;height:42vw;right:-6vw;bottom:-10vw;background:#c9ece8;"></div>
+      <div class="blob" style="width:30vw;height:30vw;right:24vw;top:-10vw;background:#d6e7fa;animation-delay:-10s;"></div>
+      <div class="art art-orbit"><div class="ring"></div><div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div></div>
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">04</span><span class="slide-caption-tag">섬기는 분들 — 설립목사 · 담임목사</span></div>
+  </section>
+
+  <section class="slide s5" id="s4">
+    <div class="slide-bg">
+      <div class="blob" style="width:48vw;height:48vw;right:-10vw;top:-8vw;background:#b9d6f5;"></div>
+      <div class="art art-mark"><div class="ring"></div><div class="ring r2"></div><img src="assets/symbol.png" alt=""></div>
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">05</span><span class="slide-caption-tag">심벌 이야기 — 살아있는 예배, 춤추시는 예수님</span></div>
+  </section>
+
+  <section class="slide photo s6" id="s5">
+    <div class="slide-bg">
+      <img class="photo-layer" src="assets/bg-visionhall.jpg" alt="오륜교회 비전홀 내부" style="object-position:50% 40%">
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">06</span><span class="slide-caption-tag">예배 안내 — 주일 1~7부 · 수요 · 금요 · 새벽</span></div>
+  </section>
+
+  <section class="slide photo s7" id="s6">
+    <div class="slide-bg">
+      <img class="photo-layer" src="assets/bg-exterior.jpg" alt="강동대로에서 본 오륜교회" style="object-position:30% 70%;transform-origin:25% 75%">
+    </div>
+    <div class="slide-dim"></div>
+    <div class="slide-caption"><span class="slide-num">07</span><span class="slide-caption-tag">오시는 길 — 서울 강동구 강동대로 235</span></div>
+  </section>
+</div>
+
+<!-- CONTROL -->
+<div id="control">
+  <div class="ctrl-number"><span id="ctrl-now">1</span><span class="ctrl-total" id="ctrl-total">7</span></div>
+  <button class="ctrl-arrow" onclick="prev()" aria-label="이전 슬라이드"><svg viewBox="0 0 40 40"><path d="M12 23l8-8 8 8"/></svg></button>
+  <button class="ctrl-arrow" onclick="next()" aria-label="다음 슬라이드"><svg viewBox="0 0 40 40"><path d="M12 17l8 8 8-8"/></svg></button>
+</div>
+<div id="scrollbar"><div id="scrollbar-thumb"></div></div>
+
+<!-- MENU -->
+<div id="menu" aria-hidden="true">
+  <button class="menu-close" onclick="toggleMenu()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Close
+  </button>
+  <div class="menu-left">
+    <ul class="menu-nav">
+      <li><a style="--i:1" href="#" onclick="closePage();toggleMenu();return false;"><div class="menu-item-left"><span>메인</span><span class="menu-eng">Main</span></div><span class="menu-num">HOME</span></a></li>
+      <li><a style="--i:2" href="#vision" onclick="openPage('vision');toggleMenu();return false;"><div class="menu-item-left"><span>비전</span><span class="menu-eng">Happy · Healthy Church</span></div><span class="menu-num">01</span></a></li>
+      <li><a style="--i:3" href="#greeting" onclick="openPage('greeting');toggleMenu();return false;"><div class="menu-item-left"><span>담임목사 인사말</span><span class="menu-eng">Walk with Jesus</span></div><span class="menu-num">02</span></a></li>
+      <li><a style="--i:4" href="#history" onclick="openPage('history');toggleMenu();return false;"><div class="menu-item-left"><span>걸어온 길</span><span class="menu-eng">Since 1989</span></div><span class="menu-num">03</span></a></li>
+      <li><a style="--i:5" href="#people" onclick="openPage('people');toggleMenu();return false;"><div class="menu-item-left"><span>섬기는 분들</span><span class="menu-eng">Serving Together</span></div><span class="menu-num">04</span></a></li>
+      <li><a style="--i:6" href="#symbol" onclick="openPage('symbol');toggleMenu();return false;"><div class="menu-item-left"><span>심벌 이야기</span><span class="menu-eng">Living Worship</span></div><span class="menu-num">05</span></a></li>
+      <li><a style="--i:7" href="#worship" onclick="openPage('worship');toggleMenu();return false;"><div class="menu-item-left"><span>예배 안내</span><span class="menu-eng">Worship</span></div><span class="menu-num">06</span></a></li>
+      <li><a style="--i:8" href="#location" onclick="openPage('location');toggleMenu();return false;"><div class="menu-item-left"><span>오시는 길</span><span class="menu-eng">Visit Us</span></div><span class="menu-num">07</span></a></li>
+    </ul>
+  </div>
+  <div class="menu-right">
+    <div>
+      <h3>주일 예배</h3>
+      <ul class="time-grid">
+        <li><span>1부</span><b>오전 6:00</b></li>
+        <li><span>2부</span><b>오전 8:00</b></li>
+        <li><span>3부</span><b>오전 10:00</b></li>
+        <li><span>4부</span><b>정오 12:00</b></li>
+        <li><span>5부</span><b>오후 2:00</b></li>
+        <li><span>6부</span><b>오후 4:00</b></li>
+        <li><span>7부 (영상)</span><b>저녁 8:00</b></li>
+      </ul>
+    </div>
+    <div>
+      <h3>오시는 길</h3>
+      <p>서울 강동구 강동대로 235 (성내동 449-7)<br>5·9호선 올림픽공원역 1번 출구 · 5호선 둔촌동역 4번 출구<br>TEL 02-485-4004</p>
+    </div>
+    <div>
+      <h3>바로가기</h3>
+      <div class="menu-links">
+        <a href="https://oryun.org" target="_blank" rel="noopener">공식 홈페이지</a>
+        <a href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">예배 시간·장소</a>
+        <a href="https://oryun.org/guide/?menu=17" target="_blank" rel="noopener">교통 안내</a>
+        <a href="https://oryun.org/guide/?menu=37" target="_blank" rel="noopener">새가족 등록</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGES -->
+<div id="pages">
+  <button class="p-back" onclick="closePage()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Back to main
+  </button>
+
+  <!-- 01 비전 -->
+  <article class="page" id="p-vision">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">01 — Vision</p>
+      <h1 class="p-title">행복한 교회,<br>건강한 교회</h1>
+      <p class="p-lead">오륜교회는 하나님의 임재가 가득한 예배 안에서 주님 오실 길을 준비합니다. 그 예배에서 받은 은혜로 사람을 세우고, 이웃을 섬기며, 다음 세대를 길러 내는 것이 우리의 꿈입니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">네 가지 비전</div>
+      <div class="grid g4">
+        <div class="card reveal"><span class="card-n">01</span><h3 class="card-t">예배</h3><p class="card-b">하나님의 임재가 충만한 예배로 주님 오실 길을 예비합니다.</p></div>
+        <div class="card reveal"><span class="card-n">02</span><h3 class="card-t">사람</h3><p class="card-b">가정과 일터, 세상 속에서 선한 영향력을 끼치는 사람을 세웁니다.</p></div>
+        <div class="card reveal"><span class="card-n">03</span><h3 class="card-t">섬김과 나눔</h3><p class="card-b">받은 사랑을 말에 그치지 않고 섬김과 나눔으로 실천합니다.</p></div>
+        <div class="card reveal"><span class="card-n">04</span><h3 class="card-t">다음 세대</h3><p class="card-b">믿음을 이어 갈 다음 세대를 준비하고 함께 길러 냅니다.</p></div>
+      </div>
+
+      <div class="sec-lbl">사명 — 우리가 다짐하는 것</div>
+      <ul class="rows">
+        <li class="reveal"><span class="n">01</span><span class="t">성숙한 제자</span><span class="b">예수님을 닮아 가는 성숙한 제자로 자라 갑니다.</span></li>
+        <li class="reveal"><span class="n">02</span><span class="t">복음의 통로</span><span class="b">곁에 있는 사람들을 그리스도께로 인도합니다.</span></li>
+        <li class="reveal"><span class="n">03</span><span class="t">세상을 향한 헌신</span><span class="b">섬김과 나눔으로 하나님이 기뻐하시는 세상을 만드는 일에 헌신합니다.</span></li>
+      </ul>
+
+      <div class="sec-lbl">공동체 고백 — 요약</div>
+      <div class="grid g2">
+        <div class="card reveal"><span class="card-n">하나</span><h3 class="card-t">우리는 누구인가</h3><p class="card-b">예수 그리스도를 구세주로 믿고 성령의 인도를 받는, 구원받은 하나님의 백성입니다.</p></div>
+        <div class="card reveal"><span class="card-n">둘</span><h3 class="card-t">무엇으로 사는가</h3><p class="card-b">경배와 찬양을 드리고 말씀으로 양육받아 복음을 전하는 믿음의 공동체입니다.</p></div>
+        <div class="card reveal"><span class="card-n">셋</span><h3 class="card-t">어떻게 사랑하는가</h3><p class="card-b">지역사회와 세계 복음화를 위해 기도와 봉사로 참여하며 그리스도의 사랑을 실천합니다.</p></div>
+        <div class="card reveal"><span class="card-n">넷</span><h3 class="card-t">어디로 가는가</h3><p class="card-b">지역과 학원 선교로 참 제자를 삼고, 빛과 소금으로 하나님 나라를 넓혀 갑니다.</p></div>
+      </div>
+      <p class="src">사명선언문과 공동체 고백의 원문은 <a href="https://oryun.org/guide/?menu=14" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘비전’</a>에서 확인할 수 있습니다. 이 페이지는 공개된 내용을 요약한 것입니다.</p>
+    </div></div>
+  </article>
+
+  <!-- 02 인사말 -->
+  <article class="page" id="p-greeting">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">02 — Greeting</p>
+      <h1 class="p-title">주님과 동행할 때<br>길이 열립니다</h1>
+      <p class="p-lead">수풀이 우거져 길이 보이지 않는 곳도, 한 번도 걸어 보지 않은 인생의 길도 예수님과 함께 걸으면 길이 됩니다. 주경훈 담임목사가 오륜교회를 찾는 모든 분께 전하는 초대입니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <blockquote class="quote reveal">
+        <p>“인생의 해답은 오직 예수님께 있습니다.”</p>
+        <cite>담임목사 주경훈 · 인사말 중에서</cite>
+      </blockquote>
+
+      <div class="sec-lbl">오륜교회가 되고 싶은 교회</div>
+      <div class="grid g3">
+        <div class="card reveal"><span class="card-n">01</span><h3 class="card-t">하나님의 원안으로</h3><p class="card-b">사람이 만든 대안이 아니라 하나님이 처음 뜻하신 자리로 돌아가는 교회.</p></div>
+        <div class="card reveal"><span class="card-n">02</span><h3 class="card-t">회복과 성장</h3><p class="card-b">말씀과 기도로 무너진 삶이 회복되고 믿음이 자라는 교회.</p></div>
+        <div class="card reveal"><span class="card-n">03</span><h3 class="card-t">열방을 향하여</h3><p class="card-b">꿈과 비전을 품고 온 세상을 향해 나아가는 교회.</p></div>
+      </div>
+      <a class="btn" href="https://oryun.org/guide/?menu=475" target="_blank" rel="noopener">인사말 전문 보기 →</a>
+      <a class="btn ghost" href="#" onclick="openPage('people');return false;">섬기는 분들 보기</a>
+      <p class="src">인사말 전문은 <a href="https://oryun.org/guide/?menu=475" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘담임목사’</a>에 있습니다. 이 페이지는 그 내용을 요약해 소개합니다.</p>
+    </div></div>
+  </article>
+
+  <!-- 03 역사 -->
+  <article class="page" id="p-history">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">03 — History</p>
+      <h1 class="p-title">1989년부터,<br>오늘까지</h1>
+      <p class="p-lead">한 교회의 예배에서 시작된 기도가 한국교회 전체의 기도회로 자랐습니다. 네 곳의 교회를 분립 개척했고, 다음 세대를 위한 사역으로 걸음을 넓혀 왔습니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="stats reveal">
+        <div class="stat"><b>1989</b><span>교회가 시작된 해</span></div>
+        <div class="stat"><b>15,500+</b><span>제25차 다니엘기도회 참여 교회 (2022)</span></div>
+        <div class="stat"><b>4</b><span>분립 개척한 교회</span></div>
+        <div class="stat"><b>7</b><span>매 주일 드리는 예배 (1~7부)</span></div>
+      </div>
+
+      <div class="sec-lbl">주요 연혁</div>
+      <ol class="tl">
+        <li class="reveal"><span class="y">2024</span><span class="e"><strong>제2성전 매입</strong> — 이름을 ‘오륜 다니엘 센터(ODC)’로 정하다. 미주 다니엘기도회 시작.</span></li>
+        <li class="reveal"><span class="y">2023</span><span class="e"><strong>김은호 설립목사 추대, 주경훈 담임목사 취임</strong> 감사예배를 드리다.</span></li>
+        <li class="reveal"><span class="y">2022</span><span class="e">제2교육관 준공. 분당오륜교회 완전 분립. 제25차 다니엘기도회에 15,500여 교회가 함께하다.</span></li>
+        <li class="reveal"><span class="y">2020</span><span class="e">크리스천 방송국 ocbn 개국. 비전하우스와 마라나타 하늘정원 준공.</span></li>
+        <li class="reveal"><span class="y">2019</span><span class="e"><strong>30주년 기념 감사예배.</strong> 청년국 개편, 장년 20개 교구 체제. 영상 큐티 ‘큐티를 보다’ 시작.</span></li>
+        <li class="reveal"><span class="y">2018</span><span class="e">분립 개척 4호 송탄오륜교회 설립.</span></li>
+        <li class="reveal"><span class="y">2017</span><span class="e">사단법인 꿈이있는미래 설립. 제20차 다니엘기도회 참여 교회가 1만 곳을 넘다.</span></li>
+        <li class="reveal"><span class="y">2016</span><span class="e">분립 개척 2호 영훈오륜교회, 3호 분당오륜교회 설립.</span></li>
+        <li class="reveal"><span class="y">2013</span><span class="e">경기도 가평에 오륜 비전빌리지 개관.</span></li>
+        <li class="reveal"><span class="y">2012</span><span class="e">분립 개척 1호 별내오륜교회 설립.</span></li>
+        <li class="reveal"><span class="y">2011</span><span class="e">오륜 커뮤니티센터 개관 예배.</span></li>
+        <li class="reveal"><span class="y">1989</span><span class="e"><strong>오륜교회의 시작.</strong></span></li>
+      </ol>
+      <p class="src">2011년 이후 연혁은 <a href="https://oryun.org/guide/?menu=15" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘역사’</a>(2026년 11월 확인)를 간추린 것입니다. 설립 연도는 2019년 30주년 기념예배 기록을 기준으로 했으며, 1989~2010년의 세부 연혁은 공식 홈페이지를 참고해 주세요.</p>
+    </div></div>
+  </article>
+
+  <!-- 04 섬기는 분들 -->
+  <article class="page" id="p-people">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">04 — People</p>
+      <h1 class="p-title">함께 섬기는<br>사람들</h1>
+      <p class="p-lead">교회를 세운 목회자와 그 걸음을 이어 가는 목회자, 그리고 각자의 자리에서 예배와 이웃을 섬기는 성도들이 오륜교회를 이룹니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">목회자</div>
+      <div class="grid g2">
+        <div class="card reveal"><div class="person">
+          <div class="avatar" aria-hidden="true">주</div>
+          <div><span class="role">Senior Pastor · 담임목사</span><h3 class="card-t" style="margin-top:10px">주경훈 목사</h3>
+          <p class="card-b">2023년 12월 담임목사로 취임했습니다. 가정과 교회를 잇는 다음 세대 교육에 오래 힘써 왔으며 「원 포인트 통합교육」 등을 썼습니다.</p>
+          <div class="chips"><span class="chip">다음 세대</span><span class="chip">가정예배</span><span class="chip">말씀과 기도</span></div></div>
+        </div></div>
+        <div class="card reveal"><div class="person">
+          <div class="avatar" aria-hidden="true" style="background:linear-gradient(135deg,#ffd9a0,#e08a4a)">김</div>
+          <div><span class="role">Founding Pastor · 설립목사</span><h3 class="card-t" style="margin-top:10px">김은호 목사</h3>
+          <p class="card-b">오륜교회를 세우고 30여 년 목회했으며 2023년 설립목사로 추대되었습니다. 다니엘기도회 운영위원장, DNA Ministry 대표로 섬기고 있습니다.</p>
+          <div class="chips"><span class="chip">다니엘기도회</span><span class="chip">DNA Ministry</span></div></div>
+        </div></div>
+      </div>
+
+      <div class="sec-lbl">함께하는 공동체</div>
+      <ul class="rows">
+        <li class="reveal"><span class="n">01</span><span class="t">교구</span><span class="b">갈렙·바울·다니엘 대교구 아래 지역별 교구가 삶의 자리에서 서로를 돌봅니다.</span></li>
+        <li class="reveal"><span class="n">02</span><span class="t">교육국</span><span class="b">드림키즈(영유아·유치), 드림스쿨(초등), 드림틴즈(중고등)가 연령별 예배를 드립니다.</span></li>
+        <li class="reveal"><span class="n">03</span><span class="t">청년국</span><span class="b">주일 5부 예배 후 청년 1~11부와 여러 공동체가 부서별로 모입니다.</span></li>
+        <li class="reveal"><span class="n">04</span><span class="t">선교국</span><span class="b">영어·중국어·일본어 등 외국어 예배와 국내외 선교로 열방을 섬깁니다.</span></li>
+      </ul>
+      <a class="btn" href="https://oryun.org/guide/?menu=20" target="_blank" rel="noopener">섬기는 사람들 전체 보기 →</a>
+      <p class="src">출처: 오륜교회 공식 홈페이지 <a href="https://oryun.org/guide/?menu=475" target="_blank" rel="noopener">담임목사</a> · <a href="https://oryun.org/guide/?menu=16" target="_blank" rel="noopener">설립목사</a> · <a href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">예배 안내</a> (2026년 11월 확인). 사진과 전체 교역자 명단은 공식 홈페이지에서 볼 수 있습니다.</p>
+    </div></div>
+  </article>
+
+  <!-- 05 심벌 -->
+  <article class="page" id="p-symbol">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">05 — Symbol</p>
+      <h1 class="p-title">살아있는 예배,<br>춤추시는 예수님</h1>
+      <p class="p-lead">오륜교회의 심벌에는 우리가 드리고 싶은 예배와, 그 예배 가운데 만나는 예수님의 모습이 담겨 있습니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">심벌마크에 담긴 뜻</div>
+      <div class="symbol-stage">
+        <div class="symbol-box reveal"><img src="assets/symbol.png" alt="오륜교회 심벌마크"></div>
+        <div>
+          <div class="card reveal" style="margin-bottom:16px"><span class="card-n">01 · 푸른 원</span><h3 class="card-t">지구, 그리고 젊은 예배</h3><p class="card-b">둥근 원은 지구를 뜻합니다. 파란색은 살아있는 예배를 드리는 오륜교회의 젊음과 역동성을 나타냅니다.</p></div>
+          <div class="card reveal"><span class="card-n">02 · 흰 형상</span><h3 class="card-t">하나의 모습, 네 가지 이야기</h3><p class="card-b">십자가에 달리신 예수님, 구원받은 백성을 기뻐하며 춤추시는 예수님, 돌아온 탕자를 맞으러 나가시는 아버지의 뒷모습, 그리고 하나님의 임재 안에서 춤추며 행복해하는 그리스도인.</p></div>
+        </div>
+      </div>
+
+      <div class="sec-lbl">색</div>
+      <div class="swatches reveal">
+        <div class="swatch" style="background:#0b3c8f">DEEP BLUE<br>#0B3C8F</div>
+        <div class="swatch" style="background:#1f56a8">ORYUN BLUE<br>#1F56A8</div>
+        <div class="swatch" style="background:#8ccbee;color:#101c36">SKY<br>#8CCBEE</div>
+        <div class="swatch" style="background:#101c36">INK<br>#101C36</div>
+      </div>
+      <p class="src">심벌의 의미는 <a href="https://oryun.org/guide/?menu=21" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘로고’</a>의 설명을 풀어 쓴 것입니다. 색상 값은 로고 파일에서 추출한 근사치이며 공식 규정 색상과 다를 수 있습니다.</p>
+    </div></div>
+  </article>
+
+  <!-- 06 예배 안내 -->
+  <article class="page" id="p-worship">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">06 — Worship</p>
+      <h1 class="p-title">함께 예배해요</h1>
+      <p class="p-lead">주일에는 새벽부터 저녁까지 일곱 번의 예배가 있습니다. 편한 시간에 오셔서 함께 예배하세요. 처음 오셨다면 2층 새가족 등록처에서 도와드립니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">주일 예배</div>
+      <div class="tt-wrap reveal"><table class="tt">
+        <thead><tr><th>구분</th><th>시간</th><th>장소</th></tr></thead>
+        <tbody>
+          <tr><td>1부</td><td class="tm">06:00</td><td>본관 1층 그레이스홀</td></tr>
+          <tr><td>2부</td><td class="tm">08:00</td><td>본관 2층 비전홀</td></tr>
+          <tr><td>3부</td><td class="tm">10:00</td><td>본관 2층 비전홀 · 영어 통역</td></tr>
+          <tr><td>4부</td><td class="tm">12:00</td><td>본관 2층 비전홀 · 영어·중국어 통역</td></tr>
+          <tr><td>5부</td><td class="tm">14:00</td><td>본관 2층 비전홀 · 청년국 주일예배</td></tr>
+          <tr><td>6부</td><td class="tm">16:00</td><td>본관 2층 비전홀</td></tr>
+          <tr><td>7부</td><td class="tm">20:00</td><td>본관 1층 그레이스홀 · 영상예배</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="sec-lbl">평일 예배</div>
+      <div class="tt-wrap reveal"><table class="tt">
+        <thead><tr><th>구분</th><th>시간</th><th>장소</th></tr></thead>
+        <tbody>
+          <tr><td>새벽 1부</td><td class="tm">05:00</td><td>월~토 · 1층 그레이스홀</td></tr>
+          <tr><td>새벽 2부</td><td class="tm">06:00</td><td>월~토 · 2층 비전홀</td></tr>
+          <tr><td>9시 기도회</td><td class="tm">09:00</td><td>월~금 · 3층 에벤에셀홀</td></tr>
+          <tr><td>수요 오전예배</td><td class="tm">11:00</td><td>수요일 · 2층 비전홀</td></tr>
+          <tr><td>수요 오후예배</td><td class="tm">19:30</td><td>수요일 · 2층 비전홀</td></tr>
+          <tr><td>금요기도회</td><td class="tm">20:30</td><td>금요일 · 2층 비전홀</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="sec-lbl">다음 세대 · 청년 · 외국어 예배</div>
+      <div class="grid g3">
+        <div class="card reveal"><span class="card-n">교육국</span><h3 class="card-t">주일 10시 · 12시</h3><p class="card-b">드림키즈(영유아·유치), 드림스쿨(초등), 드림틴즈(중고등)가 학년별 예배실에서 예배합니다. 영아부는 9:30 · 11:30.</p></div>
+        <div class="card reveal"><span class="card-n">청년국</span><h3 class="card-t">주일 오후 2시</h3><p class="card-b">5부 예배를 비전홀에서 함께 드린 뒤, 오후 3시 45분부터 부서별로 모입니다.</p></div>
+        <div class="card reveal"><span class="card-n">국제사역</span><h3 class="card-t">주일 오후 2시</h3><p class="card-b">영어·중국어·일본어·인도네시아어·러시아어 예배. 베트남어 예배는 오전 11시 30분.</p></div>
+      </div>
+      <a class="btn" href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">부서별 예배 장소 전체 보기 →</a>
+      <a class="btn ghost" href="https://oryun.org/guide/?menu=37" target="_blank" rel="noopener">새가족 등록 안내</a>
+      <p class="src">출처: <a href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘예배 시간 및 장소’</a> (2026년 11월 확인). 절기나 행사에 따라 시간이 바뀔 수 있으니 방문 전에 공식 홈페이지를 확인해 주세요.</p>
+    </div></div>
+  </article>
+
+  <!-- 07 오시는 길 -->
+  <article class="page" id="p-location">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">07 — Visit Us</p>
+      <h1 class="p-title">오시는 길</h1>
+      <p class="p-lead">올림픽공원 북쪽, 강동대로변에 있습니다. 주일에는 주차 공간이 넉넉하지 않아 지하철과 버스를 권해 드립니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">주소</div>
+      <p class="addr reveal">서울 강동구 강동대로 235<br><span style="font-size:.6em;color:var(--ink-2)">(성내동 449-7) 우편번호 05408 · TEL 02-485-4004</span></p>
+      <a class="btn" href="https://map.naver.com/p/search/%EC%98%A4%EB%A5%9C%EA%B5%90%ED%9A%8C" target="_blank" rel="noopener">네이버 지도에서 보기 →</a>
+      <a class="btn ghost" href="https://map.kakao.com/?q=%EC%98%A4%EB%A5%9C%EA%B5%90%ED%9A%8C" target="_blank" rel="noopener">카카오맵에서 보기</a>
+
+      <div class="sec-lbl">지하철</div>
+      <div class="tt-wrap reveal"><table class="tt">
+        <thead><tr><th>역 · 출구</th><th>도보 / 버스</th><th>안내</th></tr></thead>
+        <tbody>
+          <tr><td><span class="line-badge" style="background:#996cac">5</span><span class="line-badge" style="background:#bdb092">9</span>올림픽공원역 1번</td><td>버스 약 1분</td><td>3319, 3220 → ‘오륜교회앞’ 하차</td></tr>
+          <tr><td><span class="line-badge" style="background:#996cac">5</span>둔촌동역 4번</td><td>버스 약 3분</td><td>3412, 3413, 3214, 3316 → ‘둔촌오륜역’ 하차 후 약 200m</td></tr>
+          <tr><td><span class="line-badge" style="background:#bdb092">9</span>둔촌오륜역 1번</td><td>도보 약 9분</td><td>둔촌사거리 방향으로 약 650m 직진</td></tr>
+          <tr><td><span class="line-badge" style="background:#996cac">5</span>둔촌동역 3번</td><td>도보 약 10분</td><td>둔촌사거리 방향 약 550m 직진 후 우회전</td></tr>
+          <tr><td><span class="line-badge" style="background:#996cac">5</span>올림픽공원역 3번</td><td>도보 약 12분</td><td>둔촌사거리 방향 약 750m 직진 후 좌회전</td></tr>
+          <tr><td><span class="line-badge" style="background:#00a84d">2</span>잠실역 1·7번</td><td>버스 이용</td><td>3413, 3412, 30-5 → ‘보성중고등학교’ 하차 후 도보 약 6분</td></tr>
+          <tr><td><span class="line-badge" style="background:#e6186c">8</span>몽촌토성역 2번</td><td>버스 이용</td><td>30-5, 3412, 3413 → ‘보성중고등학교’ 하차 후 도보 약 6분</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="sec-lbl">주일 주차</div>
+      <div class="grid g3">
+        <div class="card reveal"><span class="card-n">교회 주차장</span><h3 class="card-t">스티커 차량만</h3><p class="card-b">본관 지하·옥외·제1교육관 주차장은 주일용 주차 스티커가 있는 차량만 들어갈 수 있고, 2시간 이내로 이용합니다. 노약자·장애인·3인 이상 가족 차량은 확인 후 입차할 수 있습니다.</p></div>
+        <div class="card reveal"><span class="card-n">아산병원</span><h3 class="card-t">주차 + 셔틀</h3><p class="card-b">주일 오전 7:30~오후 6:00. 중앙 주차장과 주차동 1·2층을 이용하고, 셔틀버스에서 2시간 30분 할인권을 받습니다.</p></div>
+        <div class="card reveal"><span class="card-n">동북고 · 한국체대</span><h3 class="card-t">인근 주차장</h3><p class="card-b">동북고 운동장은 주일 오전 7:30~오후 6:00 셔틀버스를 운영합니다. 한국체대 정문 주차장은 2시간 할인권을 이용합니다.</p></div>
+      </div>
+      <a class="btn" href="https://oryun.org/guide/?menu=18" target="_blank" rel="noopener">주차 안내 자세히 →</a>
+      <a class="btn ghost" href="https://oryun.org/guide/shuttle/?wtype=0&menu=25" target="_blank" rel="noopener">예배 차량 노선</a>
+      <p class="src">출처: 오륜교회 공식 홈페이지 <a href="https://oryun.org/guide/?menu=17" target="_blank" rel="noopener">오시는 길</a> · <a href="https://oryun.org/guide/?menu=18" target="_blank" rel="noopener">주일예배 주차안내</a> (2026년 11월 확인). 버스 노선과 주차 운영은 바뀔 수 있습니다.</p>
+    </div></div>
+  </article>
+</div>
+
+<script>
+// ── CURSOR ──
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=-100,my=-100,rx=-100,ry=-100;
+if(matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  document.addEventListener('mouseover',e=>{document.body.classList.toggle('hovering',!!e.target.closest('a,button,.card'));});
+  (function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;cur2.style.left=rx+'px';cur2.style.top=ry+'px';requestAnimationFrame(loop);})();
+}
+
+// ── SLIDES ──
+const SLIDES=[
+  {lines:['Happy','Healthy','Church'], page:'vision',   cta:'비전 보기'},
+  {lines:['Walk','With','Jesus'],      page:'greeting', cta:'인사말 보기'},
+  {lines:['Since','1989'],             page:'history',  cta:'걸어온 길 보기'},
+  {lines:['Serving','Together'],       page:'people',   cta:'섬기는 분들 보기'},
+  {lines:['Living','Worship'],         page:'symbol',   cta:'심벌 이야기 보기'},
+  {lines:['Come','And','Worship'],     page:'worship',  cta:'예배 시간 보기'},
+  {lines:['Visit','Us'],               page:'location', cta:'오시는 길 보기'},
+];
+const SLIDE_INTERVAL=12000;
+
+function renderTitle(idx){
+  const t=SLIDES[idx];
+  const sl=document.getElementById('s'+idx);
+  document.body.classList.toggle('on-photo',!!sl&&sl.classList.contains('photo'));
+  document.getElementById('block-text').innerHTML=t.lines.map((w,i)=>
+    `<div class="block-text__line"><span class="word"><span class="mask-text"><span style="animation-delay:${i*80}ms">${w}</span></span></span></div>`).join('');
+  document.getElementById('cta-text').textContent=t.cta;
+  const lnk=document.getElementById('header-link');
+  lnk.href='#'+t.page;
+  lnk.onclick=e=>{e.preventDefault();openPage(t.page);};
+}
+
+const slides=document.querySelectorAll('.slide');
+const TOTAL=slides.length;
+let cs=0,lock=false,autoTimer,menuOpen=false,pageOpen=false;
+
+function playVideos(el,on){el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
+
+function updateUI(){
+  document.getElementById('ctrl-now').textContent=cs+1;
+  if(!pageOpen)document.getElementById('prog-bar').style.width=((cs+1)/TOTAL*100)+'%';
+  const sw=document.getElementById('scrollbar'),sb=document.getElementById('scrollbar-thumb');
+  const th=sw.clientHeight/TOTAL;
+  sb.style.height=th+'px';sb.style.transform=`translateY(${th*cs}px)`;
+}
+
+function go(n){
+  const nextCs=(n+TOTAL)%TOTAL;
+  if(lock||nextCs===cs)return;
+  lock=true;
+  const prevCs=cs;
+  const forward=((nextCs-prevCs+TOTAL)%TOTAL)<=TOTAL/2;
+  playVideos(slides[prevCs],false);
+  if(forward){
+    slides[prevCs].classList.add('slide-above');
+    slides[prevCs].classList.remove('active');
+    slides[nextCs].classList.remove('slide-above');
+  }else{
+    slides[prevCs].classList.remove('active','slide-above');
+    slides[nextCs].classList.add('slide-notransition','slide-above');
+    void slides[nextCs].offsetWidth;
+    slides[nextCs].classList.remove('slide-notransition');
+  }
+  cs=nextCs;
+  slides[cs].classList.add('active');
+  setTimeout(()=>{
+    slides[prevCs].classList.add('slide-notransition');
+    slides[prevCs].classList.remove('slide-above');
+    void slides[prevCs].offsetWidth;
+    slides[prevCs].classList.remove('slide-notransition');
+    slides[cs].classList.remove('slide-above');
+  },1000);
+  playVideos(slides[cs],true);
+  updateUI();
+  const mh=document.getElementById('main-slider-header');
+  mh.style.opacity='0';
+  setTimeout(()=>{renderTitle(cs);mh.style.opacity='1';},180);
+  setTimeout(()=>lock=false,1050);
+  resetAuto();
+}
+function next(){go(cs+1);}
+function prev(){go(cs-1);}
+function resetAuto(){
+  clearInterval(autoTimer);
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  autoTimer=setInterval(()=>{if(!pageOpen&&!menuOpen&&!document.hidden)next();},SLIDE_INTERVAL);
+}
+
+// 휠 · 키보드 · 스와이프
+let wlast=0;
+window.addEventListener('wheel',e=>{
+  if(pageOpen||menuOpen)return;
+  const now=Date.now();
+  if(now-wlast<900||Math.abs(e.deltaY)<8)return;
+  wlast=now;e.deltaY>0?next():prev();
+},{passive:true});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if(menuOpen)toggleMenu();else if(pageOpen)closePage();return;}
+  if(pageOpen||menuOpen)return;
+  if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key==='PageDown')next();
+  else if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp')prev();
+});
+let ty=null;
+const sl=document.getElementById('slider');
+[sl,document.getElementById('main-slider-header')].forEach(el=>{
+  el.addEventListener('touchstart',e=>{ty=e.touches[0].clientY;},{passive:true});
+  el.addEventListener('touchend',e=>{
+    if(ty===null)return;
+    const dy=e.changedTouches[0].clientY-ty;ty=null;
+    if(Math.abs(dy)>50)dy<0?next():prev();
+  },{passive:true});
+});
+
+// ── MENU ──
+function toggleMenu(){
+  menuOpen=!menuOpen;
+  const m=document.getElementById('menu');
+  m.classList.toggle('open',menuOpen);
+  m.setAttribute('aria-hidden',!menuOpen);
+  if(menuOpen)clearInterval(autoTimer);else if(!pageOpen)resetAuto();
+}
+
+// ── PAGES ──
+const pagesEl=document.getElementById('pages');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{root:pagesEl,threshold:.12});
+function openPage(id,fromHash){
+  const pg=document.getElementById('p-'+id);
+  if(!pg)return;
+  document.querySelectorAll('.page').forEach(d=>d.classList.remove('show'));
+  pg.classList.add('show');
+  pagesEl.classList.add('open');pagesEl.scrollTop=0;
+  pageOpen=true;clearInterval(autoTimer);
+  document.getElementById('prog-bar').style.width='0%';
+  pg.querySelectorAll('.reveal').forEach((el,i)=>{el.classList.remove('in');el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
+  const i=SLIDES.findIndex(s=>s.page===id);
+  if(i>-1&&i!==cs){ // 뒤의 슬라이드도 같은 주제로 맞춰 둠
+    slides[cs].classList.remove('active');cs=i;slides[cs].classList.add('active');renderTitle(cs);
+    document.getElementById('ctrl-now').textContent=cs+1;
+  }
+  if(!fromHash)history.pushState(null,'','#'+id);
+}
+function closePage(fromHash){
+  if(!pageOpen)return;
+  pagesEl.classList.remove('open');
+  pageOpen=false;updateUI();resetAuto();
+  if(!fromHash)history.pushState(null,'',location.pathname+location.search);
+}
+pagesEl.addEventListener('scroll',function(){
+  const max=this.scrollHeight-this.clientHeight;
+  document.getElementById('prog-bar').style.width=(max>0?this.scrollTop/max*100:0)+'%';
+},{passive:true});
+function syncHash(){
+  const id=location.hash.slice(1);
+  if(id&&document.getElementById('p-'+id))openPage(id,true);else closePage(true);
+}
+window.addEventListener('popstate',syncHash);
+window.addEventListener('resize',updateUI);
+
+// ── INIT ──
+renderTitle(0);
+document.getElementById('ctrl-total').textContent=TOTAL;
+updateUI();resetAuto();syncHash();
+</script>
+</body>
+</html>

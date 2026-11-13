@@ -1,0 +1,6 @@
+# 배포에는 index.html 과 assets 만 올린다
+.claude/
+3d-preview/
+promo_video_preview/
+*.ai
+.DS_Store
