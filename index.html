@@ -7,7 +7,7 @@
 <meta name="description" content="오륜교회 소개 — 비전, 담임목사 인사말, 걸어온 길, 섬기는 분들, 심벌 이야기">
 <meta name="theme-color" content="#f4f7fb">
 <link rel="icon" href="assets/symbol.png">
-<link rel="preload" as="image" href="assets/bg-exterior.jpg">
+<link rel="preload" as="image" href="assets/bg-exterior.jpg?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet">
@@ -112,6 +112,7 @@ a{color:inherit;}
 .slide-bg{position:absolute;inset:0;overflow:hidden;background:var(--bg);}
 /* 영상을 넣고 싶을 때: .slide-bg 안에 <video class="video-layer" muted loop playsinline src="videos/..."> 추가 */
 .video-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+.slide.photo .video-layer{filter:none;}
 .slide-dim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(244,247,251,.92) 0%,rgba(244,247,251,.35) 38%,transparent 62%),linear-gradient(to right,rgba(244,247,251,.6) 0%,transparent 55%);}
 
 /* 배경 빛 */
@@ -183,8 +184,8 @@ a{color:inherit;}
 .slide.active .photo-layer{animation:kenburns 26s ease-out both;}
 @keyframes kenburns{from{transform:scale(1.08);}to{transform:scale(1);}}
 .slide.photo .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.88) 0%,rgba(8,16,34,.5) 38%,rgba(8,16,34,.08) 72%),linear-gradient(to right,rgba(8,16,34,.5) 0%,transparent 55%);}
-.slide.photo.s1 .slide-dim,.slide.photo.s7 .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.72) 0%,rgba(8,16,34,.22) 34%,rgba(8,16,34,0) 60%),linear-gradient(to right,rgba(8,16,34,.34) 0%,rgba(8,16,34,0) 46%);}
-.slide.photo.s1 .photo-layer,.slide.photo.s7 .photo-layer{filter:brightness(1.06) saturate(1.08);}
+.slide.photo.dim-soft .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.72) 0%,rgba(8,16,34,.22) 34%,rgba(8,16,34,0) 60%),linear-gradient(to right,rgba(8,16,34,.34) 0%,rgba(8,16,34,0) 46%);}
+.slide.photo.dim-soft .photo-layer{filter:brightness(1.06) saturate(1.08);}
 .slide.photo .slide-num{color:var(--sky);}
 .slide.photo .slide-caption-tag{color:rgba(255,255,255,.88);}
 .slide.photo .slide-caption-tag::before{background:var(--sky);}
@@ -199,6 +200,10 @@ body.on-photo .ctrl-total{color:rgba(255,255,255,.65);}
 body.on-photo .ctrl-total::before{background:#fff;}
 body.on-photo .ctrl-arrow svg{stroke:#fff;}
 body.on-photo #scrollbar-thumb{background:#fff;}
+
+/* ── 영상 배경 슬라이드 (밝은 영상 위에 남색 글자) ── */
+.slide.video .slide-bg{background:#f3ece0;}
+.slide.video .slide-dim{background:linear-gradient(to top,rgba(246,241,232,.94) 0%,rgba(246,241,232,.62) 30%,rgba(246,241,232,0) 58%),linear-gradient(to right,rgba(246,241,232,.72) 0%,rgba(246,241,232,.2) 38%,rgba(246,241,232,0) 60%);}
 
 /* ── RIGHT CONTROL ── */
 #control{position:fixed;right:var(--pad);bottom:50px;z-index:50;display:flex;flex-direction:column;align-items:center;color:var(--ink);}
@@ -401,20 +406,14 @@ body.on-photo #scrollbar-thumb{background:#fff;}
 
 <!-- SLIDER -->
 <div id="slider">
-  <section class="slide photo s1 active" id="s0">
-    <div class="slide-bg">
-      <img class="photo-layer" src="assets/bg-exterior.jpg" alt="오륜교회 비전센터 전경" style="object-position:62% 45%">
-    </div>
+  <section class="slide s1 active" id="s0">
+    <div class="slide-bg"></div>
     <div class="slide-dim"></div>
     <div class="slide-caption"><span class="slide-num">01</span><span class="slide-caption-tag">비전 — 행복한 교회, 건강한 교회</span></div>
   </section>
 
   <section class="slide s2" id="s1">
-    <div class="slide-bg">
-      <div class="blob" style="width:44vw;height:44vw;right:-4vw;top:-6vw;background:#ffe4bd;"></div>
-      <div class="blob" style="width:34vw;height:34vw;left:30vw;bottom:-16vw;background:#cfe4f9;animation-delay:-6s;"></div>
-      <div class="art art-rays"></div>
-    </div>
+    <div class="slide-bg"></div>
     <div class="slide-dim"></div>
     <div class="slide-caption"><span class="slide-num">02</span><span class="slide-caption-tag">담임목사 인사말 — 주님과 동행할 때 길이 열립니다</span></div>
   </section>
@@ -429,11 +428,7 @@ body.on-photo #scrollbar-thumb{background:#fff;}
   </section>
 
   <section class="slide s4" id="s3">
-    <div class="slide-bg">
-      <div class="blob" style="width:42vw;height:42vw;right:-6vw;bottom:-10vw;background:#c9ece8;"></div>
-      <div class="blob" style="width:30vw;height:30vw;right:24vw;top:-10vw;background:#d6e7fa;animation-delay:-10s;"></div>
-      <div class="art art-orbit"><div class="ring"></div><div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div></div>
-    </div>
+    <div class="slide-bg"></div>
     <div class="slide-dim"></div>
     <div class="slide-caption"><span class="slide-num">04</span><span class="slide-caption-tag">섬기는 분들 — 설립목사 · 담임목사</span></div>
   </section>
@@ -447,18 +442,14 @@ body.on-photo #scrollbar-thumb{background:#fff;}
     <div class="slide-caption"><span class="slide-num">05</span><span class="slide-caption-tag">심벌 이야기 — 살아있는 예배, 춤추시는 예수님</span></div>
   </section>
 
-  <section class="slide photo s6" id="s5">
-    <div class="slide-bg">
-      <img class="photo-layer" src="assets/bg-visionhall.jpg" alt="오륜교회 비전홀 내부" style="object-position:50% 40%">
-    </div>
+  <section class="slide s6" id="s5">
+    <div class="slide-bg"></div>
     <div class="slide-dim"></div>
     <div class="slide-caption"><span class="slide-num">06</span><span class="slide-caption-tag">예배 안내 — 주일 1~7부 · 수요 · 금요 · 새벽</span></div>
   </section>
 
-  <section class="slide photo s7" id="s6">
-    <div class="slide-bg">
-      <img class="photo-layer" src="assets/bg-exterior.jpg" alt="강동대로에서 본 오륜교회" style="object-position:30% 70%;transform-origin:25% 75%">
-    </div>
+  <section class="slide s7" id="s6">
+    <div class="slide-bg"></div>
     <div class="slide-dim"></div>
     <div class="slide-caption"><span class="slide-num">07</span><span class="slide-caption-tag">오시는 길 — 서울 강동구 강동대로 235</span></div>
   </section>
@@ -802,11 +793,56 @@ function renderTitle(idx){
   lnk.onclick=e=>{e.preventDefault();openPage(t.page);};
 }
 
+// ── 슬라이드 배경 설정 ──────────────────────────────────────────────
+// 위에서부터 01~07 슬라이드 순서입니다. 줄 하나가 슬라이드 하나의 배경입니다.
+//   type : 'image'(사진) | 'video'(영상, 소리 없이 자동 반복 재생) | 'none'(기본 그래픽 유지)
+//   src  : assets 폴더 안의 파일 경로
+//   poster : (영상) 불러오기 전에 보여 줄 대표 이미지
+//   tone : 'dark' = 어두운 배경 → 글자 흰색 / 'light' = 밝은 배경 → 글자 남색
+//   dim  : 'soft' = 배경 위에 얹는 그늘을 옅게 (tone 'dark' 일 때만)
+//   position : 화면에 맞춰 자를 때 중심으로 둘 위치 (가로% 세로%)
+const SLIDE_MEDIA=[
+  /* 01 비전        */ {type:'image', src:'assets/bg-exterior.jpg?v=3',   tone:'dark',  dim:'soft', position:'62% 45%', alt:'오륜교회 비전센터 전경'},
+  /* 02 인사말      */ {type:'video', src:'assets/video/joshua.mp4',      poster:'assets/video/joshua.jpg',   tone:'light', alt:'종이 공예 애니메이션'},
+  /* 03 걸어온 길   */ {type:'none'},
+  /* 04 섬기는 분들 */ {type:'video', src:'assets/video/disciple.mp4',    poster:'assets/video/disciple.jpg', tone:'light', alt:'나는 제자입니다'},
+  /* 05 심벌 이야기 */ {type:'none'},
+  /* 06 예배 안내   */ {type:'image', src:'assets/bg-visionhall.jpg?v=3', tone:'dark',  position:'50% 40%', alt:'오륜교회 비전홀 내부'},
+  /* 07 오시는 길   */ {type:'image', src:'assets/bg-exterior.jpg?v=3',   tone:'dark',  dim:'soft', position:'30% 70%', alt:'강동대로에서 본 오륜교회'},
+];
+function applySlideMedia(){
+  document.querySelectorAll('.slide').forEach((sl,i)=>{
+    const m=SLIDE_MEDIA[i];
+    if(!m||m.type==='none'||!m.src)return;
+    const bg=sl.querySelector('.slide-bg');
+    bg.textContent='';
+    sl.classList.remove('photo','video','dim-soft');
+    sl.classList.add(m.tone==='light'?'video':'photo');   // photo = 어두운 톤, video = 밝은 톤
+    if(m.dim==='soft')sl.classList.add('dim-soft');
+    let el;
+    if(m.type==='video'){
+      el=document.createElement('video');
+      el.className='video-layer';el.muted=true;el.loop=true;el.playsInline=true;
+      el.setAttribute('muted','');el.setAttribute('playsinline','');el.setAttribute('webkit-playsinline','');
+      el.preload='none';if(m.poster)el.poster=m.poster;
+      el.setAttribute('aria-label',m.alt||'');
+      const so=document.createElement('source');so.src=m.src;so.type='video/mp4';el.appendChild(so);
+    }else{
+      el=document.createElement('img');
+      el.className='photo-layer';el.src=m.src;el.alt=m.alt||'';
+      if(i>0)el.loading='lazy';
+    }
+    if(m.position){el.style.objectPosition=m.position;el.style.transformOrigin=m.position;}
+    bg.appendChild(el);
+  });
+}
+applySlideMedia();
+
 const slides=document.querySelectorAll('.slide');
 const TOTAL=slides.length;
 let cs=0,lock=false,autoTimer,menuOpen=false,pageOpen=false;
 
-function playVideos(el,on){el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
+function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
 
 function updateUI(){
   document.getElementById('ctrl-now').textContent=cs+1;
@@ -902,6 +938,7 @@ function openPage(id,fromHash){
   pg.classList.add('show');
   pagesEl.classList.add('open');pagesEl.scrollTop=0;
   pageOpen=true;clearInterval(autoTimer);
+  slides.forEach(sl=>playVideos(sl,false));
   document.getElementById('prog-bar').style.width='0%';
   pg.querySelectorAll('.reveal').forEach((el,i)=>{el.classList.remove('in');el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
   const i=SLIDES.findIndex(s=>s.page===id);
@@ -915,6 +952,7 @@ function closePage(fromHash){
   if(!pageOpen)return;
   pagesEl.classList.remove('open');
   pageOpen=false;updateUI();resetAuto();
+  playVideos(slides[cs],true);
   if(!fromHash)history.pushState(null,'',location.pathname+location.search);
 }
 pagesEl.addEventListener('scroll',function(){
@@ -928,8 +966,10 @@ function syncHash(){
 window.addEventListener('popstate',syncHash);
 window.addEventListener('resize',updateUI);
 
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!pageOpen&&!menuOpen)playVideos(slides[cs],true);});
 // ── INIT ──
 renderTitle(0);
+playVideos(slides[0],true);
 document.getElementById('ctrl-total').textContent=TOTAL;
 updateUI();resetAuto();syncHash();
 </script>
