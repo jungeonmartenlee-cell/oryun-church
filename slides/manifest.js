@@ -9,11 +9,16 @@ window.SLIDE_MEDIA = [
     "alt": "오륜교회 비전센터 전경"
   },
   {
-    "type": "image",
+    "type": "slideshow",
     "tone": "dark",
-    "src": "slides/02-worship/web.jpg?v=1794623744",
-    "position": "50% 40%",
-    "alt": "오륜교회 비전홀 내부"
+    "items": [
+      "slides/02-worship/web-1.jpg?v=1794582284",
+      "slides/02-worship/web-2.jpg?v=1793677669",
+      "slides/02-worship/web-3.jpg?v=1790062174",
+      "slides/02-worship/web-4.jpg?v=1793677616",
+      "slides/02-worship/web-5.jpg?v=1793677637"
+    ],
+    "alt": "오륜교회 예배"
   },
   {
     "type": "video",
@@ -30,25 +35,20 @@ window.SLIDE_MEDIA = [
     "alt": "나는 제자입니다"
   },
   {
-    "type": "image",
+    "type": "video",
     "tone": "dark",
-    "src": "slides/05-location/web.jpg?v=1794623744",
-    "dim": "soft",
-    "position": "30% 70%",
-    "alt": "강동대로에서 본 오륜교회"
+    "src": "slides/05-location/web.mp4?v=1794633423",
+    "poster": "slides/05-location/web.jpg?v=1794633423",
+    "alt": "오륜교회 전경 타임랩스"
   },
   {
     "type": "slideshow",
     "tone": "dark",
     "items": [
-      "slides/06-history/web-1.jpg?v=1790062174",
-      "slides/06-history/web-2.jpg?v=1793677943",
-      "slides/06-history/web-3.jpg?v=1793677616",
-      "slides/06-history/web-4.jpg?v=1793677742",
-      "slides/06-history/web-5.jpg?v=1793677580",
-      "slides/06-history/web-6.jpg?v=1793677637",
-      "slides/06-history/web-7.jpg?v=1793677662",
-      "slides/06-history/web-8.jpg?v=1793677669"
+      "slides/06-history/web-1.jpg?v=1793677943",
+      "slides/06-history/web-2.jpg?v=1793677742",
+      "slides/06-history/web-3.jpg?v=1793677580",
+      "slides/06-history/web-4.jpg?v=1793677662"
     ],
     "alt": "오륜교회 예배와 공동체의 모습"
   },
