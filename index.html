@@ -94,7 +94,7 @@ a{color:inherit;}
 @keyframes slideInDown{from{transform:translateY(100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .title-cta{
   display:inline-flex;align-items:center;gap:12px;margin-top:22px;
-  font-size:13px;font-weight:500;letter-spacing:.04em;color:#fff;
+  font-size:14px;font-weight:700;letter-spacing:.02em;color:#fff;
   background:var(--blue);padding:13px 22px;border-radius:999px;
   box-shadow:0 10px 30px -10px rgba(31,86,168,.6);
   transition:background .25s,transform .4s var(--ease);
@@ -446,7 +446,7 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 <div id="main-slider-header">
   <a href="#" id="header-link">
     <div class="block-text" id="block-text"></div>
-    <span class="title-cta"><span id="cta-text">자세히 보기</span>
+    <span class="title-cta"><span id="cta-text">자세히</span>
       <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </span>
   </a>
@@ -783,12 +783,12 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 
 // ── SLIDES ──
 const SLIDES=[
-  {lines:['Happy','Healthy','Church'], page:'vision',   cta:'비전 보기'},
-  {lines:['Come','And','Worship'],     page:'worship',  cta:'예배 시간 보기'},
-  {lines:['Walk','With','Jesus'],      page:'greeting', cta:'인사말 보기'},
-  {lines:['Serving','Together'],       page:'people',   cta:'섬기는 분들 보기'},
-  {lines:['Visit','Us'],               page:'location', cta:'오시는 길 보기'},
-  {lines:['Since','1989'],             page:'history',  cta:'걸어온 길 보기'},
+  {lines:['Happy','Healthy','Church'], page:'vision',   cta:'비전'},
+  {lines:['Come','And','Worship'],     page:'worship',  cta:'예배 시간'},
+  {lines:['Walk','With','Jesus'],      page:'greeting', cta:'인사말'},
+  {lines:['Serving','Together'],       page:'people',   cta:'섬기는 분들'},
+  {lines:['Visit','Us'],               page:'location', cta:'오시는 길'},
+  {lines:['Since','1989'],             page:'history',  cta:'걸어온 길'},
 ];
 const SLIDE_INTERVAL=15000;   // 장면(슬라이드)이 넘어가는 간격
 const PHOTO_INTERVAL=3000;   // 넘어가는 사진 한 장을 보여 주는 시간
