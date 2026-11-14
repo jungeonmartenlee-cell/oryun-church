@@ -4,3 +4,10 @@
 promo_video_preview/
 *.ai
 .DS_Store
+
+# 슬라이드 자료: 원본은 올리지 않고 웹용 파일만 올린다
+slides/*/*
+!slides/*/web.jpg
+!slides/*/web.mp4
+!slides/*/options.json
+!slides/*/web-*.jpg
