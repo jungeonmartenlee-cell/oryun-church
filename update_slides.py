@@ -3,18 +3,18 @@
 
 사용법:  python3 update_slides.py
 
-slides/01-vision ~ 07-symbol 폴더마다 사진이나 영상을 넣어 두면,
+slides/01-vision ~ 06-history 폴더마다 사진이나 영상을 넣어 두면,
 폴더에서 가장 최근에 넣은 파일 하나를 그 슬라이드의 배경으로 씁니다.
   - 사진: 웹용 JPG(web.jpg)로 줄여서 저장
   - 영상: 소리를 뺀 720p 웹용(web.mp4)과 대표 이미지(web.jpg)로 변환 (ffmpeg 필요)
   - 폴더가 비어 있으면 기본 그래픽을 그대로 씁니다
 결과는 slides/manifest.js 에 기록되고, index.html 이 그 파일을 읽습니다.
 """
-import json, os, shutil, subprocess, sys
+import json, os, shutil, subprocess, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SLIDES = os.path.join(ROOT, 'slides')
-FOLDERS = ['01-vision', '02-worship', '03-greeting', '04-people', '05-location', '06-history', '07-symbol']
+FOLDERS = ['01-vision', '02-worship', '03-greeting', '04-people', '05-location', '06-history']
 IMAGE_EXT = {'.jpg', '.jpeg', '.png', '.webp', '.heic', '.tif', '.tiff', '.arw', '.cr2', '.cr3', '.nef', '.dng'}
 VIDEO_EXT = {'.mp4', '.mov', '.m4v', '.webm', '.mkv'}
 GENERATED = {'web.jpg', 'web.mp4', 'options.json'}
@@ -90,7 +90,11 @@ def build():
             for k, img in enumerate(imgs, 1):
                 out = os.path.join(folder, 'web-%d.jpg' % k)
                 run(['sips', '-Z', size, '-s', 'format', 'jpeg', '-s', 'formatOptions', '82', img, '--out', out])
-                items.append('slides/%s/web-%d.jpg?v=%d' % (name, k, int(os.path.getmtime(img))))
+                url = 'slides/%s/web-%d.jpg?v=%d' % (name, k, int(os.path.getmtime(img)))
+                # options.json 의 "focus": {"파일 이름 일부": "가로% 세로%"} → 그 사진을 화면에 맞춰 자를 때의 중심
+                pos = next((v for key, v in (opts.get('focus') or {}).items()
+                            if key in unicodedata.normalize('NFC', os.path.basename(img))), None)
+                items.append({'src': url, 'position': pos} if pos else url)
             if items:
                 tone = opts.get('tone') or ('light' if layout == 'cards' else 'dark')
                 item = {'type': layout, 'tone': tone, 'items': items, 'alt': opts.get('alt', '')}

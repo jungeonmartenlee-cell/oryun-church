@@ -180,7 +180,8 @@ a{color:inherit;}
 /* ── 사진 배경 슬라이드 ── */
 .slide.photo .slide-bg{background:#0b1220;}
 .photo-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transform:scale(1.08);}
-.slide.active .photo-layer{animation:kenburns 9s linear both;}
+.photo-layer{animation:kenburns 18s linear infinite alternate both;animation-play-state:paused;}
+.slide.active .photo-layer{animation-play-state:running;}
 @keyframes kenburns{from{transform:scale(1.12);}to{transform:scale(1);}}
 .slide.photo .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.88) 0%,rgba(8,16,34,.5) 38%,rgba(8,16,34,.08) 72%),linear-gradient(to right,rgba(8,16,34,.5) 0%,transparent 55%);}
 .slide.photo.dim-soft .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.72) 0%,rgba(8,16,34,.22) 34%,rgba(8,16,34,0) 60%),linear-gradient(to right,rgba(8,16,34,.34) 0%,rgba(8,16,34,0) 46%);}
@@ -230,6 +231,7 @@ body.on-photo #scrollbar-thumb{background:#fff;}
 .show-layer img.on,.show-layer img.out{animation:showzoom 4.4s linear forwards;}   /* 3초 표시 + 1초 겹침 동안 계속 움직임 */
 .show-layer img:nth-child(even).on,.show-layer img:nth-child(even).out{animation-name:showzoom-out;}
 .show-layer img.on{opacity:1;}
+.slide:not(.active) .show-layer img{animation-play-state:paused;}
 @keyframes showzoom{from{transform:scale(1.02);}to{transform:scale(1.14);}}
 @keyframes showzoom-out{from{transform:scale(1.14);}to{transform:scale(1.02);}}
 
@@ -336,11 +338,6 @@ body.on-photo #scrollbar-thumb{background:#fff;}
 .person{display:grid;grid-template-columns:96px 1fr;gap:24px;align-items:start;}
 .avatar{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--sky),var(--blue));color:#fff;font-family:'Noto Serif KR',serif;font-size:30px;}
 .role{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;}
-.symbol-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:center;}
-.symbol-box{aspect-ratio:1;border-radius:32px;background:linear-gradient(160deg,#fff,#e4eefb);border:1px solid var(--line);display:grid;place-items:center;}
-.symbol-box img{width:52%;height:auto;filter:drop-shadow(0 30px 40px rgba(11,60,143,.25));}
-.swatches{display:flex;gap:12px;flex-wrap:wrap;}
-.swatch{flex:1;min-width:120px;border-radius:16px;padding:54px 16px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;color:#fff;}
 .src{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-3);line-height:1.9;}
 .src a{color:var(--blue);text-underline-offset:3px;}
 .btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-size:13.5px;font-weight:500;text-decoration:none;color:#fff;background:var(--blue);padding:13px 22px;border-radius:999px;transition:background .2s;}
@@ -357,9 +354,7 @@ body.on-photo #scrollbar-thumb{background:#fff;}
   #menu{grid-template-columns:1fr;}
   .menu-left{padding:96px 40px 30px;}
   .menu-right{padding:36px 40px 60px;border-left:none;border-top:1px solid var(--line);}
-  .symbol-stage{grid-template-columns:1fr;}
-  .symbol-box{max-width:340px;}
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+      .stats{grid-template-columns:repeat(2,minmax(0,1fr));}
   .stat:nth-child(2){border-right:none;}
   .stat:nth-child(-n+2){border-bottom:1px solid var(--line);}
 }
@@ -497,20 +492,11 @@ body.page-open #header{background:rgba(255,255,255,.78);}
     <div class="slide-dim"></div>
     <div class="slide-caption"><span class="slide-num">06</span><span class="slide-caption-tag">걸어온 길 — 1989년부터 오늘까지</span></div>
   </section>
-
-  <section class="slide s5" id="s6">
-    <div class="slide-bg">
-      <div class="blob" style="width:48vw;height:48vw;right:-10vw;top:-8vw;background:#b9d6f5;"></div>
-      <div class="art art-mark"><div class="ring"></div><div class="ring r2"></div><img src="assets/symbol.png" alt=""></div>
-    </div>
-    <div class="slide-dim"></div>
-    <div class="slide-caption"><span class="slide-num">07</span><span class="slide-caption-tag">심벌 이야기 — 살아있는 예배, 춤추시는 예수님</span></div>
-  </section>
 </div>
 
 <!-- CONTROL -->
 <div id="control">
-  <div class="ctrl-number"><span id="ctrl-now">1</span><span class="ctrl-total" id="ctrl-total">7</span></div>
+  <div class="ctrl-number"><span id="ctrl-now">1</span><span class="ctrl-total" id="ctrl-total">6</span></div>
   <button class="ctrl-arrow" onclick="prev()" aria-label="이전 슬라이드"><svg viewBox="0 0 40 40"><path d="M12 23l8-8 8 8"/></svg></button>
   <button class="ctrl-arrow" onclick="next()" aria-label="다음 슬라이드"><svg viewBox="0 0 40 40"><path d="M12 17l8 8 8-8"/></svg></button>
 </div>
@@ -530,7 +516,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
       <li><a style="--i:5" href="#people" onclick="openPage('people');toggleMenu();return false;"><div class="menu-item-left"><span>섬기는 분들</span><span class="menu-eng">Serving Together</span></div><span class="menu-num">04</span></a></li>
       <li><a style="--i:6" href="#location" onclick="openPage('location');toggleMenu();return false;"><div class="menu-item-left"><span>오시는 길</span><span class="menu-eng">Visit Us</span></div><span class="menu-num">05</span></a></li>
       <li><a style="--i:7" href="#history" onclick="openPage('history');toggleMenu();return false;"><div class="menu-item-left"><span>걸어온 길</span><span class="menu-eng">Since 1989</span></div><span class="menu-num">06</span></a></li>
-      <li><a style="--i:8" href="#symbol" onclick="openPage('symbol');toggleMenu();return false;"><div class="menu-item-left"><span>심벌 이야기</span><span class="menu-eng">Living Worship</span></div><span class="menu-num">07</span></a></li>
     </ul>
   </div>
   <div class="menu-right">
@@ -697,33 +682,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
     </div></div>
   </article>
 
-  <!-- 05 심벌 -->
-  <article class="page" id="p-symbol">
-    <header class="p-hero"><div class="p-wrap">
-      <p class="p-eyebrow">07 — Symbol</p>
-      <h1 class="p-title">살아있는 예배,<br>춤추시는 예수님</h1>
-      <p class="p-lead">오륜교회의 심벌에는 우리가 드리고 싶은 예배와, 그 예배 가운데 만나는 예수님의 모습이 담겨 있습니다.</p>
-    </div></header>
-    <div class="p-body"><div class="p-wrap">
-      <div class="sec-lbl">심벌마크에 담긴 뜻</div>
-      <div class="symbol-stage">
-        <div class="symbol-box reveal"><img src="assets/symbol.png" alt="오륜교회 심벌마크"></div>
-        <div>
-          <div class="card reveal" style="margin-bottom:16px"><span class="card-n">01 · 푸른 원</span><h3 class="card-t">지구, 그리고 젊은 예배</h3><p class="card-b">둥근 원은 지구를 뜻합니다. 파란색은 살아있는 예배를 드리는 오륜교회의 젊음과 역동성을 나타냅니다.</p></div>
-          <div class="card reveal"><span class="card-n">02 · 흰 형상</span><h3 class="card-t">하나의 모습, 네 가지 이야기</h3><p class="card-b">십자가에 달리신 예수님, 구원받은 백성을 기뻐하며 춤추시는 예수님, 돌아온 탕자를 맞으러 나가시는 아버지의 뒷모습, 그리고 하나님의 임재 안에서 춤추며 행복해하는 그리스도인.</p></div>
-        </div>
-      </div>
-
-      <div class="sec-lbl">색</div>
-      <div class="swatches reveal">
-        <div class="swatch" style="background:#0b3c8f">DEEP BLUE<br>#0B3C8F</div>
-        <div class="swatch" style="background:#1f56a8">ORYUN BLUE<br>#1F56A8</div>
-        <div class="swatch" style="background:#8ccbee;color:#101c36">SKY<br>#8CCBEE</div>
-        <div class="swatch" style="background:#101c36">INK<br>#101C36</div>
-      </div>
-      <p class="src">심벌의 의미는 <a href="https://oryun.org/guide/?menu=21" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘로고’</a>의 설명을 풀어 쓴 것입니다. 색상 값은 로고 파일에서 추출한 근사치이며 공식 규정 색상과 다를 수 있습니다.</p>
-    </div></div>
-  </article>
 
   <!-- 06 예배 안내 -->
   <article class="page" id="p-worship">
@@ -831,9 +789,8 @@ const SLIDES=[
   {lines:['Serving','Together'],       page:'people',   cta:'섬기는 분들 보기'},
   {lines:['Visit','Us'],               page:'location', cta:'오시는 길 보기'},
   {lines:['Since','1989'],             page:'history',  cta:'걸어온 길 보기'},
-  {lines:['Living','Worship'],         page:'symbol',   cta:'심벌 이야기 보기'},
 ];
-const SLIDE_INTERVAL=7000;   // 장면(슬라이드)이 넘어가는 간격
+const SLIDE_INTERVAL=15000;   // 장면(슬라이드)이 넘어가는 간격
 const PHOTO_INTERVAL=3000;   // 넘어가는 사진 한 장을 보여 주는 시간
 
 function renderTitle(idx){
@@ -865,10 +822,12 @@ function applySlideMedia(){
       if(m.dim==='soft')sl.classList.add('dim-soft');
       const box=document.createElement('div');box.className='show-layer';
       const origins=['30% 40%','70% 35%','50% 60%','35% 65%','65% 55%'];
-      m.items.forEach((src,k)=>{
+      m.items.forEach((it,k)=>{
+        const src=typeof it==='string'?it:it.src,pos=typeof it==='string'?null:it.position;
         const im=document.createElement('img');
         im.alt=k===0?(m.alt||''):'';im.decoding='async';
-        im.style.transformOrigin=origins[k%origins.length];
+        im.style.transformOrigin=pos||origins[k%origins.length];
+        if(pos)im.style.objectPosition=pos;               // 사진별로 화면에 남길 중심 위치
         if(k<2)im.src=src;else im.dataset.src=src;        // 나머지는 차례가 올 때 불러온다
         if(k===0)im.classList.add('on');
         box.appendChild(im);
@@ -937,11 +896,16 @@ function stepShow(sh){
 }
 function playShow(el,on){
   const sh=el._show;if(!sh)return;
-  clearInterval(sh.timer);sh.timer=null;
+  if(sh.timer){clearTimeout(sh.timer);sh.timer=null;sh.shown=(sh.shown||0)+(performance.now()-(sh.since||performance.now()));}
   if(!on)return;
-  const cur=sh.box.children[sh.i];                 // 장면에 들어올 때 지금 사진의 움직임을 처음부터 다시 시작
-  cur.classList.remove('on','out');void cur.offsetWidth;cur.classList.add('on');
-  sh.timer=setInterval(()=>stepShow(sh),PHOTO_INTERVAL);
+  // 돌아왔을 때: 보던 사진에서 이어서. 그 사진의 남은 시간만큼 보여 준 뒤 다음 사진으로 넘어간다
+  const left=Math.max(600,PHOTO_INTERVAL-(sh.shown||0));
+  sh.since=performance.now();
+  sh.timer=setTimeout(function tick(){
+    stepShow(sh);sh.shown=0;sh.since=performance.now();
+    sh.timer=setTimeout(tick,PHOTO_INTERVAL);
+  },left);
+
 }
 function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;playShow(el,on);el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
 
