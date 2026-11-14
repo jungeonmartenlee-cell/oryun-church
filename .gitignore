@@ -11,3 +11,6 @@ slides/*/*
 !slides/*/web.mp4
 !slides/*/options.json
 !slides/*/web-*.jpg
+
+# 시안 파일은 올리지 않는다
+draft-*.html

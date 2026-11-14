@@ -419,6 +419,29 @@ body.on-photo:not(.page-open) .logo .logo-on-dark{opacity:1;}
 body.on-photo:not(.page-open) .marquee-track p{color:rgba(255,255,255,.82);}
 body.on-photo:not(.page-open) .menu-btn{color:#fff;}
 body.page-open #header{background:rgba(255,255,255,.78);}
+/* ── 올해 표어: 나는 제자입니다 ── */
+.motto-badge{position:absolute;z-index:3;right:var(--pad);top:calc(var(--head) + 34px);display:flex;align-items:center;gap:16px;text-decoration:none;
+  padding-left:18px;border-left:1px solid rgba(255,255,255,.38);opacity:0;transform:translateY(12px);transition:opacity .9s .6s,transform .9s .6s var(--ease);}
+.slide.active .motto-badge{opacity:.96;transform:none;}
+.motto-badge:hover{opacity:1;}
+.motto-badge .mb-emblem{height:56px;width:auto;display:block;filter:drop-shadow(0 4px 14px rgba(8,16,34,.45));}
+.motto-badge .mb-text{height:27px;width:auto;display:block;filter:drop-shadow(0 3px 12px rgba(8,16,34,.5));}
+.motto-badge small{display:block;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.78);}
+.motto-block{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:44px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:26px 34px 26px 26px;}
+.motto-block .mo-poster{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 24px 50px -26px rgba(60,40,10,.55);}
+.motto-block .mo-title{height:46px;width:auto;max-width:100%;display:block;}
+.motto-block .mo-en{margin-top:12px;font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:.06em;color:var(--blue);}
+.motto-block .mo-body{margin-top:20px;font-size:15.5px;line-height:1.95;color:var(--ink-2);word-break:keep-all;max-width:460px;}
+.motto-block .mo-ref{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-3);}
+@media(max-width:680px){
+  .motto-badge{right:22px;bottom:auto;top:calc(var(--head) + 16px);gap:10px;padding-left:12px;}
+  .motto-badge .mb-emblem{height:40px;}
+  .motto-badge .mb-text{height:19px;}
+  .motto-badge small{font-size:8px;margin-top:6px;letter-spacing:.2em;}
+  .motto-block{grid-template-columns:1fr;gap:24px;padding:20px;}
+  .motto-block .mo-poster{max-width:260px;}
+  .motto-block .mo-title{height:36px;}
+}
 </style>
 </head>
 <body>
@@ -433,8 +456,8 @@ body.page-open #header{background:rgba(255,255,255,.78);}
   </a>
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
-      <p>HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · 주일예배 1~7부 · 강동대로 235 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
-      <p>HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · 주일예배 1~7부 · 강동대로 235 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
+      <p>나는 제자입니다 · I AM A DISCIPLE · HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · 주일예배 1~7부 · 강동대로 235 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
+      <p>나는 제자입니다 · I AM A DISCIPLE · HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · 주일예배 1~7부 · 강동대로 235 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
     </div>
   </div>
   <button class="menu-btn" onclick="toggleMenu()" aria-label="메뉴 열기">
@@ -457,6 +480,7 @@ body.page-open #header{background:rgba(255,255,255,.78);}
   <section class="slide s1 active" id="s0">
     <div class="slide-bg"></div>
     <div class="slide-dim"></div>
+    <a class="motto-badge" href="#vision" data-motto aria-label="올해 표어: 나는 제자입니다"><img class="mb-emblem" src="assets/motto-emblem-white.png" alt=""><span><img class="mb-text" src="assets/motto-text-white.png" alt="나는 제자입니다"><small>2026 표어 · I am a Disciple</small></span></a>
     <div class="slide-caption"><span class="slide-num">01</span><span class="slide-caption-tag">비전 — 행복한 교회, 건강한 교회</span></div>
   </section>
 
@@ -561,6 +585,17 @@ body.page-open #header{background:rgba(255,255,255,.78);}
       <p class="p-lead">오륜교회는 하나님의 임재가 가득한 예배 안에서 주님 오실 길을 준비합니다. 그 예배에서 받은 은혜로 사람을 세우고, 이웃을 섬기며, 다음 세대를 길러 내는 것이 우리의 꿈입니다.</p>
     </div></header>
     <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">올해의 표어</div>
+      <div class="motto-block reveal">
+        <img class="mo-poster" src="assets/motto-poster.jpg" alt="2026 오륜교회 표어 포스터 — 나는 제자입니다">
+        <div>
+          <img class="mo-title" src="assets/motto-text-dark.png" alt="나는 제자입니다">
+          <p class="mo-en">I am a Disciple</p>
+          <p class="mo-body">자기를 부인하고, 자기 십자가를 지고, 예수님을 따르는 사람. 올해 오륜교회는 이 고백으로 한 해를 걷습니다.</p>
+          <p class="mo-ref">마가복음 8:34</p>
+        </div>
+      </div>
+
       <div class="sec-lbl">네 가지 비전</div>
       <div class="grid g4">
         <div class="card reveal"><span class="card-n">01</span><h3 class="card-t">예배</h3><p class="card-b">하나님의 임재가 충만한 예배로 주님 오실 길을 예비합니다.</p></div>
@@ -967,6 +1002,7 @@ window.addEventListener('wheel',e=>{
   if(now-wlast<900||Math.abs(e.deltaY)<8)return;
   wlast=now;e.deltaY>0?next():prev();
 },{passive:true});
+document.addEventListener('click',e=>{const m=e.target.closest('[data-motto]');if(m){e.preventDefault();openPage('vision');}});
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){if(menuOpen)toggleMenu();else if(pageOpen)closePage();return;}
   if(pageOpen||menuOpen)return;
