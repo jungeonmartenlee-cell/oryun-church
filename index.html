@@ -442,6 +442,94 @@ body.page-open #header{background:rgba(255,255,255,.78);}
   .motto-block .mo-poster{max-width:260px;}
   .motto-block .mo-title{height:36px;}
 }
+/* 접어 두는 표 */
+.fold{border-bottom:1px solid var(--line);}
+.fold summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:16px;font-weight:500;color:var(--ink);}
+.fold summary::-webkit-details-marker{display:none;}
+.fold summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--blue);transition:transform .3s;}
+.fold[open] summary::after{transform:rotate(45deg);}
+.fold summary small{font-size:12.5px;font-weight:400;color:var(--ink-3);margin-left:12px;}
+.fold .tt-wrap{padding-bottom:22px;}
+.fold .tt td{padding:11px 12px 11px 0;font-size:14.5px;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chips span{font-size:13px;color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--bg);}
+.note{margin-top:18px;font-size:14px;line-height:1.9;color:var(--ink-2);word-break:keep-all;}
+.note b{color:var(--ink);font-weight:500;}
+/* ══ 장면 개편: 웰컴 · 한 주간 사역 · 말씀 · 장소 예약 · 역사 ══ */
+.slide-mid{position:absolute;z-index:3;right:calc(var(--pad) + 70px);top:50%;transform:translateY(-50%);opacity:0;transition:opacity .9s .5s;}
+.slide.active .slide-mid{opacity:1;}
+/* 말씀: 재생 단추 */
+#s2 .photo-layer{filter:blur(26px) brightness(.5) saturate(1.1);}
+.play-btn .thumb{position:relative;display:block;width:min(46vw,640px);aspect-ratio:16/9;border-radius:22px;overflow:hidden;box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.25);}
+.play-btn .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--ease);}
+.play-btn:hover .thumb img{transform:scale(1.04);}
+.play-btn .thumb .ring{position:absolute;left:50%;top:50%;margin:-52px 0 0 -52px;}
+.play-btn{display:flex;flex-direction:column;align-items:flex-start;gap:20px;background:none;border:0;cursor:pointer;color:#fff;text-align:left;font-family:inherit;}
+.play-btn .ring{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.55);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);box-shadow:0 24px 60px -20px rgba(0,0,0,.7);transition:transform .5s var(--ease),background .3s;}
+.play-btn:hover .ring{transform:scale(1.08);background:rgba(255,255,255,.26);}
+.play-btn svg{width:30px;height:30px;fill:#fff;margin-left:5px;}
+.play-btn .meta small{display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:rgba(255,255,255,.75);margin-bottom:10px;}
+.play-btn .meta b{display:block;font-family:'Noto Serif KR',serif;font-weight:400;font-size:clamp(20px,2.2vw,30px);line-height:1.4;letter-spacing:-.02em;word-break:keep-all;text-shadow:0 2px 20px rgba(8,16,34,.5);}
+.play-btn .meta span{display:block;margin-top:10px;font-size:13.5px;color:rgba(255,255,255,.85);}
+#player{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;background:rgba(6,10,20,.92);padding:24px;}
+#player.open{display:flex;}
+#player .frame{width:min(1200px,100%);aspect-ratio:16/9;max-height:calc(100vh - 120px);background:#000;border-radius:18px;overflow:hidden;box-shadow:0 50px 120px -30px #000;}
+#player iframe{width:100%;height:100%;border:0;display:block;}
+#player .x{position:absolute;right:24px;top:20px;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:10px 18px;font-size:12px;letter-spacing:.14em;cursor:pointer;font-family:'JetBrains Mono',monospace;}
+/* 한 주간 사역: 장면 위 목록 */
+.week-list{list-style:none;width:min(380px,34vw);display:grid;gap:2px;}
+.week-list .wk{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:rgba(255,255,255,.78);margin-bottom:12px;}
+.week-list li.it{display:flex;gap:16px;align-items:baseline;padding:11px 16px;border-radius:14px;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);}
+.week-list li.it i{font-style:normal;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.1em;color:var(--sky);min-width:46px;}
+.week-list li.it span{font-size:14.5px;font-weight:500;}
+/* 한 주간 사역: 상세 */
+.wk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+.wk-card{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg);}
+.wk-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;}
+.wk-card .b{padding:22px 24px 26px;}
+.wk-card .d{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:var(--blue);}
+.wk-card h3{margin-top:10px;font-family:'Noto Serif KR',serif;font-weight:400;font-size:22px;letter-spacing:-.02em;color:var(--ink);}
+.wk-card p{margin-top:10px;font-size:14.5px;line-height:1.85;color:var(--ink-2);word-break:keep-all;}
+.wk-note{margin-top:22px;font-size:12.5px;color:var(--ink-3);}
+/* 장소 예약 */
+.rs-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px;border:1px solid var(--line);border-radius:24px;padding:30px;background:var(--bg);}
+.rs-form label{display:grid;gap:8px;font-size:12.5px;color:var(--ink-3);letter-spacing:.04em;}
+.rs-form .wide{grid-column:1/-1;}
+.rs-form input,.rs-form select,.rs-form textarea{font:inherit;font-size:15px;color:var(--ink);padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;width:100%;}
+.rs-form textarea{min-height:92px;resize:vertical;}
+.rs-form button{grid-column:1/-1;justify-self:start;border:0;border-radius:999px;padding:14px 26px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:var(--blue);cursor:pointer;}
+.rs-msg{grid-column:1/-1;font-size:13.5px;line-height:1.8;color:var(--ink-2);display:none;padding:14px 16px;border-radius:12px;background:rgba(31,86,168,.07);}
+.rs-msg.on{display:block;}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:st;}
+.steps li{list-style:none;border:1px solid var(--line);border-radius:18px;padding:22px 20px;font-size:14.5px;line-height:1.7;color:var(--ink-2);word-break:keep-all;counter-increment:st;}
+.steps li::before{content:'STEP ' counter(st);display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:var(--blue);margin-bottom:10px;}
+/* 역사: 갈라지는 글자 + 지나가는 사진 띠 */
+.slide.his .slide-bg{background:radial-gradient(90vw 70vh at 78% 12%,#3d7fd0 0%,rgba(61,127,208,0) 60%),radial-gradient(70vw 70vh at 8% 92%,#5fb0e0 0%,rgba(95,176,224,0) 58%),linear-gradient(150deg,#0d2f6e 0%,#1b4f9e 55%,#123a80 100%);}
+.slide.his .slide-dim{background:linear-gradient(to top,rgba(8,16,34,.5) 0%,rgba(8,16,34,0) 30%);pointer-events:none;}
+.his-words{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;gap:3.5vw;pointer-events:none;}
+.his-words span{font-family:'Bebas Neue',sans-serif;font-size:clamp(90px,21vw,400px);line-height:1;letter-spacing:.01em;color:#fff;white-space:nowrap;will-change:transform;}
+.his-words .it{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(80px,19vw,360px);color:var(--sky);letter-spacing:-.03em;}
+.ribbon{position:absolute;z-index:3;left:0;top:50%;transform:translateY(-50%) rotate(-5deg);width:100%;pointer-events:none;}
+.rib-track{display:flex;gap:16px;width:max-content;will-change:transform;}
+.r-card{position:relative;flex:0 0 auto;width:clamp(210px,19vw,300px);aspect-ratio:4/5;border-radius:28px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;background:#111;color:#fff;box-shadow:0 40px 70px -30px rgba(0,0,0,.8);}
+.r-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.r-card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 38%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),inset 0 1px 0 rgba(255,255,255,.6);}
+.r-card .y{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,4.6vw,76px);line-height:1;text-shadow:0 2px 20px rgba(0,0,0,.35);}
+.r-card .e{position:relative;z-index:1;font-size:13.5px;line-height:1.7;word-break:keep-all;padding:12px 14px;border-radius:18px;background:rgba(24,24,28,.34);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);border:1px solid rgba(255,255,255,.26);}
+.his-hint{position:absolute;z-index:4;right:calc(var(--pad) + 70px);bottom:64px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:rgba(255,255,255,.7);}
+body.no-title .block-text{display:none;}
+@media(max-width:820px){
+  .slide-mid{right:var(--pad);left:var(--pad);top:calc(var(--head) + 70px);transform:none;}
+  .play-btn .thumb{width:100%;border-radius:16px;}
+  .play-btn .thumb .ring{width:76px;height:76px;margin:-38px 0 0 -38px;}
+  .play-btn .meta b{font-size:19px;max-width:none;}
+  .week-list{width:100%;}
+  .week-list li.it:nth-child(n+5){display:none;}
+  .wk-grid,.rs-form,.steps{grid-template-columns:1fr;}
+  .r-card{width:58vw;border-radius:22px;}
+  .his-words{flex-direction:column;gap:0;}
+  .his-hint{right:var(--pad);bottom:auto;top:calc(var(--head) + 22px);}
+}
 </style>
 </head>
 <body>
@@ -481,46 +569,59 @@ body.page-open #header{background:rgba(255,255,255,.78);}
     <div class="slide-bg"></div>
     <div class="slide-dim"></div>
     <a class="motto-badge" href="#vision" data-motto aria-label="2027년 표어:나는 제자입니다"><img class="mb-emblem" src="assets/motto-emblem-white.png" alt=""><span><img class="mb-text" src="assets/motto-text-white.png" alt="나는 제자입니다"><small>2027 표어 · I am a Disciple</small></span></a>
-    <div class="slide-caption"><span class="slide-num">01</span><span class="slide-caption-tag">비전 — 행복한 교회, 건강한 교회</span></div>
+    <div class="slide-caption"><span class="slide-num">01</span><span class="slide-caption-tag">웰컴 — 오륜교회에 오신 것을 환영합니다</span></div>
   </section>
 
   <section class="slide s6" id="s1">
     <div class="slide-bg"></div>
     <div class="slide-dim"></div>
-    <div class="slide-caption"><span class="slide-num">02</span><span class="slide-caption-tag">예배 안내 — 주일 1~7부 · 수요 · 금요 · 새벽</span></div>
+    <div class="slide-mid"><ul class="week-list" id="week-list"></ul></div>
+    <div class="slide-caption"><span class="slide-num">02</span><span class="slide-caption-tag" id="week-tag">한 주간 사역</span></div>
   </section>
 
   <section class="slide s2" id="s2">
     <div class="slide-bg"></div>
     <div class="slide-dim"></div>
-    <div class="slide-caption"><span class="slide-num">03</span><span class="slide-caption-tag">담임목사 인사말 — 주님과 동행할 때 길이 열립니다</span></div>
+    <div class="slide-mid">
+      <button class="play-btn" onclick="playSermon()" aria-label="지난 주일 설교 재생">
+        <span class="thumb"><img id="sm-thumb" alt=""><span class="ring"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></span></span>
+        <span class="meta"><small id="sm-kind">SUNDAY MESSAGE</small><b id="sm-title"></b><span id="sm-sub"></span></span>
+      </button>
+    </div>
+    <div class="slide-caption"><span class="slide-num">03</span><span class="slide-caption-tag" id="sm-tag">말씀 — 지난 주일 설교</span></div>
   </section>
 
   <section class="slide s4" id="s3">
     <div class="slide-bg"></div>
     <div class="slide-dim"></div>
-    <div class="slide-caption"><span class="slide-num">04</span><span class="slide-caption-tag">섬기는 분들 — 설립목사 · 담임목사</span></div>
+    <div class="slide-caption"><span class="slide-num">04</span><span class="slide-caption-tag">장소 예약 — 비전센터 · 다니엘센터 · 교육관</span></div>
   </section>
 
-  <section class="slide s7" id="s4">
-    <div class="slide-bg"></div>
-    <div class="slide-dim"></div>
-    <div class="slide-caption"><span class="slide-num">05</span><span class="slide-caption-tag">오시는 길 — 서울 강동구 강동대로 235</span></div>
-  </section>
-
-  <section class="slide s3" id="s5">
+  <section class="slide his photo" id="s4">
     <div class="slide-bg">
-      <div class="blob" style="width:40vw;height:40vw;right:4vw;top:-10vw;background:#d5e2f5;"></div>
-      <div class="art art-year"><small>SINCE</small>19<br>89</div>
+      <div class="his-words" aria-hidden="true"><span id="his-a" class="it">since</span><span id="his-b">1989</span></div>
     </div>
+    <div class="ribbon"><div class="rib-track" id="rib-track">
+        <div class="r-card"><img src="assets/history/h-1989.jpg" alt="" loading="lazy"><span class="y">1989</span><span class="e">오륜교회의 시작</span></div>
+        <div class="r-card"><img src="assets/history/h-2011.jpg" alt="" loading="lazy"><span class="y">2011</span><span class="e">오륜 커뮤니티센터<br>개관 예배</span></div>
+        <div class="r-card"><img src="assets/history/h-2012.jpg" alt="" loading="lazy"><span class="y">2012</span><span class="e">분립 개척 1호<br>별내오륜교회 설립</span></div>
+        <div class="r-card"><img src="assets/history/h-2013.jpg" alt="" loading="lazy"><span class="y">2013</span><span class="e">경기도 가평<br>오륜 비전빌리지 개관</span></div>
+        <div class="r-card"><img src="assets/history/h-2017.jpg" alt="" loading="lazy" style="object-position:88% 50%"><span class="y">2017</span><span class="e">제20차 다니엘기도회<br>참여 교회 1만 곳을 넘다</span></div>
+        <div class="r-card"><img src="assets/history/h-2019.jpg" alt="" loading="lazy"><span class="y">2019</span><span class="e">30주년 기념<br>감사예배</span></div>
+        <div class="r-card"><img src="assets/history/h-2020.jpg" alt="" loading="lazy"><span class="y">2020</span><span class="e">크리스천 방송국<br>ocbn 개국</span></div>
+        <div class="r-card"><img src="assets/history/h-2022.jpg" alt="" loading="lazy"><span class="y">2022</span><span class="e">제25차 다니엘기도회<br>1만 5천여 교회 참여</span></div>
+        <div class="r-card"><img src="assets/history/h-2023.jpg" alt="" loading="lazy"><span class="y">2023</span><span class="e">김은호 설립목사 추대<br>주경훈 담임목사 취임</span></div>
+        <div class="r-card"><img src="assets/history/h-2024.jpg" alt="" loading="lazy"><span class="y">2024</span><span class="e">제2성전 오륜 다니엘 센터<br>미주 다니엘기도회 시작</span></div>
+    </div></div>
     <div class="slide-dim"></div>
-    <div class="slide-caption"><span class="slide-num">06</span><span class="slide-caption-tag">걸어온 길 — 1989년부터 오늘까지</span></div>
+    <span class="his-hint">SCROLL →</span>
+    <div class="slide-caption"><span class="slide-num">05</span><span class="slide-caption-tag">걸어온 길 — 1989년부터 오늘까지</span></div>
   </section>
 </div>
 
 <!-- CONTROL -->
 <div id="control">
-  <div class="ctrl-number"><span id="ctrl-now">1</span><span class="ctrl-total" id="ctrl-total">6</span></div>
+  <div class="ctrl-number"><span id="ctrl-now">1</span><span class="ctrl-total" id="ctrl-total">5</span></div>
   <button class="ctrl-arrow" onclick="prev()" aria-label="이전 슬라이드"><svg viewBox="0 0 40 40"><path d="M12 23l8-8 8 8"/></svg></button>
   <button class="ctrl-arrow" onclick="next()" aria-label="다음 슬라이드"><svg viewBox="0 0 40 40"><path d="M12 17l8 8 8-8"/></svg></button>
 </div>
@@ -533,13 +634,11 @@ body.page-open #header{background:rgba(255,255,255,.78);}
   </button>
   <div class="menu-left">
     <ul class="menu-nav">
-      <li><a style="--i:1" href="#" onclick="closePage();toggleMenu();return false;"><div class="menu-item-left"><span>메인</span><span class="menu-eng">Main</span></div><span class="menu-num">HOME</span></a></li>
-      <li><a style="--i:2" href="#vision" onclick="openPage('vision');toggleMenu();return false;"><div class="menu-item-left"><span>비전</span><span class="menu-eng">Happy · Healthy Church</span></div><span class="menu-num">01</span></a></li>
-      <li><a style="--i:3" href="#worship" onclick="openPage('worship');toggleMenu();return false;"><div class="menu-item-left"><span>예배 안내</span><span class="menu-eng">Worship</span></div><span class="menu-num">02</span></a></li>
-      <li><a style="--i:4" href="#greeting" onclick="openPage('greeting');toggleMenu();return false;"><div class="menu-item-left"><span>담임목사 인사말</span><span class="menu-eng">Walk with Jesus</span></div><span class="menu-num">03</span></a></li>
-      <li><a style="--i:5" href="#people" onclick="openPage('people');toggleMenu();return false;"><div class="menu-item-left"><span>섬기는 분들</span><span class="menu-eng">Serving Together</span></div><span class="menu-num">04</span></a></li>
-      <li><a style="--i:6" href="#location" onclick="openPage('location');toggleMenu();return false;"><div class="menu-item-left"><span>오시는 길</span><span class="menu-eng">Visit Us</span></div><span class="menu-num">05</span></a></li>
-      <li><a style="--i:7" href="#history" onclick="openPage('history');toggleMenu();return false;"><div class="menu-item-left"><span>걸어온 길</span><span class="menu-eng">Since 1989</span></div><span class="menu-num">06</span></a></li>
+      <li><a style="--i:1" href="#" onclick="closePage();go(0);toggleMenu();return false;"><div class="menu-item-left"><span>메인</span><span class="menu-eng">Welcome</span></div><span class="menu-num">HOME</span></a></li>
+      <li><a style="--i:2" href="#weekly" onclick="openPage('weekly');toggleMenu();return false;"><div class="menu-item-left"><span>한 주간 사역</span><span class="menu-eng">This Week</span></div><span class="menu-num">01</span></a></li>
+      <li><a style="--i:3" href="#" onclick="closePage();playSermon();toggleMenu();return false;"><div class="menu-item-left"><span>말씀</span><span class="menu-eng">Sunday Message</span></div><span class="menu-num">02</span></a></li>
+      <li><a style="--i:4" href="#reserve" onclick="openPage('reserve');toggleMenu();return false;"><div class="menu-item-left"><span>장소 예약</span><span class="menu-eng">Book a Space</span></div><span class="menu-num">03</span></a></li>
+      <li><a style="--i:5" href="#history" onclick="openPage('history');toggleMenu();return false;"><div class="menu-item-left"><span>걸어온 길</span><span class="menu-eng">Since 1989</span></div><span class="menu-num">04</span></a></li>
     </ul>
   </div>
   <div class="menu-right">
@@ -560,12 +659,13 @@ body.page-open #header{background:rgba(255,255,255,.78);}
       <p>서울 강동구 강동대로 235 (성내동 449-7)<br>5·9호선 올림픽공원역 1번 출구 · 5호선 둔촌동역 4번 출구<br>TEL 02-485-4004</p>
     </div>
     <div>
-      <h3>바로가기</h3>
+      <h3>교회 안내</h3>
       <div class="menu-links">
-        <a href="https://oryun.org" target="_blank" rel="noopener">공식 홈페이지</a>
-        <a href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">예배 시간·장소</a>
-        <a href="https://oryun.org/guide/?menu=17" target="_blank" rel="noopener">교통 안내</a>
-        <a href="https://oryun.org/guide/?menu=37" target="_blank" rel="noopener">새가족 등록</a>
+        <a href="#vision" onclick="openPage('vision');toggleMenu();return false;">비전 · 표어</a>
+        <a href="#worship" onclick="openPage('worship');toggleMenu();return false;">예배 시간</a>
+        <a href="#location" onclick="openPage('location');toggleMenu();return false;">오시는 길 · 주차</a>
+        <a href="#greeting" onclick="openPage('greeting');toggleMenu();return false;">담임목사 인사말</a>
+        <a href="#people" onclick="openPage('people');toggleMenu();return false;">섬기는 분들</a>
       </div>
     </div>
   </div>
@@ -576,6 +676,59 @@ body.page-open #header{background:rgba(255,255,255,.78);}
   <button class="p-back" onclick="closePage()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Back to main
   </button>
+
+  <!-- 한 주간 사역 -->
+  <article class="page" id="p-weekly">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">01 — This Week</p>
+      <h1 class="p-title">한 주간 사역</h1>
+      <p class="p-lead"><span id="wk-week"></span> · 이번 주 오륜교회에서 있었던 예배와 사역입니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl" id="wk-range">이번 주</div>
+      <div class="wk-grid" id="wk-grid"></div>
+      <p class="wk-note" id="wk-note"></p>
+    </div></div>
+  </article>
+
+  <!-- 장소 예약 -->
+  <article class="page" id="p-reserve">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">03 — Book a Space</p>
+      <h1 class="p-title">장소 예약</h1>
+      <p class="p-lead">모임과 사역에 필요한 공간을 신청하는 곳입니다. 사용할 날짜와 공간을 적어 보내 주시면 담당 부서가 확인한 뒤 알려 드립니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="sec-lbl">신청할 수 있는 공간</div>
+      <div class="grid g3">
+        <div class="card reveal"><span class="card-n">본관</span><h3 class="card-t">비전센터</h3><p class="card-b">강동대로 235. 비전홀, 그레이스홀, 에벤에셀홀과 층별 세미나실이 있습니다.</p></div>
+        <div class="card reveal"><span class="card-n">제2성전</span><h3 class="card-t">다니엘센터 (ODC)</h3><p class="card-b">2024년에 문을 연 공간으로, 집회와 훈련 모임에 씁니다.</p></div>
+        <div class="card reveal"><span class="card-n">교육 공간</span><h3 class="card-t">제1 · 2 · 3교육관, 이노빌딩</h3><p class="card-b">다음 세대 예배실과 소그룹 모임방이 있습니다.</p></div>
+      </div>
+
+      <div class="sec-lbl">신청 절차</div>
+      <ol class="steps reveal">
+        <li>날짜와 공간, 인원을 정합니다.</li>
+        <li>아래 양식으로 신청합니다.</li>
+        <li>담당 부서가 겹치는 일정이 없는지 확인합니다.</li>
+        <li>확정 여부를 연락처로 알려 드립니다.</li>
+      </ol>
+
+      <div class="sec-lbl">신청 양식</div>
+      <form class="rs-form reveal" id="rs-form" onsubmit="return reserveSubmit(event)">
+        <label>공간<select name="place" required><option value="">선택</option><option>비전센터</option><option>다니엘센터 (ODC)</option><option>제1교육관</option><option>제2교육관</option><option>제3교육관</option><option>이노빌딩</option></select></label>
+        <label>사용 날짜<input type="date" name="date" required></label>
+        <label>시작 시간<input type="time" name="from" required></label>
+        <label>마치는 시간<input type="time" name="to" required></label>
+        <label>부서 · 모임 이름<input type="text" name="group" required placeholder="예: 청년4부 리더 모임"></label>
+        <label>인원<input type="number" name="people" min="1" required placeholder="예: 20"></label>
+        <label class="wide">사용 목적<textarea name="purpose" placeholder="모임 내용과 필요한 장비를 적어 주세요."></textarea></label>
+        <button type="submit">신청 내용 확인</button>
+        <p class="rs-msg" id="rs-msg"></p>
+      </form>
+      <p class="src">지금은 시안이라 신청 내용이 어디에도 전송·저장되지 않습니다. 접수 방식과 공간 목록, 절차는 담당 부서의 실제 운영에 맞춰 확정합니다.</p>
+    </div></div>
+  </article>
 
   <!-- 01 비전 -->
   <article class="page" id="p-vision">
@@ -618,7 +771,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
         <div class="card reveal"><span class="card-n">셋</span><h3 class="card-t">어떻게 사랑하는가</h3><p class="card-b">지역사회와 세계 복음화를 위해 기도와 봉사로 참여하며 그리스도의 사랑을 실천합니다.</p></div>
         <div class="card reveal"><span class="card-n">넷</span><h3 class="card-t">어디로 가는가</h3><p class="card-b">지역과 학원 선교로 참 제자를 삼고, 빛과 소금으로 하나님 나라를 넓혀 갑니다.</p></div>
       </div>
-      <p class="src">사명선언문과 공동체 고백의 원문은 <a href="https://oryun.org/guide/?menu=14" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘비전’</a>에서 확인할 수 있습니다. 이 페이지는 공개된 내용을 요약한 것입니다.</p>
     </div></div>
   </article>
 
@@ -641,9 +793,7 @@ body.page-open #header{background:rgba(255,255,255,.78);}
         <div class="card reveal"><span class="card-n">02</span><h3 class="card-t">회복과 성장</h3><p class="card-b">말씀과 기도로 무너진 삶이 회복되고 믿음이 자라는 교회.</p></div>
         <div class="card reveal"><span class="card-n">03</span><h3 class="card-t">열방을 향하여</h3><p class="card-b">꿈과 비전을 품고 온 세상을 향해 나아가는 교회.</p></div>
       </div>
-      <a class="btn" href="https://oryun.org/guide/?menu=475" target="_blank" rel="noopener">인사말 전문 보기 →</a>
-      <a class="btn ghost" href="#" onclick="openPage('people');return false;">섬기는 분들 보기</a>
-      <p class="src">인사말 전문은 <a href="https://oryun.org/guide/?menu=475" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘담임목사’</a>에 있습니다. 이 페이지는 그 내용을 요약해 소개합니다.</p>
+      <a class="btn" href="#" onclick="openPage('people');return false;">섬기는 분들 보기</a>
     </div></div>
   </article>
 
@@ -677,7 +827,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
         <li class="reveal"><span class="y">2011</span><span class="e">오륜 커뮤니티센터 개관 예배.</span></li>
         <li class="reveal"><span class="y">1989</span><span class="e"><strong>오륜교회의 시작.</strong></span></li>
       </ol>
-      <p class="src">2011년 이후 연혁은 <a href="https://oryun.org/guide/?menu=15" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘역사’</a>(2026년 11월 확인)를 간추린 것입니다. 설립 연도는 2019년 30주년 기념예배 기록을 기준으로 했으며, 1989~2010년의 세부 연혁은 공식 홈페이지를 참고해 주세요.</p>
     </div></div>
   </article>
 
@@ -712,8 +861,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
         <li class="reveal"><span class="n">03</span><span class="t">청년국</span><span class="b">주일 5부 예배 후 청년 1~11부와 여러 공동체가 부서별로 모입니다.</span></li>
         <li class="reveal"><span class="n">04</span><span class="t">선교국</span><span class="b">영어·중국어·일본어 등 외국어 예배와 국내외 선교로 열방을 섬깁니다.</span></li>
       </ul>
-      <a class="btn" href="https://oryun.org/guide/?menu=20" target="_blank" rel="noopener">섬기는 사람들 전체 보기 →</a>
-      <p class="src">출처: 오륜교회 공식 홈페이지 <a href="https://oryun.org/guide/?menu=475" target="_blank" rel="noopener">담임목사</a> · <a href="https://oryun.org/guide/?menu=16" target="_blank" rel="noopener">설립목사</a> · <a href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">예배 안내</a> (2026년 11월 확인). 사진과 전체 교역자 명단은 공식 홈페이지에서 볼 수 있습니다.</p>
     </div></div>
   </article>
 
@@ -753,15 +900,62 @@ body.page-open #header{background:rgba(255,255,255,.78);}
         </tbody>
       </table></div>
 
-      <div class="sec-lbl">다음 세대 · 청년 · 외국어 예배</div>
-      <div class="grid g3">
-        <div class="card reveal"><span class="card-n">교육국</span><h3 class="card-t">주일 10시 · 12시</h3><p class="card-b">드림키즈(영유아·유치), 드림스쿨(초등), 드림틴즈(중고등)가 학년별 예배실에서 예배합니다. 영아부는 9:30 · 11:30.</p></div>
-        <div class="card reveal"><span class="card-n">청년국</span><h3 class="card-t">주일 오후 2시</h3><p class="card-b">5부 예배를 비전홀에서 함께 드린 뒤, 오후 3시 45분부터 부서별로 모입니다.</p></div>
-        <div class="card reveal"><span class="card-n">국제사역</span><h3 class="card-t">주일 오후 2시</h3><p class="card-b">영어·중국어·일본어·인도네시아어·러시아어 예배. 베트남어 예배는 오전 11시 30분.</p></div>
+      <div class="sec-lbl">부서별 예배 장소</div>
+      <div class="reveal">
+        <details class="fold"><summary><span>다음 세대<small>영아부 ~ 고등부 · 사랑부</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>구분</th><th>시간</th><th>장소</th></tr></thead><tbody>
+          <tr><td>영아부 (0~3세)</td><td>9:30 · 11:30</td><td>ODC 1층 사무엘홀</td></tr>
+          <tr><td>유아부 (4~5세)</td><td>10:00 · 12:00</td><td>제1교육관 3층 바나바홀</td></tr>
+          <tr><td>유치부 (6~7세)</td><td>10:00 · 12:00</td><td>제1교육관 지하 1층 베드로홀</td></tr>
+          <tr><td>8시 초등부</td><td>8:00</td><td>ODC 5층 여호수아홀</td></tr>
+          <tr><td>초등 1학년</td><td>10:00 · 12:00</td><td>제1교육관 5층 디모데홀</td></tr>
+          <tr><td>초등 2학년</td><td>10:00 · 12:00</td><td>제1교육관 4층 바울홀</td></tr>
+          <tr><td>초등 3학년</td><td>10:00 · 12:00</td><td>ODC 5층 여호수아홀</td></tr>
+          <tr><td>초등 4학년</td><td>10:00 · 12:00</td><td>ODC 6층 다윗홀</td></tr>
+          <tr><td>초등 5학년</td><td>10:00 · 12:00</td><td>본관 7층 벧엘홀</td></tr>
+          <tr><td>초등 6학년</td><td>10:00 · 12:00</td><td>제3교육관 4층 엘리사홀</td></tr>
+          <tr><td>8시 중고등부</td><td>8:00</td><td>ODC 6층 다윗홀</td></tr>
+          <tr><td>중등 1학년</td><td>10:00 · 12:00</td><td>제2교육관 지하 1층 엘리야홀</td></tr>
+          <tr><td>중등 2·3학년</td><td>10:00 · 12:00</td><td>ODC 5층 이사야홀</td></tr>
+          <tr><td>고등부</td><td>10:00 · 12:00</td><td>본관 10층 체육관</td></tr>
+          <tr><td>사랑부 (어린이)</td><td>10:00</td><td>제1교육관 1층 도서관</td></tr>
+          <tr><td>사랑부 (청소년·성인)</td><td>12:00</td><td>제1교육관 1층 도서관</td></tr>
+        </tbody></table></div></details>
+        <details class="fold"><summary><span>청년국<small>5부 예배 뒤 부서 모임</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>구분</th><th>시간</th><th>장소</th></tr></thead><tbody>
+          <tr><td>수험생부 (엘피스)</td><td>오전 8:00</td><td>본관 5층 브니엘홀</td></tr>
+          <tr><td>청년1부</td><td>오후 3:45</td><td>제1교육관 지하 1층 베드로홀</td></tr>
+          <tr><td>청년2부</td><td>오후 3:45</td><td>제1교육관 3층 바나바홀</td></tr>
+          <tr><td>청년3부</td><td>오후 3:45</td><td>제1교육관 4층 바울홀</td></tr>
+          <tr><td>청년4부</td><td>오후 3:45</td><td>제1교육관 5층 디모데홀</td></tr>
+          <tr><td>청년5부</td><td>오후 3:45</td><td>본관 10층 체육관</td></tr>
+          <tr><td>청년6부</td><td>오후 3:45</td><td>본관 3층 에벤에셀홀</td></tr>
+          <tr><td>청년7부</td><td>오후 3:45</td><td>ODC 6층 다윗홀</td></tr>
+          <tr><td>청년8부</td><td>오후 3:45</td><td>본관 7층 벧엘홀</td></tr>
+          <tr><td>청년9부</td><td>오후 3:45</td><td>ODC 5층 여호수아홀</td></tr>
+          <tr><td>청년10부</td><td>오후 3:45</td><td>제2교육관 지하 1층</td></tr>
+          <tr><td>청년11부</td><td>오후 3:45</td><td>ODC 5층 이사야홀</td></tr>
+          <tr><td>그레이스1부</td><td>오후 3:45</td><td>본관 5층 에덴홀</td></tr>
+          <tr><td>그레이스공동체</td><td>오후 1:30</td><td>ODC 6층 다윗홀</td></tr>
+          <tr><td>신혼부부 (쀼)</td><td>오후 3:45</td><td>본관 1층 그레이스홀</td></tr>
+        </tbody></table></div></details>
+        <details class="fold"><summary><span>외국어 예배<small>6개 언어</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>구분</th><th>시간</th><th>장소</th></tr></thead><tbody>
+          <tr><td>영어</td><td>오후 2:00</td><td>제1교육관 4층 바울홀</td></tr>
+          <tr><td>중국어</td><td>오후 2:00</td><td>본관 7층 벧엘홀</td></tr>
+          <tr><td>일본어</td><td>오후 2:00</td><td>제1교육관 3층 바나바홀</td></tr>
+          <tr><td>인도네시아어</td><td>오후 2:00</td><td>오륜레인보우 지역아동센터</td></tr>
+          <tr><td>러시아어</td><td>오후 2:00</td><td>오륜국제한가족센터</td></tr>
+          <tr><td>베트남어</td><td>오전 11:30</td><td>오륜국제한가족센터</td></tr>
+        </tbody></table></div></details>
       </div>
-      <a class="btn" href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">부서별 예배 장소 전체 보기 →</a>
-      <a class="btn ghost" href="https://oryun.org/guide/?menu=37" target="_blank" rel="noopener">새가족 등록 안내</a>
-      <p class="src">출처: <a href="https://oryun.org/guide/?menu=22" target="_blank" rel="noopener">오륜교회 공식 홈페이지 ‘예배 시간 및 장소’</a> (2026년 11월 확인). 절기나 행사에 따라 시간이 바뀔 수 있으니 방문 전에 공식 홈페이지를 확인해 주세요.</p>
+
+      <div class="sec-lbl">새가족 등록</div>
+      <div class="grid g3">
+        <div class="card reveal"><span class="card-n">방문</span><h3 class="card-t">2층 새가족 등록처</h3><p class="card-b">주일 2~6부 예배 전후에 비전센터 2층으로 오시면 됩니다.</p></div>
+        <div class="card reveal"><span class="card-n">순서</span><h3 class="card-t">카드 작성 · 사진 촬영</h3><p class="card-b">등록 카드를 쓰고 담임목사님과 사진을 찍은 뒤, 교구와 부서 사역자를 소개받습니다.</p></div>
+        <div class="card reveal"><span class="card-n">문의</span><h3 class="card-t">02-6413-4818</h3><p class="card-b">새가족부로 전화 주시면 안내해 드립니다.</p></div>
+      </div>
     </div></div>
   </article>
 
@@ -798,14 +992,20 @@ body.page-open #header{background:rgba(255,255,255,.78);}
         <div class="card reveal"><span class="card-n">아산병원</span><h3 class="card-t">주차 + 셔틀</h3><p class="card-b">주일 오전 7:30~오후 6:00. 중앙 주차장과 주차동 1·2층을 이용하고, 셔틀버스에서 2시간 30분 할인권을 받습니다.</p></div>
         <div class="card reveal"><span class="card-n">동북고 · 한국체대</span><h3 class="card-t">인근 주차장</h3><p class="card-b">동북고 운동장은 주일 오전 7:30~오후 6:00 셔틀버스를 운영합니다. 한국체대 정문 주차장은 2시간 할인권을 이용합니다.</p></div>
       </div>
-      <a class="btn" href="https://oryun.org/guide/?menu=18" target="_blank" rel="noopener">주차 안내 자세히 →</a>
-      <a class="btn ghost" href="https://oryun.org/guide/shuttle/?wtype=0&menu=25" target="_blank" rel="noopener">예배 차량 노선</a>
-      <p class="src">출처: 오륜교회 공식 홈페이지 <a href="https://oryun.org/guide/?menu=17" target="_blank" rel="noopener">오시는 길</a> · <a href="https://oryun.org/guide/?menu=18" target="_blank" rel="noopener">주일예배 주차안내</a> (2026년 11월 확인). 버스 노선과 주차 운영은 바뀔 수 있습니다.</p>
+
+      <p class="note reveal"><b>주일용 주차 스티커</b>는 새가족 교육을 마친 뒤 1층 사무국에서 받습니다. 6km 이상 떨어진 곳에 사는 성도가 대상이고(송파·강동·광진구 제외) 한 가정에 한 대입니다. 신분증, 차량등록증, 주민등록등본을 가져오세요.</p>
+
+      <div class="sec-lbl">주일 예배 차량</div>
+      <div class="chips reveal"><span>올림픽파크 포레온</span><span>가락·방이</span><span>감일</span><span>강일지구·상일역</span><span>거여·마천</span><span>고덕동</span><span>광장·구의</span><span>구리</span><span>길동·명일동</span><span>둔촌동</span><span>문정·오금·방이</span><span>문정훼밀리·헬리오시티</span><span>미사지구</span><span>송파·석촌</span><span>수지·분당</span><span>상일동</span><span>암사역</span><span>올림픽아파트</span><span>위례지구</span><span>잠실역·잠실나루역</span><span>장지동</span><span>종합운동장</span><span>천호·강동역</span><span>파크리오</span><span>풍납·강동구청</span><span>하남</span></div>
+      <p class="note reveal">위 지역에서 주일 예배 시간에 맞춰 차량을 운행합니다. 정류장과 시간은 <b>02-6413-4950</b>으로 문의해 주세요. 정해진 시간보다 조금 일찍 나와 기다려 주시기 바랍니다.</p>
     </div></div>
   </article>
 </div>
 
+<div id="player" role="dialog" aria-label="설교 영상"><button class="x" onclick="closeSermon()">CLOSE ✕</button><div class="frame" id="player-frame"></div></div>
 <script src="slides/manifest.js"></script>
+<script src="data/sermon.js"></script>
+<script src="data/weekly.js"></script>
 <script>
 // ── CURSOR ──
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
@@ -818,13 +1018,13 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 
 // ── SLIDES ──
 const SLIDES=[
-  {lines:['Happy','Healthy','Church'], page:'vision',   cta:'비전'},
-  {lines:['Come','And','Worship'],     page:'worship',  cta:'예배 시간'},
-  {lines:['Walk','With','Jesus'],      page:'greeting', cta:'인사말'},
-  {lines:['Serving','Together'],       page:'people',   cta:'섬기는 분들'},
-  {lines:['Visit','Us'],               page:'location', cta:'오시는 길'},
-  {lines:['Since','1989'],             page:'history',  cta:'걸어온 길'},
+  {lines:['Welcome','To','Oryun'],     page:'vision',  cta:'교회 소개'},
+  {lines:['This','Week'],              page:'weekly',  cta:'한 주간 사역'},
+  {lines:['Sunday','Message'],         action:'sermon', cta:'설교 보기'},
+  {lines:['Book','A Space'],           page:'reserve', cta:'장소 예약'},
+  {lines:[],                           page:'history', cta:'걸어온 길'},
 ];
+const HIS=4;                 // 역사 장면 번호 (휠·스와이프가 사진 띠를 움직인다)
 const SLIDE_INTERVAL=15000;   // 장면(슬라이드)이 넘어가는 간격
 const PHOTO_INTERVAL=3000;   // 넘어가는 사진 한 장을 보여 주는 시간
 
@@ -834,16 +1034,25 @@ function renderTitle(idx){
   document.body.classList.toggle('on-photo',!!sl&&sl.classList.contains('photo'));
   document.getElementById('block-text').innerHTML=t.lines.map((w,i)=>
     `<div class="block-text__line"><span class="word"><span class="mask-text"><span style="animation-delay:${i*80}ms">${w}</span></span></span></div>`).join('');
+  document.body.classList.toggle('no-title',!t.lines.length);
   document.getElementById('cta-text').textContent=t.cta;
   const lnk=document.getElementById('header-link');
-  lnk.href='#'+t.page;
-  lnk.onclick=e=>{e.preventDefault();openPage(t.page);};
+  lnk.href=t.page?'#'+t.page:'#';
+  lnk.onclick=e=>{e.preventDefault();t.action==='sermon'?playSermon():openPage(t.page);};
 }
 
 // ── 슬라이드 배경 ──
 // 배경 목록은 slides/manifest.js 에 있습니다. slides 폴더에 자료를 넣고
 // `python3 update_slides.py` 를 실행하면 그 파일이 다시 만들어집니다. (slides/README.md 참고)
-const SLIDE_MEDIA=window.SLIDE_MEDIA||[];
+const OLD_MEDIA=window.SLIDE_MEDIA||[];
+const SM=window.SERMON||{},WK=window.WEEKLY||{items:[]};
+const SLIDE_MEDIA=[
+  Object.assign({},OLD_MEDIA[3],{alt:'오륜교회 전경'}),
+  {type:'slideshow',tone:'dark',alt:'한 주간 사역',items:(WK.items||[]).filter(x=>x.photo).map(x=>x.photo)},
+  {type:'image',tone:'dark',src:SM.poster,alt:SM.title||'주일 설교',position:'50% 30%'},
+  Object.assign({},OLD_MEDIA[0]),
+  {type:'none'},
+];
 function applySlideMedia(){
   document.querySelectorAll('.slide').forEach((sl,i)=>{
     const m=SLIDE_MEDIA[i];
@@ -944,6 +1153,65 @@ function playShow(el,on){
 }
 function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;playShow(el,on);el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
 
+// ── 말씀: 누르면 그 자리에서 재생 ──
+function playSermon(){
+  if(!SM.youtube)return;
+  clearInterval(autoTimer);playVideos(slides[cs],false);
+  document.getElementById('player-frame').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(SM.youtube)+'?autoplay=1&rel=0&playsinline=1" title="'+(SM.title||'설교')+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  document.getElementById('player').classList.add('open');playerOpen=true;
+}
+function closeSermon(){
+  if(!playerOpen)return;
+  document.getElementById('player').classList.remove('open');
+  document.getElementById('player-frame').innerHTML='';playerOpen=false;
+  if(!pageOpen&&!menuOpen){playVideos(slides[cs],true);resetAuto();}
+}
+let playerOpen=false;
+document.getElementById('player').addEventListener('click',e=>{if(e.target.id==='player')closeSermon();});
+(function fillData(){
+  document.getElementById('sm-title').textContent=SM.title||'';
+  if(SM.poster)document.getElementById('sm-thumb').src=SM.poster;
+  document.getElementById('sm-sub').textContent=[SM.scripture,SM.preacher].filter(Boolean).join(' · ');
+  document.getElementById('sm-kind').textContent=[(SM.date||'').replace(/-/g,'.'),SM.service].filter(Boolean).join(' · ');
+  const ul=document.getElementById('week-list');
+  ul.innerHTML='<li class="wk">'+(WK.week||'')+'</li>'+(WK.items||[]).slice(0,5).map(x=>'<li class="it"><i>'+x.date+'</i><span>'+x.title+'</span></li>').join('');
+  document.getElementById('week-tag').textContent='한 주간 사역 — '+(WK.range||WK.week||'');
+  document.getElementById('wk-week').textContent=WK.week||'';
+  document.getElementById('wk-range').textContent=WK.range||'이번 주';
+  document.getElementById('wk-note').textContent=WK.note||'';
+  document.getElementById('wk-grid').innerHTML=(WK.items||[]).map(x=>'<div class="wk-card reveal">'+(x.photo?'<img src="'+x.photo+'" alt="" loading="lazy">':'')+'<div class="b"><span class="d">'+x.date+' · '+x.day+(x.place?' · '+x.place:'')+'</span><h3>'+x.title+'</h3><p>'+(x.text||'')+'</p></div></div>').join('');
+})();
+function reserveSubmit(e){
+  e.preventDefault();
+  const f=new FormData(e.target),m=document.getElementById('rs-msg');
+  m.textContent=f.get('date')+' '+f.get('from')+'~'+f.get('to')+', '+f.get('place')+', '+f.get('group')+' '+f.get('people')+'명. 입력 내용을 확인했습니다. 시안이라 실제로 접수되지는 않았습니다.';
+  m.classList.add('on');return false;
+}
+
+// ── 역사: 사진 띠 ──
+const ribEl=document.getElementById('rib-track'),hisA=document.getElementById('his-a'),hisB=document.getElementById('his-b');
+let hisP=0,hisQ=0,hisEdge=0,hisTouched=0;
+function hisDraw(){
+  const w=innerWidth,h=innerHeight,m=w<=820;
+  ribEl.style.transform='translateX('+(w*1.05+(-ribEl.scrollWidth-40-w*1.05)*hisQ)+'px)';
+  let t=Math.min(hisQ/.4,1);t=1-(1-t)*(1-t);
+  hisA.style.transform='translate('+(m?0:-w*.1*t)+'px,'+(m?-h*.08*t:-h*.27*t)+'px)';
+  hisB.style.transform='translate('+(m?0:w*.1*t)+'px,'+(m?h*.08*t:h*.27*t)+'px)';
+}
+function hisMove(d){                                  // d: 앞으로(+) 뒤로(-) 움직일 양
+  const before=hisP;hisTouched=Date.now();
+  hisP=Math.max(0,Math.min(1,hisP+d));
+  if(hisP!==before){hisEdge=Date.now();return;}
+  if(Date.now()-hisEdge>450){hisEdge=Date.now();d>0?next():prev();}   // 끝에 닿은 뒤 한 번 더 밀면 다음 장면
+}
+(function hisLoop(){
+  if(cs===HIS&&!pageOpen&&!menuOpen&&!playerOpen){
+    if(Date.now()-hisTouched>1600&&hisP<1&&!matchMedia('(prefers-reduced-motion:reduce)').matches)hisP=Math.min(1,hisP+1/(60*38));   // 가만히 두면 천천히 흐른다
+    hisQ+=(hisP-hisQ)*.09;hisDraw();
+  }
+  requestAnimationFrame(hisLoop);
+})();
+
 function updateUI(){
   document.getElementById('ctrl-now').textContent=cs+1;
   if(!pageOpen)document.getElementById('prog-bar').style.width=((cs+1)/TOTAL*100)+'%';
@@ -978,6 +1246,7 @@ function go(n){
     slides[prevCs].classList.remove('slide-notransition');
     slides[cs].classList.remove('slide-above');
   },1000);
+  if(cs===HIS){hisP=0;hisQ=0;hisEdge=Date.now();hisTouched=Date.now()-800;hisDraw();}
   playVideos(slides[cs],true);
   updateUI();
   const mh=document.getElementById('main-slider-header');
@@ -991,21 +1260,24 @@ function prev(){go(cs-1);}
 function resetAuto(){
   clearInterval(autoTimer);
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  autoTimer=setInterval(()=>{if(!pageOpen&&!menuOpen&&!document.hidden)next();},SLIDE_INTERVAL);
+  if(cs===HIS)return;                              // 역사 장면은 자동으로 넘기지 않는다
+  autoTimer=setInterval(()=>{if(!pageOpen&&!menuOpen&&!playerOpen&&!document.hidden)next();},SLIDE_INTERVAL);
 }
 
 // 휠 · 키보드 · 스와이프
 let wlast=0;
 window.addEventListener('wheel',e=>{
-  if(pageOpen||menuOpen)return;
+  if(pageOpen||menuOpen||playerOpen)return;
+  if(cs===HIS){hisMove(e.deltaY/2600);return;}
   const now=Date.now();
   if(now-wlast<900||Math.abs(e.deltaY)<8)return;
   wlast=now;e.deltaY>0?next():prev();
 },{passive:true});
 document.addEventListener('click',e=>{const m=e.target.closest('[data-motto]');if(m){e.preventDefault();openPage('vision');}});
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){if(menuOpen)toggleMenu();else if(pageOpen)closePage();return;}
-  if(pageOpen||menuOpen)return;
+  if(e.key==='Escape'){if(playerOpen)closeSermon();else if(menuOpen)toggleMenu();else if(pageOpen)closePage();return;}
+  if(pageOpen||menuOpen||playerOpen)return;
+  if(cs===HIS&&/^(Arrow|Page)/.test(e.key)){hisMove(/Down|Right/.test(e.key)?.14:-.14);return;}
   if(e.key==='ArrowDown'||e.key==='ArrowRight'||e.key==='PageDown')next();
   else if(e.key==='ArrowUp'||e.key==='ArrowLeft'||e.key==='PageUp')prev();
 });
@@ -1013,9 +1285,14 @@ let ty=null;
 const sl=document.getElementById('slider');
 [sl,document.getElementById('main-slider-header')].forEach(el=>{
   el.addEventListener('touchstart',e=>{ty=e.touches[0].clientY;},{passive:true});
+  el.addEventListener('touchmove',e=>{
+    if(cs!==HIS||ty===null)return;
+    const y=e.touches[0].clientY;hisMove((ty-y)/900);ty=y;
+  },{passive:true});
   el.addEventListener('touchend',e=>{
     if(ty===null)return;
     const dy=e.changedTouches[0].clientY-ty;ty=null;
+    if(cs===HIS)return;
     if(Math.abs(dy)>50)dy<0?next():prev();
   },{passive:true});
 });
@@ -1066,7 +1343,7 @@ function syncHash(){
   if(id&&document.getElementById('p-'+id))openPage(id,true);else closePage(true);
 }
 window.addEventListener('popstate',syncHash);
-window.addEventListener('resize',updateUI);
+window.addEventListener('resize',()=>{updateUI();hisDraw();});
 
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!pageOpen&&!menuOpen)playVideos(slides[cs],true);});
 // ── INIT ──
