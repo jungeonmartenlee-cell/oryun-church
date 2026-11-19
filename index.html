@@ -548,6 +548,37 @@ body.no-title .block-text{display:none;}
 .sh-stops li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink);}
 .sh-stops li b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:20px;letter-spacing:.04em;color:var(--blue);white-space:nowrap;}
 @media(max-width:680px){.sh-box{padding:18px;}.sh-pick{flex-direction:column;align-items:stretch;gap:8px;}.sh-pick select{min-width:0;width:100%;}}
+/* 트리: 눌러서 한 단계씩 들어간다 */
+.fold.tree summary{font-size:19px;padding:24px 0;}
+.fold.tree summary small{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--blue);}
+.tree-in{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;padding:0 0 24px;}
+.tree-in a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border-radius:14px;border:1px solid var(--line);background:var(--bg);font-size:15px;color:var(--ink);text-decoration:none;transition:border-color .2s,color .2s,transform .3s var(--ease);}
+.tree-in a:hover{border-color:var(--blue);color:var(--blue);transform:translateX(3px);}
+.tree-in a i{font-style:normal;color:var(--blue);}
+.tree-sub{padding:0 0 18px 22px;border-left:2px solid rgba(31,86,168,.16);margin-left:4px;}
+.fold.sub summary{font-size:15.5px;padding:15px 0;}
+.fold.sub .sh-view{padding:0 0 18px;margin-top:0;}
+.fold.sub .sh-runs{margin-top:0;margin-bottom:14px;}
+.fold-in{padding:0 0 24px;}
+/* 옮겨 온 안내 글 */
+.doc{max-width:860px;}
+.doc h4{font-family:'Noto Serif KR',serif;font-weight:400;font-size:clamp(20px,2vw,25px);letter-spacing:-.02em;color:var(--ink);margin:44px 0 16px;}
+.doc>h4:first-child{margin-top:0;}
+.doc h5{font-size:14px;font-weight:700;color:var(--blue);margin:26px 0 10px;letter-spacing:.02em;}
+.doc p{font-size:15.5px;line-height:2;color:var(--ink-2);word-break:keep-all;margin-top:12px;}
+.doc p.sign{font-family:'Noto Serif KR',serif;color:var(--ink);margin-top:24px;}
+.doc ul{list-style:none;margin-top:10px;}
+.doc li{position:relative;padding:7px 0 7px 16px;font-size:15px;line-height:1.8;color:var(--ink-2);word-break:keep-all;}
+.doc li::before{content:'';position:absolute;left:0;top:19px;width:5px;height:5px;border-radius:50%;background:var(--blue);opacity:.55;}
+.doc li ul{margin-top:2px;}
+.doc li p{margin:0;font-weight:500;color:var(--ink);}
+.doc .tt-wrap{margin-top:16px;}
+.doc .tt td,.doc .tt th{padding-right:18px;}
+.doc .tt td:first-child{white-space:normal;}
+.doc .tt td.tm{white-space:nowrap;}
+.doc-logo{width:min(320px,70%);height:auto;margin-bottom:10px;}
+.menu-links a b{font-weight:700;}
+@media(max-width:680px){.tree-in{grid-template-columns:1fr;}.tree-sub{padding-left:14px;}}
 </style>
 </head>
 <body>
@@ -679,10 +710,10 @@ body.no-title .block-text{display:none;}
     <div>
       <h3>교회 안내</h3>
       <div class="menu-links">
-        <a href="#vision" onclick="openPage('vision');toggleMenu();return false;">비전 · 표어</a>
+        <a href="#guide" onclick="openPage('guide');toggleMenu();return false;"><b>전체 안내 보기</b></a>
         <a href="#worship" onclick="openPage('worship');toggleMenu();return false;">예배 시간</a>
         <a href="#location" onclick="openPage('location');toggleMenu();return false;">오시는 길 · 주차</a>
-        <a href="#greeting" onclick="openPage('greeting');toggleMenu();return false;">담임목사 인사말</a>
+        <a href="#shuttle" onclick="openPage('shuttle');toggleMenu();return false;">예배 차량</a>
         <a href="#people" onclick="openPage('people');toggleMenu();return false;">섬기는 분들</a>
       </div>
     </div>
@@ -694,6 +725,1258 @@ body.no-title .block-text{display:none;}
   <button class="p-back" onclick="closePage()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Back to main
   </button>
+
+  <!-- 교회 안내 (트리) -->
+  <article class="page" id="p-guide">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">Guide</p>
+      <h1 class="p-title">교회 안내</h1>
+      <p class="p-lead">필요한 항목을 눌러 펼쳐 보세요.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="reveal">
+        <details class="fold tree" open><summary><span>교회 소개<small>6</small></span></summary><div class="tree-in"><a href="#vision" onclick="openPage('vision');return false;">비전 · 2027 표어<i>→</i></a><a href="#history" onclick="openPage('history');return false;">걸어온 길<i>→</i></a><a href="#greeting" onclick="openPage('greeting');return false;">담임목사 인사말<i>→</i></a><a href="#founder" onclick="openPage('founder');return false;">설립목사<i>→</i></a><a href="#people" onclick="openPage('people');return false;">섬기는 분들 · 교역자<i>→</i></a><a href="#logo" onclick="openPage('logo');return false;">로고<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>예배<small>3</small></span></summary><div class="tree-in"><a href="#worship" onclick="openPage('worship');return false;">예배 시간 · 장소<i>→</i></a><a href="#worship-about" onclick="openPage('worship-about');return false;">오륜교회의 예배<i>→</i></a><a href="#shuttle" onclick="openPage('shuttle');return false;">예배 차량 시간표<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>오시는 길 · 연락처<small>2</small></span></summary><div class="tree-in"><a href="#location" onclick="openPage('location');return false;">교통 · 주차<i>→</i></a><a href="#phone" onclick="openPage('phone');return false;">전화번호 안내<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>장소 안내<small>8</small></span></summary><div class="tree-in"><a href="#place-vision" onclick="openPage('place-vision');return false;">비전센터 (본관)<i>→</i></a><a href="#place-odc" onclick="openPage('place-odc');return false;">다니엘센터 (ODC)<i>→</i></a><a href="#place-edu1" onclick="openPage('place-edu1');return false;">제1교육관<i>→</i></a><a href="#place-edu2" onclick="openPage('place-edu2');return false;">제2교육관<i>→</i></a><a href="#place-edu3" onclick="openPage('place-edu3');return false;">제3교육관<i>→</i></a><a href="#place-village" onclick="openPage('place-village');return false;">오륜 비전빌리지<i>→</i></a><a href="#branch" onclick="openPage('branch');return false;">분립교회<i>→</i></a><a href="#reserve" onclick="openPage('reserve');return false;">장소 예약<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>새가족 · 소그룹<small>3</small></span></summary><div class="tree-in"><a href="#worship" onclick="openPage('worship');return false;">새가족 등록<i>→</i></a><a href="#newfam-edu" onclick="openPage('newfam-edu');return false;">새가족 교육<i>→</i></a><a href="#smallgroup" onclick="openPage('smallgroup');return false;">소그룹 안내<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>양육훈련<small>2</small></span></summary><div class="tree-in"><a href="#training" onclick="openPage('training');return false;">철학과 방향<i>→</i></a><a href="#program" onclick="openPage('program');return false;">양육훈련 프로그램<i>→</i></a></div></details>
+      </div>
+    </div></div>
+  </article>
+
+  <!-- 예배 차량 시간표 (트리) -->
+  <article class="page" id="p-shuttle">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 예배</p>
+      <h1 class="p-title">예배 차량 시간표</h1>
+      <p class="p-lead">예배를 고르고, 지역을 고르면 정류장별 시간이 나옵니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="reveal" id="sh-tree"></div>
+      <p class="note reveal">정해진 시간보다 조금 일찍 나와 기다려 주세요. 약속된 시간에서 1분 이상은 기다리기 어렵습니다. 시간표는 교회 사정에 따라 바뀔 수 있습니다. 차량 운행 문의 <b>02-6413-4950</b></p>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-founder">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 교회 소개</p>
+      <h1 class="p-title">설립목사 김은호</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+
+<p>예수 그리스도의 복음 앞에 역전의 은혜를 경험하는 인생이 있습니다.</p>
+<p>믿음의 행함으로 이 땅에 하나님 나라를 세워가는 인생<br>소망을 기대하며 고귀한 가치에 도전하는 인생<br>사랑의 나눔 있는 곳에서 세상의 소금과 빛이 되는 인생</p>
+<p>말씀의 능력으로 회복의 은혜를 경험하는 예배<br>기도의 연합이 기적을 상식으로 바꾸는 예배<br>찬양의 영감으로 하나님께 온전히 영광 올리는 예배</p>
+<p>행복의 시작 예수 그리스도를 만나며<br>하나님의 꿈을 꾸는 오륜교회로 오십시오.<br>당신이 바로 그 간증의 주인공입니다!</p>
+<p class="sign">설립목사 김은호</p>
+<h5>경력 및 활동</h5>
+<ul>
+<li>국민일보 이사</li>
+<li>다니엘기도회 운영위원장</li>
+<li>GOOD TV 공동대표이사</li>
+<li>오륜교회 설립목사</li>
+<li>DNA ministry 대표</li>
+</ul>
+<h5>학력</h5>
+<ul>
+<li>개혁신학연구원 신학부(M.Div) 졸업</li>
+<li>연세대 연합신학대학원(목회자지도자과정) 수료</li>
+<li>총신대학교 신학대학원(M.Div.Equiv) 졸업</li>
+</ul>
+<h5>가족사항</h5>
+<ul>
+<li>정송이 사모</li>
+<li>자녀 김바울, 김은지</li>
+<li>사위 이의환</li>
+<li>외손녀 이수아</li>
+</ul>
+<h4>김은호 목사 설교방송</h4>
+<p>TV</p>
+<ul>
+<li>GOOD TV 「주일예배」 (본방)주일 오전 11:00 </li>
+<li>GOOD TV 「주일예배」 (재방)수요일 새벽 1:00 </li>
+<li>CTS 「생명의 말씀」 주일 오후 1:00~1:30 </li>
+<li>CBS 「TV강단」 주일 저녁 6:00~6:30 </li>
+</ul>
+<p>인터넷</p>
+<ul>
+<li>C3TV | www.c3tv.com</li>
+<li>CTS | www.cts.tv </li>
+<li>CBS | www.cbs.co.kr </li>
+<li>극동방송 | www.febc.net</li>
+</ul>
+<p>라디오</p>
+<ul>
+<li>극동방송 FM 106.9 화요일 오후 4:00~4:10 </li>
+</ul>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-logo">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 교회 소개</p>
+      <h1 class="p-title">로고에 담긴 뜻</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<p><img class="doc-logo" src="assets/logo-dark.png" alt="오륜교회 로고"></p><h4>심벌마크에 담긴 의미 살아있는 예배와 예수님의 모습을 표현 </h4>
+<ul>
+<li>지구를 뜻하며, 특히 파랑색은 살아있는 예배를 드리는 젊음과 역동성이 있는 오륜교회를 상징한다.</li>
+</ul>
+<ul>
+<li>인류를 구원하기 위해 십자가에 달리신 예수님의 모습</li>
+<li>구원받은 백성들로 인하여 기뻐하시며 춤추시는 예수님의 모습</li>
+<li>돌아온 탕자를 맞이하러 나가시는 아버지의 뒷모습</li>
+<li>하나님의 임재 속에 춤추며 행복해하는 그리스도인의 모습</li>
+</ul>
+<p>로고타입 LOGOTYPE</p>
+<p>기본형</p>
+<p>영문혼합형 영문은 독자적으로 쓰지 않으며 필요에 따라 한글과 조합하여 <br>쓰는 것을 원칙으로 한다.</p>
+<p>시그니처 SIGNATURE</p>
+<p>가로조합형</p>
+<p>영문조합형</p>
+<p>색상 COLOR</p>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-worship-about">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 예배</p>
+      <h1 class="p-title">오륜교회의 예배</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<h4>오륜교회의 현대적인 문화예배</h4>
+<p>성경은 "누구든지 오라" 하십니다. 예배는 너무도 당연히 열려있어야 합니다.
+교회는 끊임없는 "문턱 낮추기"를 통해 시대적 다양성과 사람들의 다양함을 수용할 수 있어야 합니다.
+오륜교회는 복음의 다양한 표현들을 통하여 성령님의 임재가 충만한 현대적인 문화 예배를 드립니다.</p>
+<h4>예배를 통한 성장</h4>
+<p>오륜교회는 예배 갱신을 통해서 성장한 교회입니다.</p>
+<p>김은호 목사는 미국에 성장하는 교회를 방문하여 예배 갱신에 대한 도전을 받고 1994년 8월에 예배갱신을 시작하게 되었습니다. 교회 설립 20주년을 맞이하여 오륜교회에 등록하게 된 이유에 대하여 설문조사를 한 적이 있습니다. 설문에 응한 4,596명(6417개 의견)의 성도들 가운데 설교가 가장 은혜스러워서, 예배가 좋아서 등록했다는 성도들이 무려 82%나 되었습니다. 이것을 보면 우리 오륜교회는 예배를 통하여 성장하고 있는 교회입니다.</p>
+<h4>현대적인 문화예배</h4>
+<p>진리는 변함이 없지만 진리를 담는 그릇은 시대마다 새로워져야 합니다. 오륜교회는 다양한 장르(스킷드라마, 영상매체, 워십 등)를 통하여 교회의 문턱을 낮추고 하나님의 임재를 추구하는 현대적인 문화예배를 드립니다.</p>
+<p>예배는 구원받은 자들의 축제입니다.</p>
+<p>예배는 형식이나 습관이 아닙니다. 예배는 구원받은 자들의 축제입니다. 그러므로 예배는 자유함과 기쁨이 있어야 합니다.</p>
+<p>예배의 본질은 드림입니다.</p>
+<p>많은 사람들이 예배를 보는 것으로 생각합니다. 그러나 예배는 보는 것이 아닙니다. 또 단순히 십자가와 부활을 묵상하고 기념하는 것도 아닙니다. 그러므로 은혜의 보좌 앞에 나아와 내 마음과 시간과 물질과 인격을 드려야 합니다.</p>
+<p>예배는 주님과의 만남입니다.</p>
+<p>예배는 하늘 보좌에 앉으신 하나님 아버지와 나를 위해 죽으시고 부활하신 주님, 그리고 보혜사 성령님을 인격적으로 만나는 시간입니다. 그러므로 예배에는 반드시 하나님의 임재가 있어야 합니다.</p>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-phone">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 오시는 길 · 연락처</p>
+      <h1 class="p-title">전화번호 안내</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<details class="fold"><summary><span>사무국</span></summary><div class="fold-in"><div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>내선</th>
+<th>팩스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>행정</td>
+<td> 02-6413-4811 </td>
+<td>02-485-3585</td>
+</tr>
+<tr>
+<td>선교</td>
+<td> 02-6413-4809 </td>
+<td></td>
+</tr>
+<tr>
+<td>재정</td>
+<td> 02-6413-4812 </td>
+<td>02-485-3585</td>
+</tr>
+<tr>
+<td>웨딩</td>
+<td> 02-6413-4814 </td>
+<td>02-485-3585</td>
+</tr>
+<tr>
+<td>장소</td>
+<td> 02-6413-4813 </td>
+<td>02-485-3585</td>
+</tr>
+<tr>
+<td>총무</td>
+<td> 02-6413-4815 </td>
+<td>02-485-3585</td>
+</tr>
+<tr>
+<td>방송실</td>
+<td> 02-6413-4930~2 </td>
+<td></td>
+</tr>
+<tr>
+<td>스튜디오</td>
+<td> 02-6413-5324 </td>
+<td></td>
+</tr>
+<tr>
+<td>출판팀</td>
+<td> 02-6413-5731 </td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>내선</th>
+<th>팩스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>차량팀</td>
+<td> 02-6413-4950 </td>
+<td></td>
+</tr>
+<tr>
+<td>도서관</td>
+<td> 02-6413-4947 </td>
+<td></td>
+</tr>
+<tr>
+<td>오륜서점</td>
+<td> 02-6413-4949 </td>
+<td></td>
+</tr>
+<tr>
+<td>본관 경비실</td>
+<td> 02-6413-4817 </td>
+<td></td>
+</tr>
+<tr>
+<td>교육관 경비실</td>
+<td> 02-6413-5322 </td>
+<td></td>
+</tr>
+<tr>
+<td>방재실</td>
+<td> 02-6413-5323 </td>
+<td></td>
+</tr>
+<tr>
+<td>분실물</td>
+<td> 02-6413-4814 </td>
+<td></td>
+</tr>
+<tr>
+<td>협력기업담당</td>
+<td> 02-6413-4813 </td>
+<td></td>
+</tr>
+</tbody>
+</table></div></div></details>
+<details class="fold"><summary><span>교구담당</span></summary><div class="fold-in"><div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>담당</th>
+<th>내선</th>
+</tr>
+</thead>
+<tbody>
+<tr> <td>방이교구</td>
+<td>정은희 교구간사</td>
+<td> 02-6413-4869 </td>
+</tr><tr> <td>조형래 목사</td>
+<td> 02-6413-4819 </td>
+</tr><tr> <td>송파교구</td>
+<td>조광민 교구간사</td>
+<td> 02-6413-4862 </td>
+</tr><tr> <td>임지훈 목사</td>
+<td> 02-6413- 02-6413- </td>
+</tr><tr> <td>잠실교구</td>
+<td>방성율 목사</td>
+<td> 02-6413-4833 </td>
+</tr><tr> <td>용수민 교구간사</td>
+<td> 02-6413-4863 </td>
+</tr><tr> <td>강남교구</td>
+<td>장미선 교구간사</td>
+<td> 02-6413-4864 </td>
+</tr><tr> <td>송영광 목사</td>
+<td> 02-6413-4834 </td>
+</tr><tr> <td>파크리오교구</td>
+<td>정광식 목사</td>
+<td> 02-6413-4824 </td>
+</tr><tr> <td>조인득 교구간사</td>
+<td> 02-6413-4865 </td>
+</tr><tr> <td>강동1교구</td>
+<td>이병민 목사</td>
+<td> 02-6413-4835 </td>
+</tr><tr> <td>백주희 교구간사</td>
+<td> 02-6413-4854 </td>
+</tr><tr> <td>강동2교구</td>
+<td>강정화 교구간사</td>
+<td> 02-6413-4855 </td>
+</tr><tr> <td>최민흥 목사</td>
+<td> 02-6413-4825 </td>
+</tr><tr> <td>강동3교구</td>
+<td>석선미 교구간사</td>
+<td> 02-6413-4852 </td>
+</tr><tr> <td>송정용 목사</td>
+<td> 02-6413-4822 </td>
+</tr><tr> <td>포레온교구</td>
+<td>조인 목사</td>
+<td> 02-6413-4907 </td>
+</tr><tr> <td>손연주 교구간사</td>
+<td> 02-6413-4937 </td>
+</tr><tr> <td>하남교구</td>
+<td>김은주 교구간사</td>
+<td> 02-6413-4866 </td>
+</tr><tr> <td>송성국 목사</td>
+<td> 02-6413-4867 </td>
+</tr> </tbody>
+</table></div>
+<div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>담당</th>
+<th>내선</th>
+</tr>
+</thead>
+<tbody>
+<tr> <td>경기북교구</td>
+<td>김창석 목사</td>
+<td> 02-6413-4911 </td>
+</tr><tr> <td>한규숙 교구간사</td>
+<td> 02-6413-4912 </td>
+</tr><tr> <td>올림픽교구</td>
+<td>장원석 목사</td>
+<td> 02-6413-4828 </td>
+</tr><tr> <td>김민경 교구간사</td>
+<td> 02-6413-4858 </td>
+</tr><tr> <td>오금교구</td>
+<td>박봉연 교구간사</td>
+<td> 02-6413-4860 </td>
+</tr><tr> <td>이성민 목사</td>
+<td> 02-6413-4832 </td>
+</tr><tr> <td>가락교구</td>
+<td>양명환 목사</td>
+<td> 02-6413-4829 </td>
+</tr><tr> <td>구미향 교구간사</td>
+<td> 02-6413-4899 </td>
+</tr><tr> <td>거여마천위례교구</td>
+<td>이승혜 교구간사</td>
+<td> 02-6413-4868 </td>
+</tr><tr> <td>노승완 목사</td>
+<td> 02-6413-4818 </td>
+</tr><tr> <td>경기남교구</td>
+<td>정태훈 목사</td>
+<td> 02-6413-4831 </td>
+</tr><tr> <td>강여정 교구간사</td>
+<td> 02-6413- 02-6413- </td>
+</tr><tr> <td>성내1교구</td>
+<td>김태선 교구간사</td>
+<td> 02-6413-4850 </td>
+</tr><tr> <td>정현욱 목사</td>
+<td> 02-6413-4820 </td>
+</tr><tr> <td>성내2교구</td>
+<td>김미정 교구간사</td>
+<td> 02-6413-4851 </td>
+</tr><tr> <td>문종현 목사</td>
+<td> 02-6413-4821 </td>
+</tr><tr> <td>풍납교구</td>
+<td>정세라 교구간사</td>
+<td> 02-6413-4893 </td>
+</tr><tr> <td>배요한 목사</td>
+<td> 02-6413-4823 </td>
+</tr><tr> <td>광진교구</td>
+<td>김광희 교구간사</td>
+<td> 02-6413-4856 </td>
+</tr><tr> <td>김보광 목사</td>
+<td> 02-6413-4826 </td>
+</tr><tr> <td>강북교구</td>
+<td>정미숙 교구간사</td>
+<td> 02-6413-4857 </td>
+</tr><tr> <td>김득수 목사</td>
+<td> 02-6413-4827 </td>
+</tr>
+</tbody>
+</table></div></div></details>
+<details class="fold"><summary><span>부서담당 내선 02-6413-####</span></summary><div class="fold-in"><div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>담당</th>
+<th>내선</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>영아부</td>
+<td>송시언 목사</td>
+<td> 4870 4870 </td>
+</tr>
+<tr>
+<td>유아부</td>
+<td>이아현 전도사</td>
+<td> 4881 4881 </td>
+</tr>
+<tr>
+<td>유치부</td>
+<td>최상문 목사</td>
+<td> 4872 4872 </td>
+</tr>
+<tr>
+<td>초등1학년부</td>
+<td>김용주 목사</td>
+<td> 4876 4876 </td>
+</tr>
+<tr>
+<td>초등3학년부</td>
+<td>정형근 목사</td>
+<td> 4874 4874 </td>
+</tr>
+<tr>
+<td>초등4학년부</td>
+<td>하은준 목사</td>
+<td> 8772 8772 </td>
+</tr>
+<tr>
+<td>초등5학년부</td>
+<td>이성현 목사</td>
+<td> 4877 4877 </td>
+</tr>
+<tr>
+<td>초등6학년부</td>
+<td>임예훈 목사</td>
+<td> 4878 4878 </td>
+</tr>
+<tr>
+<td>8시중고등부</td>
+<td>조동혁 전도사</td>
+<td> </td>
+</tr>
+<tr>
+<td>중등1학년부</td>
+<td>변상선 목사</td>
+<td> 4886 4886 </td>
+</tr>
+<tr>
+<td>중등2ㆍ3학년부</td>
+<td>김성현 목사</td>
+<td> 4880 4880 </td>
+</tr>
+<tr>
+<td>고등부</td>
+<td>최병주 목사</td>
+<td> 1765 1765 </td>
+</tr>
+<tr>
+<td>사랑부</td>
+<td>김미영 전도사</td>
+<td> 4879 4879 </td>
+</tr>
+<tr>
+<td>청년1부</td>
+<td>주현우 목사</td>
+<td> 4839 4839 </td>
+</tr>
+<tr>
+<td>청년2부</td>
+<td>김민섭 목사</td>
+<td> 4837 4837 </td>
+</tr>
+<tr>
+<td>청년3부</td>
+<td>이탁열 목사</td>
+<td> 4838 4838 </td>
+</tr>
+</tbody>
+</table></div>
+<div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>담당</th>
+<th>내선</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>청년4부</td>
+<td>이준건 목사</td>
+<td> 4839 4839 </td>
+</tr>
+<tr>
+<td>청년5부</td>
+<td>정직한 목사</td>
+<td> 4844 4844 </td>
+</tr>
+<tr>
+<td>청년6부</td>
+<td>장명근 목사</td>
+<td> 4841 4841 </td>
+</tr>
+<tr>
+<td>청년7부</td>
+<td>이갈렙 목사</td>
+<td> 4843 4843 </td>
+</tr>
+<tr>
+<td>청년8부</td>
+<td>유성식 목사</td>
+<td> 4838 4838 </td>
+</tr>
+<tr>
+<td>청년9부</td>
+<td>장두희 목사</td>
+<td> 4836 4836 </td>
+</tr>
+<tr>
+<td>청년10부</td>
+<td>김장현 목사</td>
+<td> 4845 4845 </td>
+</tr>
+<tr>
+<td>청년11부</td>
+<td>최주영 목사</td>
+<td> 4847 4847 </td>
+</tr>
+<tr>
+<td>그레이스공동체</td>
+<td>김영채 목사</td>
+<td> 4803 4803 </td>
+</tr>
+<tr>
+<td>신혼부부공동체</td>
+<td>장권오 전도사</td>
+<td> </td>
+</tr>
+<tr>
+<td>수험부 공동체</td>
+<td>최규민 전도사</td>
+<td> </td>
+</tr>
+<tr>
+<td>프레전스</td>
+<td>우미쉘 목사</td>
+<td> </td>
+</tr>
+<tr>
+<td>블레싱워십</td>
+<td>김영글 목사</td>
+<td> 4804 4804 </td>
+</tr>
+<tr>
+<td>램넌트워십</td>
+<td>우미쉘 목사</td>
+<td> </td>
+</tr>
+<tr>
+<td>헤세드</td>
+<td>유성식 목사</td>
+<td> 4838 4838 </td>
+</tr>
+<tr>
+<td>브릿지워십</td>
+<td>임예훈 목사</td>
+<td> 4878 4878 </td>
+</tr>
+</tbody>
+</table></div></div></details>
+<details class="fold"><summary><span>기관</span></summary><div class="fold-in"><div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>전화/내선</th>
+<th>팩스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>꿈미법인</td>
+<td> 02-470-3252 </td>
+<td>02-470-1397</td>
+</tr>
+<tr>
+<td>꿈미학교</td>
+<td> 02-484-5301~2 </td>
+<td>02-484-5307</td>
+</tr>
+<tr>
+<td>다니엘기도회운영위원회</td>
+<td> 02-6413-4922~4 </td>
+<td></td>
+</tr>
+<tr>
+<td>(사)프렌즈</td>
+<td> 02-483-5007 </td>
+<td>02-6007-9857</td>
+</tr>
+<tr>
+<td>아이도스(IDOS)</td>
+<td> 02-6329-2000 </td>
+<td>02-485-3692</td>
+</tr>
+<tr>
+<td>토비아스</td>
+<td> 02-6413-4913~4 </td>
+<td></td>
+</tr>
+<tr>
+<td>다문화한가족센터</td>
+<td> 02-6413-4955 </td>
+<td></td>
+</tr>
+<tr>
+<td>오륜비전빌리지</td>
+<td> 031-582-5111 </td>
+<td>031-582-8113</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>부서</th>
+<th>전화/내선</th>
+<th>팩스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>마라나타 하늘정원</td>
+<td> 031-582-6901 </td>
+<td>031-582-5112</td>
+</tr>
+<tr>
+<td>사랑의헌금 운영위원회</td>
+<td> 02-6413-5324 </td>
+<td></td>
+</tr>
+<tr>
+<td>DNA 미니스트리</td>
+<td> 02-6413-4917 </td>
+<td></td>
+</tr>
+<tr>
+<td>분당오륜교회</td>
+<td> 070-8806-0191 </td>
+<td></td>
+</tr>
+<tr>
+<td>송탄오륜교회</td>
+<td> 031-665-0675 </td>
+<td></td>
+</tr>
+<tr>
+<td>서울아산병원교회</td>
+<td> 02-3010-7877 </td>
+<td></td>
+</tr>
+<tr>
+<td>영훈오륜교회</td>
+<td> 02-945-5251 </td>
+<td></td>
+</tr>
+</tbody>
+</table></div></div></details>
+
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-place-vision">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">비전센터 (본관)</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<p>서울 강동구 강동대로 235</p><div class="tt-wrap"><table class="tt"><thead><tr><th>층</th><th>공간</th></tr></thead><tbody>
+<tr><td class="tm">10F</td><td>체육관</td></tr>
+<tr><td class="tm">9F</td><td>목양국 · 회의실 · 교구목사실 · 상담실</td></tr>
+<tr><td class="tm">8F</td><td>D.N.A Ministry · 청년국교역자실 · 교구간사실 · 토비아스 · 사랑의헌금</td></tr>
+<tr><td class="tm">7F</td><td>벧엘홀 · 방송실 · 출판홍보팀</td></tr>
+<tr><td class="tm">6F</td><td>도서관 · 토비아스커피(로뎀점) · 의료선교팀 · 비전 소그룹실 1, 2</td></tr>
+<tr><td class="tm">5F</td><td>에덴홀 · 브니엘홀 · 제자훈련실 · 토들러랜드</td></tr>
+<tr><td class="tm">4F</td><td>비전홀(대예배당) · 자모실 · 방송실 · 통역실</td></tr>
+<tr><td class="tm">3F</td><td>비전홀(대예배당) · 에벤에셀홀 · 개인기도실 · 상담실 · 아론과홀</td></tr>
+<tr><td class="tm">2F</td><td>비전홀(대예배당) · 수유실 · 안내데스크(새가족환영실)</td></tr>
+<tr><td class="tm">1F</td><td>그레이스홀(웨딩홀) · 사무국 · 오륜서점 · 토비아스커피(라운지점)</td></tr>
+<tr><td class="tm">B1</td><td>식당 · 헤브론홀 · 방재실</td></tr>
+<tr><td class="tm">B2</td><td>주차장</td></tr>
+<tr><td class="tm">B3</td><td>주차장</td></tr>
+<tr><td class="tm">B4</td><td>주차장</td></tr>
+</tbody></table></div>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-place-odc">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">다니엘센터 (ODC)</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<div class="tt-wrap"><table class="tt"><thead><tr><th>층</th><th>공간</th></tr></thead><tbody>
+<tr><td class="tm">6F</td><td>다윗홀 · 방송실 · 다니엘 소그룹실 5, 6, 7, 8, 9 · 다니엘전도팀</td></tr>
+<tr><td class="tm">5F</td><td>이사야홀 · 여호수아홀</td></tr>
+<tr><td class="tm">4F</td><td>다니엘홀 · 방송실</td></tr>
+<tr><td class="tm">3F</td><td>다니엘홀/선교국/다니엘 소그룹실 4/다니엘기도회&프렌즈/사랑의헌금</td></tr>
+<tr><td class="tm">2F</td><td>다니엘홀</td></tr>
+<tr><td class="tm">1F</td><td>사무엘홀 · DLIGHT COFFEE · 방재실</td></tr>
+<tr><td class="tm">B1F</td><td>주차장 · 다니엘 소그룹실 1, 2, 3</td></tr>
+<tr><td class="tm">B2F</td><td>주차장 · 기계실</td></tr>
+</tbody></table></div>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-place-edu1">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">제1교육관</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<div class="tt-wrap"><table class="tt"><thead><tr><th>층</th><th>공간</th></tr></thead><tbody>
+<tr><td class="tm">6F</td><td>꿈미학교 교실</td></tr>
+<tr><td class="tm">5F</td><td>디모데홀</td></tr>
+<tr><td class="tm">4F</td><td>바울홀</td></tr>
+<tr><td class="tm">3F</td><td>바나바홀</td></tr>
+<tr><td class="tm">2F</td><td>꿈미학교 교무실 · 교실 · 상담실</td></tr>
+<tr><td class="tm">1F</td><td>상상공작소 · 도서관</td></tr>
+<tr><td class="tm">B1</td><td>아뜰리에 · 식당 · 찬양연습실 /베드로홀</td></tr>
+<tr><td class="tm">B2</td><td>주차장</td></tr>
+<tr><td class="tm">B3</td><td>주차장</td></tr>
+<tr><td class="tm">B4</td><td>주차장</td></tr>
+</tbody></table></div>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-place-edu2">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">제2교육관</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<div class="tt-wrap"><table class="tt"><thead><tr><th>층</th><th>공간</th></tr></thead><tbody>
+<tr><td class="tm">5F</td><td>꿈미학교(모임홀) 장애인화장실</td></tr>
+<tr><td class="tm">4F</td><td>꿈미학교(중등관)</td></tr>
+<tr><td class="tm">3F</td><td>꿈미학교(중등관)</td></tr>
+<tr><td class="tm">2F</td><td>꿈미학교 교실</td></tr>
+<tr><td class="tm">1F</td><td>오륜어린이집</td></tr>
+<tr><td class="tm">B1F</td><td>엘리야홀 · 소그룹실 · 꿈미학교 과학관</td></tr>
+<tr><td class="tm">B2F</td><td>스튜디오</td></tr>
+</tbody></table></div>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-place-edu3">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">제3교육관</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<p>서울 강동구 강동대로 241 세기빌딩</p><div class="tt-wrap"><table class="tt"><thead><tr><th>층</th><th>공간</th></tr></thead><tbody>
+<tr><td class="tm">4F</td><td>엘리사홀 · 회의실</td></tr>
+<tr><td class="tm">3F</td><td>교육국 · 꿈미출판 · (사)꿈미</td></tr>
+</tbody></table></div>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-place-village">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">오륜 비전빌리지</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<h5>예배당</h5>
+<ul>
+<li>1F 그레이스홀 (500석)</li>
+<li>2F 비전홀 (900석) / 세미나실</li>
+<li>3F 방송실 / 세미나실</li>
+</ul>
+<h5>비전하우스</h5>
+<ul>
+<li>B1 사랑홀 / 세미나실</li>
+<li>1F 세미나실 / 숙소</li>
+<li>2F 숙소 / 휴게실</li>
+<li>3F 숙소 / 헬스장</li>
+<li>4F 숙소 / 독서실</li>
+</ul>
+<h5>오륜하우스</h5>
+<ul>
+<li>1F 기쁨홀 (100석) / 사무실 / 식당 / 로비</li>
+<li>2F 세미나실 / 기도실 / 숙소</li>
+<li>3F 숙소</li>
+</ul>
+<h5>벧엘하우스</h5>
+<ul>
+<li>B1 드림홀 (150석) / 대기실 / 진행실</li>
+<li>1F 세미나실 / 목양실 / 진행실 / 숙소</li>
+<li>2F 비전스퀘어 / 숙소</li>
+<li>3F 숙소</li>
+</ul>
+<h5>물놀이장</h5>
+<ul>
+<li>유아풀 1</li>
+<li>아동풀 1</li>
+<li>샤워실, 탈의실</li>
+</ul>
+<h5>다목적광장</h5><p>예배당 앞에 위치한 다목적광장</p>
+<h5>운동장</h5><p>천연잔디구장 (712석)</p>
+<h5>게스트하우스</h5><p>게스트하우스</p>
+<h5>출입구/경비실</h5><p>출입구/경비실</p>
+<h5>주소 · 연락처</h5><p>12422 경기도 가평군 가평읍 달전리 540-1 (호반로 2424-22)<br>전화 031-582-5111 · FAX 031-582-8113</p>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-branch">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 장소 안내</p>
+      <h1 class="p-title">분립교회</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<details class="fold"><summary><span>송탄오륜교회</span></summary><div class="fold-in"><ul>
+<li> 주일예배장소 : 경기도 평택시 송탄로 40번길 63-22</li>
+<li> 전화 : 031-665-0675</li>
+<li> 이메일 : jjuros@hanmail.net</li>
+</ul>
+<ul>
+<li> 주일예배시간 </li>
+<li>장년부 : 1부 오전 08:00 / 2부 오전 11:00</li>
+<li>중ㆍ고등부 : 오전 11:00</li>
+<li>유ㆍ초등부 : 오전 10:30</li>
+</ul></div></details>
+<details class="fold"><summary><span>분당오륜교회</span></summary><div class="fold-in"><ul>
+<li> 주일예배장소 : 계원예고 벽강홀<br>
+경기도 성남시 분당구 불정로 100</li>
+<li> 주중예배장소 : 아가페홀<br>
+분당구 정자동 124 상록마을라이프상가 202호</li>
+<li> 전화 : 070-8806-0191</li>
+</ul>
+<ul>
+<li> 주일예배시간 </li>
+<li>장년부 : 1부 오전 10:00 / 2부 낮 12:00</li>
+<li>대학청년부 : 오후 2:00</li>
+<li>취학부/미취학부 : 낮 12:00</li>
+</ul></div></details>
+<details class="fold"><summary><span>영훈오륜교회</span></summary><div class="fold-in"><ul>
+<li> 주일예배장소 : 영훈고등학교 내 백운관 소강당<br>
+서울시 강북구 도봉로 13가길 19</li>
+<li> 전화 : 010-8273-9997</li>
+</ul>
+<ul>
+<li> 주일예배시간 </li>
+<li>장년부 : 1부 오전 10:00 / 2부 낮 12:00</li>
+<li>대학청년부 : 오후 2:00</li>
+<li>취학부/미취학부 : 낮 12:00</li>
+</ul></div></details>
+<details class="fold"><summary><span>별내오륜교회</span></summary><div class="fold-in"><ul>
+<li> 주일예배장소 : 경기도 남양주시 별내5로5번길 마들프라자 7층<br>
+(별내동 1097-6번지)</li>
+<li> 전화 : 031-527-4051</li>
+</ul>
+<ul>
+<li> 주일예배시간 </li>
+<li>장년부 : 1부 오전 10:00 / 2부 정오 12:00 / 3부 오후 2:30</li>
+<li>대학/청년부 : 오후 2:00</li>
+<li>중/고등부 : 오전 10:00</li>
+<li>취학부/미취학부 : 정오 12:00</li>
+</ul></div></details>
+
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-newfam-edu">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 새가족 · 소그룹</p>
+      <h1 class="p-title">새가족 교육</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<h4>교회생활에 대해 알고 싶으세요?</h4>
+<p>오륜교회 “정식교인”이 되기 위한 “새가족교육”을 받으세요. 친절한 새가족리더와
+함께 4번의 교육으로 교회와 복음, 실제적이고 구체적인 교회생활에 대해 자세한
+설명을 들으실 수 있습니다. 오륜교회에 처음 오셨다면, 신앙생활을 오래하셨더라도
+새가족교육을 통해 오륜교회에 빨리 익숙해지실 수 있습니다. </p>
+<p>또한 다양한 궁금증들을 리더와 함께 풀어가실 수 있습니다.</p>
+<h4>커리큘럼</h4>
+<ul>
+<li>
+<p>1강 오륜교회 역사와 비전 </p>
+<ul>
+<li>새가족리더 소개</li>
+<li>예배시간 안내</li>
+<li>주차 장소, 방법</li>
+</ul>
+</li>
+<li>
+<p>2강 최고의 기적을 경험하라, 복음 </p>
+<ul>
+<li>양육프로그램 안내</li>
+<li>주만나 QT 안내</li>
+<li>사무국 이용 안내</li>
+</ul>
+</li>
+<li>
+<p>3강 이 땅의 하나님 나라, 교회 </p>
+<ul>
+<li>소그룹(순, 목장) 활동 안내</li>
+<li>세례, 입교 안내</li>
+<li>교회 주보 설명 </li>
+</ul>
+</li>
+<li>
+<p>4강 성도의 연합 </p>
+<ul>
+<li>평신도 사역, 봉사 안내</li>
+<li>동아리 안내</li>
+<li>정식주차증 발급</li>
+</ul>
+</li>
+</ul>
+<h4>새가족교육을 꼭 수료해야 하나요?</h4>
+<p>새가족교육을 수료하셔야 “오륜교회 정식교인” 이 됩니다.
+오륜교회 새가족교육 은 교회 정식주차증 발급과 사무국을 통해 발급되는 공식문서(기부금납입증명서, 교인증명서 등)를 위해
+꼭 수료하셔야 합니다. 직분 임명(서리집사 이상)을 위한 필수조건이며, 필수양육과정(제자훈련, 사역훈련)을 위한 선수과정입니다.</p>
+<h4>시간ㆍ장소</h4>
+<div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th colspan="2">장년부 새가족교육(그레이스 포함)</th>
+<th colspan="2">청년부 새가족교육(쀼 포함) </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주일 오전 11:20~12:00<br>(3부 예배 후)</td>
+<td>주일 오후 1:20~2:00<br>(4부 예배 후)</td>
+<td colspan="2">주일 오후 1:00 ~ 1:30</td>
+</tr>
+<tr>
+<td colspan="2">5층 에덴홀, 에스라홀</td>
+<td colspan="2">3층 에벤에셀홀 </td>
+</tr>
+</tbody>
+</table></div>
+<h4>새가족교육은 어떻게 받을 수 있나요? </h4>
+<ul>
+<li>오륜교회에 이미 등록하셨지만, 새가족교육을 아직 받지 않으신 성도님은 언제든지 방문하시면 새가족교육을 시작하실 수 있습니다.</li>
+<li>대학청년부 새가족 가운데 예배시간이 맞지 않아 부서에 참석하지 못하고 계신 분은 장년 새가족교육으로 받으실 수 있습니다. </li>
+</ul>
+<h4>새가족교육 중에는 임시주차증을 사용하세요.</h4>
+<p>새가족교육을 받으시는 시간동안 차량을 주차해두실 수 있는 곳으로 안내해드립니다.
+(등록 시 새가족패키지에 들어있습니다.)
+새가족교육 수료 후에는 정식주차증이 발급됩니다.</p>
+<br>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-smallgroup">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 새가족 · 소그룹</p>
+      <h1 class="p-title">소그룹 안내</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<h4>소그룹 교제를 통해 건강한 신앙생활을 하실 수 있습니다.</h4>
+<p>빠르게 변화하는 세상, 고립화가 갈수록 심해지는 환경 속에서 건강한 믿음을 지키려면
+공동체 안에서 기쁨과 슬픔을 나누며 교제 가운데 힘을 받아야 합니다.
+오륜교회는 성도님들 각자의 형편과 상황에 맞게 다양한 소그룹을 마련했습니다.
+성도님들은 각자에게 가장 잘 맞는 소그룹에 속하여 건강한 교제를 나눌 수 있습니다.
+<p>소그룹의 리더(순장과 목장)는 오륜교회 소그룹에 잘 참석하고, 1년 이상 양육 훈련과</p>
+제자훈련, 사역훈련을 마친 분으로서 신앙과 성품을 잘 훈련받은 분들입니다.</p>
+<p>오륜교회를 더 알고 싶으시다면, 소그룹에 참여하십시오. 주일 예배는 충만하게 드렸지만 주중에 지치는 일상이 반복되시면, 소그룹 교제로 힘을 받으십시오.
+성도는 혼자 있을 때 신앙이 자라지 않을 뿐 아니라 위험하기까지 합니다. 오륜교회 소그룹, 지금 신청하십시오.</p>
+<h4>순모임/목장모임</h4>
+<ul>
+<li>순모임 : 순은 4~6명이 모이며 여성순, 남성순, 직장순 이 있습니다. 오륜교회에서 자체 제작한 순 교재로 모임을 진행합니다.</li>
+<li>목장모임 : 목장은 부부를 기본 구성원으로 합니다. 3~7가정이 함께 주일 설교의 은혜를 나누며 서로의 가정을 세워 나갑니다.
+<li>목장모임 : 불신 배우자가 있는 경우 배우자의 전도를 위해서 혼자 참석도 가능합니다.</li>
+</ul>
+<h4>시간ㆍ장소</h4>
+<div class="tt-wrap"><table class="tt">
+<thead>
+<tr>
+<th>여성순</th>
+<th>남성순</th>
+<th>직장순(여성 직장인)</th>
+<th>목장모임</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주로 금요일 오전</td>
+<td>각 순의 형편에 따라</td>
+<td>각 순의 형편에 따라</td>
+<td>주일 오후 / 목장별로 정한 시간</td>
+</tr>
+<tr>
+<td>각 가정 / 교회 / 기타 장소</td>
+<td>각 순의 형편에 따라</td>
+<td>각 순의 형편에 따라</td>
+<td>목장 부부의 가정 / 목장별로 정한 장소</td>
+</tr>
+</tbody>
+</table></div>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-training">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 양육훈련</p>
+      <h1 class="p-title">철학과 방향</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<h4>오륜교회 양육훈련의 철학과 방향</h4>
+<p> 우리가 다 하나님의 아들을 믿는 것과 아는 일에 하나가 되어 온전한 사람을 이루어
+그리스도의 장성한 분량이 충만한 데까지 이르리니 (에베소서 4:13) </p>
+<ul>
+<li>1. 믿는 것과 (새가족) - Faith</li>
+<li>2. 아는 일 (양육) - Advance</li>
+<li>3. 하나가 되어 (소그룹) - Intimacy</li>
+<li>4. 온전한 사람을 이루어 (훈련) - Training</li>
+<li>5. 그리스도의 장성한 분량이 충만한 데까지 (평신도 사역자) - Healer</li>
+</ul>
+<h4>믿음 성장 트랙 Faith Growth Track</h4>
+<p>오륜교회 양육훈련 철학은 모든 성도들의 믿음이 그리스도의 장성한 분량까지 자라서,
+세상 속에서 온전한 그리스도의 제자로 선한 영향력을 흘려보내도록 하는 것입니다.</p>
+<p>“하나님은 당신을 있는 그대로 사랑하신다.
+그러나 그대로 두시지는 않는다. 당신이 변화되기 원하신다“ - Max Lucado</p>
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
+  <article class="page" id="p-program">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">교회 안내 — 양육훈련</p>
+      <h1 class="p-title">양육훈련 프로그램</h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc reveal">
+<details class="fold"><summary><span>양육훈련 프로그램</span></summary><div class="fold-in"><p>교회는 상처받은 영혼들이 위로를 받고 치유를 받는 병원인 동시에 하나님의 군사로 훈련을 받는 훈련소이기도 합니다. 그리스도의 강한 군사로 세워지고,
+주님을 닮은 참된 제자가 되어 이 시대에 영향력 있는 사람이 되기 위해서는 훈련과 교육이 필요합니다. 제자는 태어나는 것이 아니라 훈련으로 만들어지는 것입니다.</p>
+<h5> 새가족 과정 (4주) </h5>
+<h5>양육 선택 과정 (택1)</h5>
+<ul>
+<li>일대일 제자 양육 (16주) </li>
+<li>바이블워크 (8주) </li>
+<li>베이직워크 (8주) </li>
+</ul>
+<h5>양육 필수 과정</h5>
+<ul>
+<li>D형 큐티 (5주) </li>
+<li>교리세우기 (8주) </li>
+</ul>
+<h5>소그룹 인도자 과정</h5>
+<ul>
+<li>제자훈련 (24주) </li>
+<li> - Xee 전도훈련 (9주) </li>
+<li> - 선교입문 (6주) </li>
+<li> - 소그룹 인도법 (6주) </li>
+</ul>
+<h5>평신도 사역자 과정</h5>
+<ul>
+<li>일대일 양육자(15주) </li>
+<li>큐티 리더스 과정(3주) </li>
+</ul></div></details>
+<details class="fold"><summary><span>일대일 제자 양육 기간 : 16주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p>일대일제자양육이 오륜교회에 태동하기 시작한 것은 1996년입니다. 1997년 제 1기 12명의 지도자가 훈련을 받고, 그간 20년 동안 신청자는 해마다
+증가하여 최근에는 연간 3-400명 정도가 동반자 과정을 신청하고 있습니다. 일대일제자양육은 단순한 성경공부가 아니며, 양육자와 동반자가
+일대일로 만나 하나님의 말씀을 매개로 서로의 삶을 나누며, 성도의 관계를 맺도록 하고, 공동체 내에서 숨겨질 수 있는 개인의 문제들을 양육자의
+헌신과 사랑을 통해 치유되고 회복할 수 있는 양육프로그램입니다.</p>
+<p> ㆍ목적 </p>
+<p>이름뿐인 형식적인 그리스도인이 아니라, 신앙과 삶이 일치하는 참된 그리스도인을 길러내는 데 있으며, 자기중심적인 그리스도인이 아니라
+예수 그리스도 중심의 그리스도인으로 세우는 데 있습니다. 양육자와 동반자가 16주 동안 만나면서 그리스도가 다스리는 삶이 무엇인가를 생활 속의
+구체적인 체험을 통해 가르침을 받게 되며, 그 과정에서 참된 신앙이 체계화되고 영적인 멘토를 얻게 된다.</p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 성경이 일대일 양육을 권하고 있다.</li>
+<li>2. 집중과 전달이 잘 된다.</li>
+<li>3. 인격적인 만남이 가능하고 양육의 열매가 확실하다.</li>
+<li>4. 공동체에서 숨겨질 수 있는 개인의 문제들이 드러나고 중보기도를 통해 치유할 수 있다.</li>
+<li>5. 양육자로 하여금 지속적인 성장을 가능하게 한다.</li>
+</ul></div></details>
+<details class="fold"><summary><span>바이블워크 기간 : 8주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p>성경, 하나님의 말씀은 기독교 신앙의 핵심입니다. 하나님은 말씀을 통해 자신을 계시하셨고, 말씀을 이루어 가는 방식으로 일하고 계십니다. 그래서 하나님에 대해 가장 잘 알 수 있는 방법은 성경을 통해서입니다. 바이블 워크는 성도들이 성경을 더 가까이 할 수 있도록 돕는 과정으로 신구약 성경의 개관을 쉽게 다루고 있습니다. 제자훈련을 위한 선택과정으로 성경의 기초적인 이해와 뼈대를 마련하고자 하는 분들에게 유익합니다. </p>
+<p> ㆍ목적 </p>
+<p> 바이블워크는 성경의 전체적인 그림을 파악하도록 돕고 지리적, 역사적 배경을 이해하도록 합니다. 그리고 성경 각 권의 핵심적인 사실을 이해하도록 도우며 성경의 중요한 진리를 자신의 삶에 적용하도록 합니다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 각 과의 내용을 연대기 순으로 살펴봄으로 성경전체의 스토리를 이해합니다. </li>
+<li>2. 성경 각 권의 큰 그림을 제시합니다.</li>
+<li>3. 성경 각 권의 개론적인 내용을 살펴봅니다.</li>
+<li>4. 성경 각 권의 핵심을 요약합니다.</li>
+<li>5. 정리된 내용을 구속사적 관점으로 이해하여 깨달은 영적 교훈을 삶에 적용합니다.</li>
+</ul></div></details>
+<details class="fold"><summary><span>베이직워크 기간 : 8주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p> 베이직 워크는 영적 성장을 이룰 수 있는 핵심 내용을 다루면서 영적 성장의 기초를 다지도록 돕는 과정입니다. 기독교의 기본적인 진리를 배우며 실제의 삶 가운데 영적 성장의 구체적인 열매를 맺어갈 수 있도록 돕습니다. 제자훈련을 위한 선택과정으로 영적성장을 사모하게 하고 영적성장을 위한 로드맵을 제시하고 있습니다. </p>
+<p> ㆍ목적 </p>
+<p> 베이직 워크는 초신자들이 하나님을 경험하게 하고, 영적인 불균형에 빠진 사람들은 다시금 신앙의 중심을 잡을 수 있도록 돕습니다. 오랫동안 신앙생활을 하지 않았던 사람들에게는 다시금 복음의 기초를 잡을 수 있는 기회가 될 것입니다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 영적 성장의 기초이자 신앙생활의 두 날개라고 할 수 있는 말씀과 기도를 다룹니다.</li>
+<li>2. 영적 성장의 주체가 되시는 삼위일체 하나님과 영적 성장과 교회의 관계를 다룹니다.</li>
+<li>3. 영적 성장의 실제인 하나님 사랑과 이웃 사랑을 다루며, 영적전쟁과 승리의 비결을 다룹니다. </li>
+</ul></div></details>
+<details class="fold"><summary><span>D형 큐티 기간 : 5주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p> 오륜교회는 성도들의 경건 생활을 위해 말씀 묵상집 주만나를 발간하여 매일의 삶을 하나님과 교제하도록 돕고 있습니다.
+또한, 큐티의 이론과 실습에 대한 균형있는 훈련을 위해 입문반, 중급반, 고급반 3가지 과정의 세미나를 진행하고 있습니다.
+중급과정에 해당하는 D형 큐티 세미나는 제자훈련을 받기 전 필수로 들어야 하는 5주 과정의 세미나입니다. </p>
+<p> ㆍ목적 </p>
+<p> D형 큐티는 귀납적 성경묵상에 기초한 큐티 방법론입니다.
+귀납적 성경묵상은 ‘왜?’라는 질문을 던지고 그 질문에 대한 답을 성경 보조자료에 근거하여 거룩한 영적 상상력을 발휘해서 도출하는 과정입니다. 성경 말씀을 보다 깊이 이해하고 탐구할 수 있는 자양분을 얻게 됩니다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 내용관찰, 연구 및 묵상, 결단 및 적용 3가지 과정을 통해 균형있는 성경묵상을 할 수 있습니다.</li>
+<li>2. 내용관찰을 통해 본문 말씀의 구조와 핵심내용을 일목요연하게 정리할 수 있습니다.</li>
+<li>3. 연구 및 묵상은 D형큐티의 핵심 파트로 큐티의 깊이를 좌우합니다.</li>
+<li>4. 느낀점 및 결단을 통해 원데이 액션플랜을 도출하여 삶의 구체적인 변화를 도모할 수 있습니다.</li>
+</ul></div></details>
+<details class="fold"><summary><span>교리세우기 기간 : 8주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p>교리세우기는 그리스도인이 알아야 할 기본적인 영적 진리를 내 것으로 삼는 매우 중요한 과정으로, 오륜교회 등록교인으로 기독교의 기본적인 교리와 더 깊은 신앙훈련을 원하시는 분은 누구나 받을 수 있습니다. 이는 제자훈련을 위한 필수과정으로 체계적인 훈련을 원하시는 분들은 반드시 이수하셔야 하는 과정입니다. </p>
+<p> ㆍ목적 </p>
+<p> 교리세우기는 기독교 신앙과 삶에 대한 보편적이고 공통적인 질문에 포괄적인 해답을 제시하고 있습니다. 본 과정은 기독교의 핵심 진리를 집중적으로 다루면서 성경적인 세계관을 갖도록 돕고 있습니다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 성경의 핵심적인 진리를 다루어 성경을 이해하는 중요한 뼈대를 형성합니다. </li>
+<li>2. 인간의 죄와 십자가의 구속을 다루어 구원희 확신과 복음에 대한 기초를 다집니다.</li>
+<li>3. 성경이 강조하는 바를 이해하여 성도에게 필요한 기독교 세계관을 틀을 갖춥니다</li>
+</ul></div></details>
+<details class="fold"><summary><span>제자훈련 기간 : 24주</span></summary><div class="fold-in"><p> ㆍ지원자격 </p>
+<ul>
+<li>1. 본 교회에 등록한 지 1년 이상 되고, 세례 받은 지 2년 이상 된 분</li>
+<li>2. 오륜패밀리(새가족 과정 4주), D형 Q·T 수강 하신 분(필수과정)</li>
+<li>3. 교리세우기를 이수하신 분(필수과정)</li>
+<li>4. 일대일 제자양육을 이수하신 분이거나 바이블워크 혹은 베이직 워크 수료하신 분</li>
+<li>5. 기혼자 중 35세 이상인 분</li>
+<li>(※ 단, 순장과 관련하여 교구의 필요에 의해 35세 이하 대상자도 지원이 가능) </li>
+<li>6. 목장 혹은 순모임에 6개월 이상 참석한 분</li>
+<li>7. 제자 훈련 기간 중 교회 봉사 요청에 기쁨으로 반드시 섬기실 분</li>
+<li>8. 다니엘 기도회 참석한 분</li>
+<li>9. 배우자의 허락과 목자(순장)와 교구 목사의 추천을 받은 분</li>
+<li>10. 훈련을 받는 데 건강상 문제가 없고 건전한 직업을 가진 분</li>
+<li>11. 본 교회에 십일조를 내고 계시는 분</li>
+</ul>
+<p> ㆍ지원방법 </p>
+<ul>
+<li>6개월(24주)과정으로 1월 초 주일반, 목요반으로 나눠서 진행</li>
+<li>1. 여자 주간반은 매주 목요일 오전 10:00</li>
+<li>2. 여자 직장반은 매주 주일 오후 3:00 / 매주 목요일 저녁 7:30 / 토요일 오전 9:00</li>
+<li>3. 남자반은 매주 주일 오후 3:00 / 토요일 오전 9:00</li>
+<li>※ 목요일 저녁반과 토요반 최소인원은 7명 이상 개설 됨.</li>
+</ul>
+<p> ㆍ기타사항 </p>
+<p> 서류지원 후 제자훈련담당 목회자들과 최종면접 후 합격자에 한해서 진행. 비용은 7만원. </p></div></details>
+<details class="fold"><summary><span>Xee 전도훈련 기간 : 9주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p> XEE 전도훈련은 현대에 알맞게 복음을 관계 중심적으로 대화하며 전할 수 있도록 도와주는 프로그램입니다.
+오륜교회 XEE 전도훈련은 목요팀과 토요팀으로 나누어 훈련을 진행하며
+오륜교회에 등록하여 4주 새가족 교육을 수료한 청,장년은 누구나 신청할 수 있습니다. </p>
+<p> ㆍ목적 </p>
+<p> 성도가 이 땅에 살아가며 반드시 해야 할 일은 복음 증거입니다.
+자신이 세워진 삶의 자리에서 예수님을 증거하는 것이 성도에게 주어진 본질적인 사명입니다.
+XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 갈 수 있도록 돕습니다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. XEE 전도훈련은 관계 중심적입니다. 현재 관계를 맺고 있는 사람에게 자연스럽게 복음을 증거 할 수 있도록 돕습니다. </li>
+<li>2. XEE 전도훈련은 강의 중심이 아니라 현장 중심입니다. 1-2주차에 거쳐 복음 전문을 습득한 후 곧 현장에 투입되어 복음을 전하도록 훈련합니다. </li>
+<li>3. XEE 전도훈련은 노방전도팀과 연계되어 있습니다. XEE 전도훈련을 마친 후에는 노방전도팀에 소속하여 지속적인 전도를 할 수 있도록 권면하고 있습니다. </li>
+</ul></div></details>
+<details class="fold"><summary><span>선교입문 기간 : 6주</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p> 선교입문은 선교와 세계 복음화에 성경적ㆍ역사적ㆍ전략적ㆍ문화적ㆍ동역적인 눈을 뜨게 할 세계 선교의 기초를 쌓고,
+한국선교역사 강의를 통해 선교적 삶의 터를 닦는 훈련으로 미션익스포져(Mission Exporsure) 교재를 가지고 오륜교회에서는 2009년 1기로 시작하여 현재 21기까지 1700여명이 수료하였습니다. </p>
+<p> ㆍ목적 </p>
+<p> 열방을 향한 아버지 하나님의 마음과 그 마음을 품고 지구촌 곳곳에서 섬기고 있는 선교사와 선교지를 이해하고
+보내는 자로서의 사명을 깨닫고 부르심을 따라 다양한 모양과 역할로 세계 선교에 동참하도록 도전하고 동기를 부여한다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 선교현장에 대한 체계적이고 정확한 정보와 메시지를 전달</li>
+<li>2. 선교에 대한 지식이 많지 않는 사람들도 쉽게 이해할 수 있다.</li>
+<li>3. 성도들이 가정과 직장에서 선교적 삶을 살 수 있도록 돕는다.</li>
+</ul></div></details>
+<details class="fold"><summary><span>소그룹 인도법 기간 : 6주</span></summary><div class="fold-in"><p> ㆍ지원자격 </p>
+<ul>
+<li>1. 제자훈련을 이수한 자(제자훈련을 수료하지 않은 분은 해당되지 않음.)</li>
+<li>2. 목장 혹은 순모임에 참석하고 있는 분</li>
+<li>3. 소그룹 인도법 기간 교회 봉사 요청에 기쁨으로 반드시 섬기실 분</li>
+</ul>
+<p> ㆍ지원방법 </p>
+<ul>
+<li>6주 훈련과정으로 (화, 목, 주일)</li>
+<li>1. 주간반은 매주 화요일 10:00 목요일 오전 10:00</li>
+<li>2. 직장반은 매주 주일 오후 3:00 / 목요 저녁반 저녁 7:30 </li>
+</ul>
+<p> ㆍ기타사항 </p>
+<p> 서류지원 후 훈련담당 목회자들과 최종면접 후 합격자에 한해서 진행. 비용은 1만원. </p></div></details>
+<details class="fold"><summary><span>일대일 양육자</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p> 오륜교회가 행복한 교회, 건강한 교회로 세워져 가는 밑거름에는 성도와 성도가 만나 복음의 영광과 기쁨을 나누는 일대일 사역이 있습니다. 일대일 양육자는 일대일 제자양육을 받고자 하여 신청한 동반자와 일대일로 매칭되어 동반자가 영적으로 성장할 수 있도록 말씀과 기도로 돕는 사역자입니다. </p>
+<p> ㆍ일대일 지도자반 과정 </p>
+<p> 오륜교회 일대일 양육자가 되기 위해서는 일대일 지도자반 과정을 반드시 수료해야 합니다. 일대일 지도자반은 매년 2회(상반기, 하반기) 개설되며 15주 동안 양육자가 되기 위한 기본적인 소양과 영적 훈련을 실시합니다. 성경암송, 성경일독, 큐티, 독후감, 교재나눔을 통해 일대일 사역을 감당할 수 있는 양육자로 훈련받게 됩니다. </p>
+<p> ㆍ일대일지도자반 선행조건 </p>
+<ul>
+<li>1. 일대일 제자양육을 받으셔야 합니다</li>
+<li>2. 오륜교회 제자훈련을 받으셔야 합니다</li>
+<li>3. 해당 교구(부서) 목사님의 추천을 받으셔야 합니다</li>
+</ul></div></details>
+<details class="fold"><summary><span>큐티 리더스 과정</span></summary><div class="fold-in"><p> ㆍ소개와 배경 </p>
+<p> 큐티 리더스 과정은 개인 묵상을 넘어 가정, 직장, 공동체를 변화시키는 큐티 나눔에 대한 갈망에서 시작되었습니다.
+큐티 스타트(초급)과 D형 큐티(중급) 과정을 마치고 난 이후에, 내가 속한 공동체에 큐티 나눔을 통한 변화를 효과적으로 모색하기 위한 큐티 고급과정입니다.
+본 과정은 큐티 스태프, D형 큐티 수료자와 큐티 온라인 나눔방 리더들이 참여할 수 있습니다. </p>
+<p> ㆍ목적 </p>
+<p> 큐티 리더스 과정은 어떻게 하면 바쁜 현대인들이 큐티 나눔을 효과적으로 할 수 있는 지에 초점을 둡니다.
+이를 위해 온라인 큐티나눔방(현재 약 60개, 약 600명 참여)을 운영하며 나눔방 리더들이 겪는 실제적인 고충을 함께 나누며 실전을 통해 큐티 나눔방을 이끌어 가는 실제적인 기술과 문제에 대한 대안을 얻을 수 있습니다. </p>
+<p> ㆍ장점과 특징 </p>
+<ul>
+<li>1. 큐티 리더스 과정과 온라인 큐티 나눔방을 통해 이론과 실전을 균형있게 훈련할 수 있습니다.</li>
+<li>2. 큐티 초보자에 대한 심도있는 이해를 바탕으로 내 주변의 영혼들을 품을 수 있게 됩니다.</li>
+<li>3. 큐티 나눔을 통해 삶에서 실제적인 변화와 간증을 접할 수 있습니다.</li>
+<li>4. 매일 큐티하는 거룩한 습관을 혼자가 아닌 함께 하는 믿음의 동역자들을 만날 수 있습니다.</li>
+</ul></div></details>
+
+      </div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
 
   <!-- 한 주간 사역 -->
   <article class="page" id="p-weekly">
@@ -1110,12 +2393,8 @@ body.no-title .block-text{display:none;}
       <p class="note reveal"><b>주일용 주차 스티커</b>는 새가족 교육을 마친 뒤 1층 사무국에서 받습니다. 6km 이상 떨어진 곳에 사는 성도가 대상이고(송파·강동·광진구 제외) 한 가정에 한 대입니다. 신분증, 차량등록증, 주민등록등본을 가져오세요.</p>
 
       <div class="sec-lbl">주일 예배 차량</div>
-      <div class="sh-box reveal">
-        <label class="sh-pick">지역<select id="sh-region" aria-label="지역 선택"></select></label>
-        <div class="sh-runs" id="sh-runs"></div>
-        <div class="sh-view" id="sh-view"></div>
-      </div>
-      <p class="note reveal">정해진 시간보다 조금 일찍 나와 기다려 주세요. 약속된 시간에서 1분 이상은 기다리기 어렵습니다. 시간표는 교회 사정에 따라 바뀔 수 있습니다. 차량 운행 문의 <b>02-6413-4950</b></p>
+      <p class="note reveal">주일·수요·금요·새벽예배와 송구영신예배, 다니엘기도회에 차량을 운행합니다.</p>
+      <a class="btn" href="#shuttle" onclick="openPage('shuttle');return false;">예배 차량 시간표 →</a>
     </div></div>
   </article>
 </div>
@@ -1137,7 +2416,7 @@ if(matchMedia('(hover:hover) and (pointer:fine)').matches){
 
 // ── SLIDES ──
 const SLIDES=[
-  {lines:['Welcome','To','Oryun'],     page:'vision',  cta:'교회 소개'},
+  {lines:['Welcome','To','Oryun'],     page:'guide',   cta:'교회 안내'},
   {lines:['This','Week'],              page:'weekly',  cta:'한 주간 사역'},
   {lines:['Sunday','Message'],         action:'sermon', cta:'설교 보기'},
   {lines:['Book','A Space'],           page:'reserve', cta:'장소 예약'},
@@ -1300,21 +2579,34 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
   document.getElementById('wk-note').textContent=WK.note||'';
   document.getElementById('wk-grid').innerHTML=(WK.items||[]).map(x=>'<div class="wk-card reveal">'+(x.photo?'<img src="'+x.photo+'" alt="" loading="lazy">':'')+'<div class="b"><span class="d">'+x.date+' · '+x.day+(x.place?' · '+x.place:'')+'</span><h3>'+x.title+'</h3><p>'+(x.text||'')+'</p></div></div>').join('');
 })();
-// ── 주일 예배 차량 시간표 ──
+// ── 예배 차량 시간표: 예배 > 지역 > 운행 순으로 눌러 들어간다 ──
 (function shuttle(){
-  const D=window.SHUTTLE||[],sel=document.getElementById('sh-region'),runs=document.getElementById('sh-runs'),view=document.getElementById('sh-view');
-  if(!sel||!D.length)return;
+  const D=window.SHUTTLE||[],box=document.getElementById('sh-tree');
+  if(!box||!D.length)return;
   const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  sel.innerHTML=D.map((r,i)=>'<option value="'+i+'">'+esc(r.name)+'</option>').join('');
-  function show(ri,ki){
-    const r=D[ri],x=r.runs[ki];
-    runs.innerHTML=r.runs.map((u,k)=>'<button type="button" class="'+(k===ki?'on':'')+'" data-k="'+k+'">'+esc(u.n)+'</button>').join('');
-    view.innerHTML=(x.d?'<p class="sh-driver">운전 봉사자 '+esc(x.d)+(x.t?'<a href="tel:'+esc(x.t)+'">'+esc(x.t)+'</a>':'')+'</p>':'')
+  box.innerHTML=D.map((w,i)=>'<details class="fold tree" data-w="'+i+'"><summary><span>'+esc(w.name)+'<small>'+w.regions.length+'개 지역</small></span></summary><div class="tree-sub"></div></details>').join('');
+  function run(r,k){
+    const x=r.runs[k];
+    return (r.runs.length>1?'<div class="sh-runs">'+r.runs.map((u,j)=>'<button type="button" class="'+(j===k?'on':'')+'" data-k="'+j+'">'+esc(u.n)+'</button>').join('')+'</div>':'')
+      +(x.d?'<p class="sh-driver">운전 봉사자 '+esc(x.d)+(x.t?'<a href="tel:'+esc(x.t)+'">'+esc(x.t)+'</a>':'')+'</p>':'')
       +'<ul class="sh-stops">'+x.s.map(v=>'<li><span>'+esc(v[0])+'</span><b>'+esc(v[1])+'</b></li>').join('')+'</ul>';
   }
-  sel.addEventListener('change',()=>show(+sel.value,0));
-  runs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(+sel.value,+b.dataset.k);});
-  show(0,0);
+  box.addEventListener('toggle',e=>{                       // 펼칠 때 그 안의 내용을 만든다
+    const d=e.target;if(!d.open)return;
+    if(d.dataset.w!==undefined&&!d.dataset.done){
+      d.dataset.done=1;
+      d.querySelector('.tree-sub').innerHTML=D[+d.dataset.w].regions.map((r,j)=>'<details class="fold sub" data-r="'+j+'"><summary><span>'+esc(r.name)+'<small>'+r.runs.length+'회 운행</small></span></summary><div class="sh-view"></div></details>').join('');
+    }else if(d.dataset.r!==undefined&&!d.dataset.done){
+      d.dataset.done=1;
+      const r=D[+d.closest('[data-w]').dataset.w].regions[+d.dataset.r];
+      d.querySelector('.sh-view').innerHTML=run(r,0);
+    }
+  },true);
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.sh-runs button');if(!b)return;
+    const d=b.closest('[data-r]'),r=D[+d.closest('[data-w]').dataset.w].regions[+d.dataset.r];
+    d.querySelector('.sh-view').innerHTML=run(r,+b.dataset.k);
+  });
 })();
 function reserveSubmit(e){
   e.preventDefault();
