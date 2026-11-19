@@ -18,7 +18,7 @@ import hashlib, json, os, re, shutil, subprocess, sys, unicodedata
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 # 자료를 읽는 곳. 있는 폴더는 모두 읽어 합칩니다. (나스 폴더가 연결돼 있지 않으면 건너뜁니다)
-SOURCES = ['/Volumes/ORYUN BTS/홈페이지/소식', os.path.join(ROOT, '소식자료')]
+SOURCES = ['/Volumes/ORYUN AITEAM/홈페이지/소식', os.path.join(ROOT, '소식자료')]
 CATS = [('notice', '공지'), ('event', '행사'), ('family', '교우소식'), ('bulletin', '주보'), ('qt', 'QT')]
 IMG = {'.jpg', '.jpeg', '.png', '.webp', '.heic', '.gif'}
 DOC = {'.pdf', '.hwp', '.hwpx', '.docx', '.xlsx', '.pptx', '.zip'}
