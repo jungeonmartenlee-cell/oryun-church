@@ -451,8 +451,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 .fold summary small{font-size:12.5px;font-weight:400;color:var(--ink-3);margin-left:12px;}
 .fold .tt-wrap{padding-bottom:22px;}
 .fold .tt td{padding:11px 12px 11px 0;font-size:14.5px;}
-.chips{display:flex;flex-wrap:wrap;gap:8px;}
-.chips span{font-size:13px;color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--bg);}
 .note{margin-top:18px;font-size:14px;line-height:1.9;color:var(--ink-2);word-break:keep-all;}
 .note b{color:var(--ink);font-weight:500;}
 /* ══ 장면 개편: 웰컴 · 한 주간 사역 · 말씀 · 장소 예약 · 역사 ══ */
@@ -530,6 +528,26 @@ body.no-title .block-text{display:none;}
   .his-words{flex-direction:column;gap:0;}
   .his-hint{right:var(--pad);bottom:auto;top:calc(var(--head) + 22px);}
 }
+/* 인사말 전문 */
+.greet{max-width:760px;}
+.greet p{font-size:clamp(16px,1.45vw,18.5px);line-height:2.1;color:var(--ink-2);word-break:keep-all;margin-top:14px;}
+.greet p.first{font-family:'Noto Serif KR',serif;font-weight:300;font-size:clamp(24px,3vw,38px);line-height:1.5;letter-spacing:-.03em;color:var(--ink);margin:0 0 26px;}
+.greet p.sign{margin-top:34px;font-family:'Noto Serif KR',serif;font-size:17px;color:var(--ink);}
+.fold .tt td a{color:inherit;text-decoration:none;}
+/* 예배 차량 시간표 */
+.sh-box{border:1px solid var(--line);border-radius:24px;padding:26px;background:var(--bg);}
+.sh-pick{display:flex;align-items:center;gap:14px;font-size:12.5px;letter-spacing:.06em;color:var(--ink-3);}
+.sh-pick select{font:inherit;font-size:16px;font-weight:500;color:var(--ink);padding:12px 16px;border:1px solid var(--line);border-radius:12px;background:#fff;min-width:240px;}
+.sh-runs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.sh-runs button{font:inherit;font-size:13.5px;padding:9px 16px;border-radius:999px;border:1px solid rgba(31,86,168,.3);background:none;color:var(--blue);cursor:pointer;}
+.sh-runs button.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.sh-view{margin-top:20px;}
+.sh-driver{font-size:14px;color:var(--ink-2);padding-bottom:14px;border-bottom:1px solid var(--line);}
+.sh-driver a{color:var(--blue);text-decoration:none;font-weight:500;margin-left:8px;}
+.sh-stops{list-style:none;}
+.sh-stops li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink);}
+.sh-stops li b{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:20px;letter-spacing:.04em;color:var(--blue);white-space:nowrap;}
+@media(max-width:680px){.sh-box{padding:18px;}.sh-pick{flex-direction:column;align-items:stretch;gap:8px;}.sh-pick select{min-width:0;width:100%;}}
 </style>
 </head>
 <body>
@@ -782,10 +800,14 @@ body.no-title .block-text{display:none;}
       <p class="p-lead">수풀이 우거져 길이 보이지 않는 곳도, 한 번도 걸어 보지 않은 인생의 길도 예수님과 함께 걸으면 길이 됩니다. 주경훈 담임목사가 오륜교회를 찾는 모든 분께 전하는 초대입니다.</p>
     </div></header>
     <div class="p-body"><div class="p-wrap">
-      <blockquote class="quote reveal">
-        <p>“인생의 해답은 오직 예수님께 있습니다.”</p>
-        <cite>담임목사 주경훈 · 인사말 중에서</cite>
-      </blockquote>
+      <div class="greet reveal">
+        <p class="first">험난한 수풀이 우거진 곳도 예수님과 함께하면 길이 됩니다.</p>
+        <p>한 번도 걷지 않은 우리의 인생도 주님과 동행할 때 길이 열립니다.</p>
+        <p>인생의 해답은 오직 예수님께 있습니다. 행복의 시작 예수 그리스도를 만나십시오. 복음의 능력을 경험할 때 하나님 나라를 누릴 수 있습니다.</p>
+        <p>인간의 대안이 아닌 하나님의 원안으로 돌아가는 교회. 말씀과 기도로 회복과 성장이 있는 교회. 꿈과 비전을 가지고 열방을 향해 나아가는 교회. 바로, 오륜교회입니다.</p>
+        <p>오륜공동체에서 하나님의 풍성한 은혜를 누리십시오. 하나님의 꿈을 꾸고, 하나님 나라를 세워가는 간증의 주인공 되시길 바랍니다.</p>
+        <p class="sign">담임목사 주경훈</p>
+      </div>
 
       <div class="sec-lbl">오륜교회가 되고 싶은 교회</div>
       <div class="grid g3">
@@ -852,6 +874,98 @@ body.no-title .block-text{display:none;}
           <p class="card-b">오륜교회를 세우고 30여 년 목회했으며 2023년 설립목사로 추대되었습니다. 다니엘기도회 운영위원장, DNA Ministry 대표로 섬기고 있습니다.</p>
           <div class="chips"><span class="chip">다니엘기도회</span><span class="chip">DNA Ministry</span></div></div>
         </div></div>
+      </div>
+
+      <div class="sec-lbl">교역자</div>
+      <div class="reveal">
+        <details class="fold" open><summary><span>목사<small>61명</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
+          <tr><td>박상모 목사</td><td>목양국장</td><td><a href="tel:02-6413-7606">02-6413-7606</a></td></tr>
+          <tr><td>백상원 목사</td><td>교육국장 · 꿈미 소장</td><td><a href="tel:02-6413-4882">02-6413-4882</a></td></tr>
+          <tr><td>황성훈 목사</td><td>청년국장 · 신혼부부공동체</td><td><a href="tel:02-6413-4848">02-6413-4848</a></td></tr>
+          <tr><td>고일국 목사</td><td>선교국장</td><td><a href="tel:02-6413-4808">02-6413-4808</a></td></tr>
+          <tr><td>정능고 목사</td><td>DNA 총괄디렉터 · 다니엘기도회 총괄디렉터</td><td><a href="tel:02-6413-4802">02-6413-4802</a></td></tr>
+          <tr><td>양명환 목사</td><td>교구선임 · 가락교구 · 출판홍보부</td><td><a href="tel:02-6413-4829">02-6413-4829</a></td></tr>
+          <tr><td>김득수 목사</td><td>강북교구</td><td><a href="tel:02-6413-4827">02-6413-4827</a></td></tr>
+          <tr><td>김민섭 목사</td><td>청년2부</td><td><a href="tel:02-6413-4837">02-6413-4837</a></td></tr>
+          <tr><td>김민우 목사</td><td>영어예배부</td><td><a href="tel:02-6413-4892">02-6413-4892</a></td></tr>
+          <tr><td>김보광 목사</td><td>광진교구 · 다니엘기도회</td><td><a href="tel:02-6413-4826">02-6413-4826</a></td></tr>
+          <tr><td>김성현 목사</td><td>중등2ㆍ3학년부</td><td><a href="tel:02-6413-4880">02-6413-4880</a></td></tr>
+          <tr><td>김영글 목사</td><td>방송 본부장 · 블레싱워십 · 찬양사역부 총괄</td><td><a href="tel:02-6413-4804">02-6413-4804</a></td></tr>
+          <tr><td>김영채 목사</td><td>그레이스공동체 · DNA Ministry</td><td><a href="tel:02-6413-4803">02-6413-4803</a></td></tr>
+          <tr><td>김용주 목사</td><td>초등1학년부</td><td><a href="tel:02-6413-4876">02-6413-4876</a></td></tr>
+          <tr><td>김장현 목사</td><td>청년10부 · 청년국 훈련부</td><td><a href="tel:02-6413-4845">02-6413-4845</a></td></tr>
+          <tr><td>김창석 목사</td><td>경기북교구 · 다니엘기도회</td><td><a href="tel:02-6413-4911">02-6413-4911</a></td></tr>
+          <tr><td>김홍준 목사</td><td>선교지원</td><td><a href="tel:02-6413-4897">02-6413-4897</a></td></tr>
+          <tr><td>노대현 목사</td><td>국내선교부 · 국제사역부 · 오륜국제한가족센터</td><td><a href="tel:02-6413-4889">02-6413-4889</a></td></tr>
+          <tr><td>노승완 목사</td><td>거여마천위례교구 · 새가족부</td><td><a href="tel:02-6413-4818">02-6413-4818</a></td></tr>
+          <tr><td>문종현 목사</td><td>성내2교구</td><td><a href="tel:02-6413-4821">02-6413-4821</a></td></tr>
+          <tr><td>방석일 목사</td><td>목양실 · 8시 초등부</td><td><a href="tel:02-6413-7607">02-6413-7607</a></td></tr>
+          <tr><td>방성율 목사</td><td>잠실교구 · 예배부</td><td><a href="tel:02-6413-4833">02-6413-4833</a></td></tr>
+          <tr><td>배요한 목사</td><td>풍납교구 · 양육훈련부 1부</td><td><a href="tel:02-6413-4823">02-6413-4823</a></td></tr>
+          <tr><td>변상선 목사</td><td>중등1학년부</td><td><a href="tel:02-6413-4886">02-6413-4886</a></td></tr>
+          <tr><td>송성국 목사</td><td>하남교구 · 새생명축제</td><td><a href="tel:02-6413-4867">02-6413-4867</a></td></tr>
+          <tr><td>송시언 목사</td><td>영아부</td><td><a href="tel:02-6413-4870">02-6413-4870</a></td></tr>
+          <tr><td>송영광 목사</td><td>강남교구 · 예배부</td><td><a href="tel:02-6413-4834">02-6413-4834</a></td></tr>
+          <tr><td>송정용 목사</td><td>강동3교구</td><td><a href="tel:02-6413-4822">02-6413-4822</a></td></tr>
+          <tr><td>요하네스 호기 하르디안트 목사</td><td>인도네시아어예배부</td><td></td></tr>
+          <tr><td>우미쉘 목사</td><td>찬양사역부 · 프레전스</td><td></td></tr>
+          <tr><td>유성식 목사</td><td>헤세드 · 청년8부</td><td><a href="tel:02-6413-4838">02-6413-4838</a></td></tr>
+          <tr><td>이갈렙 목사</td><td>청년7부 · 청년국 선교부</td><td><a href="tel:02-6413-4843">02-6413-4843</a></td></tr>
+          <tr><td>이병민 목사</td><td>강동1교구 · 주만나</td><td><a href="tel:02-6413-4835">02-6413-4835</a></td></tr>
+          <tr><td>이성민 목사</td><td>오금교구 · 복지부</td><td><a href="tel:02-6413-4832">02-6413-4832</a></td></tr>
+          <tr><td>이성현 목사</td><td>초등5학년부</td><td><a href="tel:02-6413-4877">02-6413-4877</a></td></tr>
+          <tr><td>이정재 목사</td><td>북한선교부</td><td><a href="tel:02-6413-4891">02-6413-4891</a></td></tr>
+          <tr><td>이준건 목사</td><td>청년4부</td><td><a href="tel:02-6413-4839">02-6413-4839</a></td></tr>
+          <tr><td>이탁열 목사</td><td>청년3부</td><td><a href="tel:02-6413-4838">02-6413-4838</a></td></tr>
+          <tr><td>임예훈 목사</td><td>브릿지워십 · 초등6학년부</td><td><a href="tel:02-6413-4878">02-6413-4878</a></td></tr>
+          <tr><td>임지훈 목사</td><td></td><td></td></tr>
+          <tr><td>장두희 목사</td><td>청년9부 · Remnant Creative</td><td><a href="tel:02-6413-4836">02-6413-4836</a></td></tr>
+          <tr><td>장명근 목사</td><td>청년6부</td><td><a href="tel:02-6413-4841">02-6413-4841</a></td></tr>
+          <tr><td>장원석 목사</td><td>올림픽교구 · 양육훈련부</td><td><a href="tel:02-6413-4828">02-6413-4828</a></td></tr>
+          <tr><td>정광식 목사</td><td>파크리오교구 · 다니엘기도회</td><td><a href="tel:02-6413-4824">02-6413-4824</a></td></tr>
+          <tr><td>정직한 목사</td><td>청년5부 · 청년국 훈련부</td><td><a href="tel:02-6413-4844">02-6413-4844</a></td></tr>
+          <tr><td>정태훈 목사</td><td>경기남교구 · 문화사역부</td><td><a href="tel:02-6413-4831">02-6413-4831</a></td></tr>
+          <tr><td>정현욱 목사</td><td>성내1교구 · 전문인선교부</td><td><a href="tel:02-6413-4820">02-6413-4820</a></td></tr>
+          <tr><td>정형근 목사</td><td>초등3학년부</td><td><a href="tel:02-6413-4874">02-6413-4874</a></td></tr>
+          <tr><td>조인 목사</td><td>회복사역부 · 포레온교구</td><td><a href="tel:02-6413-4907">02-6413-4907</a></td></tr>
+          <tr><td>조형래 목사</td><td>방이교구</td><td><a href="tel:02-6413-4819">02-6413-4819</a></td></tr>
+          <tr><td>주현우 목사</td><td>청년1부 · 청년국 훈련부</td><td><a href="tel:02-6413-4839">02-6413-4839</a></td></tr>
+          <tr><td>최민흥 목사</td><td>강동2교구 · 전도부1</td><td><a href="tel:02-6413-4825">02-6413-4825</a></td></tr>
+          <tr><td>최병주 목사</td><td>고등부</td><td><a href="tel:02-6413-1765">02-6413-1765</a></td></tr>
+          <tr><td>최상문 목사</td><td>유치부</td><td><a href="tel:02-6413-4872">02-6413-4872</a></td></tr>
+          <tr><td>최주영 목사</td><td>청년11부 · 청년국 양육부</td><td><a href="tel:02-6413-4847">02-6413-4847</a></td></tr>
+          <tr><td>하은준 목사</td><td>초등4학년부</td><td><a href="tel:02-6413-8772">02-6413-8772</a></td></tr>
+          <tr><td>휜티탄튀 목사</td><td>베트남어예배부 · 베트남어이중언어학교</td><td><a href="tel:02-6413-4894">02-6413-4894</a></td></tr>
+          <tr><td>김철호 목사</td><td>담임 · 송탄오륜교회</td><td><a href="tel:031-665-0675">031-665-0675</a></td></tr>
+          <tr><td>주성하 목사</td><td>담임</td><td></td></tr>
+          <tr><td>김효태 목사</td><td>센터장 · 오륜비전빌리지</td><td><a href="tel:031-582-5111">031-582-5111</a></td></tr>
+          <tr><td>김선민 목사</td><td>아산병원원목</td><td><a href="tel:02-3010-7877">02-3010-7877</a></td></tr>
+        </tbody></table></div></details>
+        <details class="fold"><summary><span>강도사<small>1명</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
+          <tr><td>우경규 강도사</td><td>초등2학년부</td><td><a href="tel:02-6413-4884">02-6413-4884</a></td></tr>
+        </tbody></table></div></details>
+        <details class="fold"><summary><span>전도사<small>11명</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
+          <tr><td>김미영 전도사</td><td>사랑부</td><td><a href="tel:02-6413-4879">02-6413-4879</a></td></tr>
+          <tr><td>김시온 전도사</td><td></td><td></td></tr>
+          <tr><td>노세 사토시 전도사</td><td>일본어예배부</td><td><a href="tel:02-6413-4890">02-6413-4890</a></td></tr>
+          <tr><td>심재영 전도사</td><td>목양실 · 목양비서</td><td><a href="tel:02-6413-4799">02-6413-4799</a></td></tr>
+          <tr><td>애르나자르 전도사</td><td></td><td></td></tr>
+          <tr><td>이아현 전도사</td><td>유아부</td><td><a href="tel:02-6413-4881">02-6413-4881</a></td></tr>
+          <tr><td>이종회 전도사</td><td>에클레시아 · 하이프레이즈</td><td><a href="tel:02-6413-4917">02-6413-4917</a></td></tr>
+          <tr><td>장권오 전도사</td><td></td><td></td></tr>
+          <tr><td>조동혁 전도사</td><td></td><td></td></tr>
+          <tr><td>진상윤 전도사</td><td>중국어예배부</td><td><a href="tel:02-6413-4895">02-6413-4895</a></td></tr>
+          <tr><td>최규민 전도사</td><td></td><td></td></tr>
+        </tbody></table></div></details>
+        <details class="fold"><summary><span>협동목사<small>3명</small></span></summary>
+        <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
+          <tr><td>권경현 협동목사</td><td></td><td></td></tr>
+          <tr><td>윤재중 협동목사</td><td></td><td><a href="tel:02-6413-4927">02-6413-4927</a></td></tr>
+          <tr><td>조용진 협동목사</td><td></td><td></td></tr>
+        </tbody></table></div></details>
       </div>
 
       <div class="sec-lbl">함께하는 공동체</div>
@@ -996,8 +1110,12 @@ body.no-title .block-text{display:none;}
       <p class="note reveal"><b>주일용 주차 스티커</b>는 새가족 교육을 마친 뒤 1층 사무국에서 받습니다. 6km 이상 떨어진 곳에 사는 성도가 대상이고(송파·강동·광진구 제외) 한 가정에 한 대입니다. 신분증, 차량등록증, 주민등록등본을 가져오세요.</p>
 
       <div class="sec-lbl">주일 예배 차량</div>
-      <div class="chips reveal"><span>올림픽파크 포레온</span><span>가락·방이</span><span>감일</span><span>강일지구·상일역</span><span>거여·마천</span><span>고덕동</span><span>광장·구의</span><span>구리</span><span>길동·명일동</span><span>둔촌동</span><span>문정·오금·방이</span><span>문정훼밀리·헬리오시티</span><span>미사지구</span><span>송파·석촌</span><span>수지·분당</span><span>상일동</span><span>암사역</span><span>올림픽아파트</span><span>위례지구</span><span>잠실역·잠실나루역</span><span>장지동</span><span>종합운동장</span><span>천호·강동역</span><span>파크리오</span><span>풍납·강동구청</span><span>하남</span></div>
-      <p class="note reveal">위 지역에서 주일 예배 시간에 맞춰 차량을 운행합니다. 정류장과 시간은 <b>02-6413-4950</b>으로 문의해 주세요. 정해진 시간보다 조금 일찍 나와 기다려 주시기 바랍니다.</p>
+      <div class="sh-box reveal">
+        <label class="sh-pick">지역<select id="sh-region" aria-label="지역 선택"></select></label>
+        <div class="sh-runs" id="sh-runs"></div>
+        <div class="sh-view" id="sh-view"></div>
+      </div>
+      <p class="note reveal">정해진 시간보다 조금 일찍 나와 기다려 주세요. 약속된 시간에서 1분 이상은 기다리기 어렵습니다. 시간표는 교회 사정에 따라 바뀔 수 있습니다. 차량 운행 문의 <b>02-6413-4950</b></p>
     </div></div>
   </article>
 </div>
@@ -1006,6 +1124,7 @@ body.no-title .block-text{display:none;}
 <script src="slides/manifest.js"></script>
 <script src="data/sermon.js"></script>
 <script src="data/weekly.js"></script>
+<script src="data/shuttle.js"></script>
 <script>
 // ── CURSOR ──
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
@@ -1180,6 +1299,22 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
   document.getElementById('wk-range').textContent=WK.range||'이번 주';
   document.getElementById('wk-note').textContent=WK.note||'';
   document.getElementById('wk-grid').innerHTML=(WK.items||[]).map(x=>'<div class="wk-card reveal">'+(x.photo?'<img src="'+x.photo+'" alt="" loading="lazy">':'')+'<div class="b"><span class="d">'+x.date+' · '+x.day+(x.place?' · '+x.place:'')+'</span><h3>'+x.title+'</h3><p>'+(x.text||'')+'</p></div></div>').join('');
+})();
+// ── 주일 예배 차량 시간표 ──
+(function shuttle(){
+  const D=window.SHUTTLE||[],sel=document.getElementById('sh-region'),runs=document.getElementById('sh-runs'),view=document.getElementById('sh-view');
+  if(!sel||!D.length)return;
+  const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  sel.innerHTML=D.map((r,i)=>'<option value="'+i+'">'+esc(r.name)+'</option>').join('');
+  function show(ri,ki){
+    const r=D[ri],x=r.runs[ki];
+    runs.innerHTML=r.runs.map((u,k)=>'<button type="button" class="'+(k===ki?'on':'')+'" data-k="'+k+'">'+esc(u.n)+'</button>').join('');
+    view.innerHTML=(x.d?'<p class="sh-driver">운전 봉사자 '+esc(x.d)+(x.t?'<a href="tel:'+esc(x.t)+'">'+esc(x.t)+'</a>':'')+'</p>':'')
+      +'<ul class="sh-stops">'+x.s.map(v=>'<li><span>'+esc(v[0])+'</span><b>'+esc(v[1])+'</b></li>').join('')+'</ul>';
+  }
+  sel.addEventListener('change',()=>show(+sel.value,0));
+  runs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(+sel.value,+b.dataset.k);});
+  show(0,0);
 })();
 function reserveSubmit(e){
   e.preventDefault();
