@@ -611,6 +611,18 @@ body.no-title .block-text{display:none;}
 .live-btn:hover{filter:brightness(1.1);}
 .live-dot{width:9px;height:9px;border-radius:50%;background:#ff5a5a;box-shadow:0 0 0 4px rgba(255,90,90,.25);}
 @media(max-width:680px){.vd{flex-wrap:wrap;gap:4px 12px;}.vd b{flex:1 1 100%;order:2;}.vd .nw-d{order:1;margin:0;}.vd em{order:3;margin-left:0;white-space:normal;text-align:left;}.vd span{order:4;margin-left:auto;}}
+/* 옮겨 온 사진 */
+.ph-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:0 0 34px;}
+.ph-grid.wide{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));}
+.ph-grid.two{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));margin:6px 0 20px;}
+.ph-grid figure{margin:0;}
+.ph-grid img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:12px;background:var(--line);}
+.ph-grid.two img{aspect-ratio:8/3;}
+.ph-grid.plan{grid-template-columns:1fr;max-width:860px;gap:26px;}
+.ph-grid.plan img{aspect-ratio:auto;object-fit:contain;border:1px solid var(--line);border-radius:14px;background:#fff;}
+.ph-grid figcaption{font-size:12.5px;letter-spacing:.06em;color:var(--ink-2);padding:8px 2px 0;}
+.st-ph{width:40px;height:44px;object-fit:cover;object-position:top;border-radius:9px;vertical-align:middle;margin-right:12px;background:var(--line);}
+@media(max-width:680px){.ph-grid{grid-template-columns:repeat(2,1fr);gap:8px;}.ph-grid.wide,.ph-grid.two,.ph-grid.plan{grid-template-columns:1fr;}.st-ph{width:34px;height:38px;margin-right:9px;}}
 </style>
 </head>
 <body>
@@ -895,6 +907,7 @@ body.no-title .block-text{display:none;}
     </div></header>
     <div class="p-body"><div class="p-wrap">
       <div class="doc reveal">
+<!--ph--><div class="ph-grid"><figure><img src="photos/worship-about/01.jpg" width="380" height="240" alt="" loading="lazy"></figure><figure><img src="photos/worship-about/02.jpg" width="240" height="180" alt="" loading="lazy"></figure><figure><img src="photos/worship-about/03.jpg" width="240" height="180" alt="" loading="lazy"></figure><figure><img src="photos/worship-about/04.jpg" width="240" height="180" alt="" loading="lazy"></figure><figure><img src="photos/worship-about/05.jpg" width="240" height="180" alt="" loading="lazy"></figure></div><!--/ph-->
 <h4>오륜교회의 현대적인 문화예배</h4>
 <p>성경은 "누구든지 오라" 하십니다. 예배는 너무도 당연히 열려있어야 합니다.
 교회는 끊임없는 "문턱 낮추기"를 통해 시대적 다양성과 사람들의 다양함을 수용할 수 있어야 합니다.
@@ -1465,6 +1478,9 @@ body.no-title .block-text{display:none;}
 <tr><td class="tm">B3</td><td>주차장</td></tr>
 <tr><td class="tm">B4</td><td>주차장</td></tr>
 </tbody></table></div>
+      
+      
+      <!--ph--><details class="fold"><summary><span>층별 안내도<small>11</small></span></summary><div class="fold-in"><div class="ph-grid plan"><figure><img src="photos/place-vision/10f.jpg" width="860" height="580" alt="10F" loading="lazy"><figcaption>10F</figcaption></figure><figure><img src="photos/place-vision/9f.jpg" width="860" height="580" alt="9F" loading="lazy"><figcaption>9F</figcaption></figure><figure><img src="photos/place-vision/8f.jpg" width="860" height="580" alt="8F" loading="lazy"><figcaption>8F</figcaption></figure><figure><img src="photos/place-vision/7f.jpg" width="860" height="580" alt="7F" loading="lazy"><figcaption>7F</figcaption></figure><figure><img src="photos/place-vision/6f.jpg" width="860" height="580" alt="6F" loading="lazy"><figcaption>6F</figcaption></figure><figure><img src="photos/place-vision/5f.jpg" width="860" height="580" alt="5F" loading="lazy"><figcaption>5F</figcaption></figure><figure><img src="photos/place-vision/4f.jpg" width="860" height="580" alt="4F" loading="lazy"><figcaption>4F</figcaption></figure><figure><img src="photos/place-vision/3f.jpg" width="860" height="580" alt="3F" loading="lazy"><figcaption>3F</figcaption></figure><figure><img src="photos/place-vision/2f.jpg" width="860" height="580" alt="2F" loading="lazy"><figcaption>2F</figcaption></figure><figure><img src="photos/place-vision/1f.jpg" width="860" height="580" alt="1F" loading="lazy"><figcaption>1F</figcaption></figure><figure><img src="photos/place-vision/b1.jpg" width="860" height="580" alt="B1" loading="lazy"><figcaption>B1</figcaption></figure></div></div></details><!--/ph-->
       </div>
       <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
     </div></div>
@@ -1487,6 +1503,8 @@ body.no-title .block-text{display:none;}
 <tr><td class="tm">B1F</td><td>주차장 · 다니엘 소그룹실 1, 2, 3</td></tr>
 <tr><td class="tm">B2F</td><td>주차장 · 기계실</td></tr>
 </tbody></table></div>
+      
+      
       </div>
       <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
     </div></div>
@@ -1511,6 +1529,8 @@ body.no-title .block-text{display:none;}
 <tr><td class="tm">B3</td><td>주차장</td></tr>
 <tr><td class="tm">B4</td><td>주차장</td></tr>
 </tbody></table></div>
+      
+      
       </div>
       <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
     </div></div>
@@ -1532,6 +1552,9 @@ body.no-title .block-text{display:none;}
 <tr><td class="tm">B1F</td><td>엘리야홀 · 소그룹실 · 꿈미학교 과학관</td></tr>
 <tr><td class="tm">B2F</td><td>스튜디오</td></tr>
 </tbody></table></div>
+      
+      
+      <!--ph--><details class="fold"><summary><span>층별 안내도<small>1</small></span></summary><div class="fold-in"><div class="ph-grid plan"><figure><img src="photos/place-edu2/3f.jpg" width="860" height="350" alt="3F" loading="lazy"><figcaption>3F</figcaption></figure></div></div></details><!--/ph-->
       </div>
       <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
     </div></div>
@@ -1548,6 +1571,9 @@ body.no-title .block-text{display:none;}
 <tr><td class="tm">4F</td><td>엘리사홀 · 회의실</td></tr>
 <tr><td class="tm">3F</td><td>교육국 · 꿈미출판 · (사)꿈미</td></tr>
 </tbody></table></div>
+      
+      
+      <!--ph--><details class="fold"><summary><span>층별 안내도<small>3</small></span></summary><div class="fold-in"><div class="ph-grid plan"><figure><img src="photos/place-edu3/3f.jpg" width="860" height="380" alt="3F" loading="lazy"><figcaption>3F</figcaption></figure><figure><img src="photos/place-edu3/2f.jpg" width="860" height="380" alt="2F" loading="lazy"><figcaption>2F</figcaption></figure><figure><img src="photos/place-edu3/1f.jpg" width="860" height="380" alt="1F" loading="lazy"><figcaption>1F</figcaption></figure></div></div></details><!--/ph-->
       </div>
       <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
     </div></div>
@@ -1560,6 +1586,7 @@ body.no-title .block-text{display:none;}
     </div></header>
     <div class="p-body"><div class="p-wrap">
       <div class="doc reveal">
+<!--ph--><div class="ph-grid"><figure><img src="photos/place-village/01.jpg" width="1180" height="518" alt="" loading="lazy"></figure><figure><img src="photos/place-village/02.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/03.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/04.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/05.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/06.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/07.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/08.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/09.jpg" width="280" height="150" alt="" loading="lazy"></figure><figure><img src="photos/place-village/10.jpg" width="280" height="150" alt="" loading="lazy"></figure></div><!--/ph-->
 <h5>예배당</h5>
 <ul>
 <li>1F 그레이스홀 (500석)</li>
@@ -1610,7 +1637,7 @@ body.no-title .block-text{display:none;}
     </div></header>
     <div class="p-body"><div class="p-wrap">
       <div class="doc reveal">
-<details class="fold"><summary><span>송탄오륜교회</span></summary><div class="fold-in"><ul>
+<details class="fold"><summary><span>송탄오륜교회</span></summary><div class="fold-in"><!--ph--><div class="ph-grid two"><figure><img src="photos/branch/1-1.jpg" width="490" height="184" alt="약도" loading="lazy"><figcaption>약도</figcaption></figure><figure><img src="photos/branch/1-2.jpg" width="490" height="181" alt="본당" loading="lazy"><figcaption>본당</figcaption></figure></div><!--/ph--><ul>
 <li> 주일예배장소 : 경기도 평택시 송탄로 40번길 63-22</li>
 <li> 전화 : 031-665-0675</li>
 <li> 이메일 : jjuros@hanmail.net</li>
@@ -1621,7 +1648,7 @@ body.no-title .block-text{display:none;}
 <li>중ㆍ고등부 : 오전 11:00</li>
 <li>유ㆍ초등부 : 오전 10:30</li>
 </ul></div></details>
-<details class="fold"><summary><span>분당오륜교회</span></summary><div class="fold-in"><ul>
+<details class="fold"><summary><span>분당오륜교회</span></summary><div class="fold-in"><!--ph--><div class="ph-grid two"><figure><img src="photos/branch/2-1.jpg" width="490" height="184" alt="약도" loading="lazy"><figcaption>약도</figcaption></figure><figure><img src="photos/branch/2-2.jpg" width="490" height="184" alt="본당" loading="lazy"><figcaption>본당</figcaption></figure></div><!--/ph--><ul>
 <li> 주일예배장소 : 계원예고 벽강홀<br>
 경기도 성남시 분당구 불정로 100</li>
 <li> 주중예배장소 : 아가페홀<br>
@@ -1634,7 +1661,7 @@ body.no-title .block-text{display:none;}
 <li>대학청년부 : 오후 2:00</li>
 <li>취학부/미취학부 : 낮 12:00</li>
 </ul></div></details>
-<details class="fold"><summary><span>영훈오륜교회</span></summary><div class="fold-in"><ul>
+<details class="fold"><summary><span>영훈오륜교회</span></summary><div class="fold-in"><!--ph--><div class="ph-grid two"><figure><img src="photos/branch/3-1.jpg" width="490" height="184" alt="약도" loading="lazy"><figcaption>약도</figcaption></figure><figure><img src="photos/branch/3-2.jpg" width="490" height="184" alt="본당" loading="lazy"><figcaption>본당</figcaption></figure></div><!--/ph--><ul>
 <li> 주일예배장소 : 영훈고등학교 내 백운관 소강당<br>
 서울시 강북구 도봉로 13가길 19</li>
 <li> 전화 : 010-8273-9997</li>
@@ -1645,7 +1672,7 @@ body.no-title .block-text{display:none;}
 <li>대학청년부 : 오후 2:00</li>
 <li>취학부/미취학부 : 낮 12:00</li>
 </ul></div></details>
-<details class="fold"><summary><span>별내오륜교회</span></summary><div class="fold-in"><ul>
+<details class="fold"><summary><span>별내오륜교회</span></summary><div class="fold-in"><!--ph--><div class="ph-grid two"><figure><img src="photos/branch/4-1.jpg" width="490" height="184" alt="약도" loading="lazy"><figcaption>약도</figcaption></figure><figure><img src="photos/branch/4-2.jpg" width="490" height="184" alt="본당" loading="lazy"><figcaption>본당</figcaption></figure></div><!--/ph--><ul>
 <li> 주일예배장소 : 경기도 남양주시 별내5로5번길 마들프라자 7층<br>
 (별내동 1097-6번지)</li>
 <li> 전화 : 031-527-4051</li>
@@ -2267,91 +2294,91 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
       <div class="reveal">
         <details class="fold" open><summary><span>목사<small>61명</small></span></summary>
         <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
-          <tr><td>박상모 목사</td><td>목양국장</td><td><a href="tel:02-6413-7606">02-6413-7606</a></td></tr>
-          <tr><td>백상원 목사</td><td>교육국장 · 꿈미 소장</td><td><a href="tel:02-6413-4882">02-6413-4882</a></td></tr>
-          <tr><td>황성훈 목사</td><td>청년국장 · 신혼부부공동체</td><td><a href="tel:02-6413-4848">02-6413-4848</a></td></tr>
-          <tr><td>고일국 목사</td><td>선교국장</td><td><a href="tel:02-6413-4808">02-6413-4808</a></td></tr>
-          <tr><td>정능고 목사</td><td>DNA 총괄디렉터 · 다니엘기도회 총괄디렉터</td><td><a href="tel:02-6413-4802">02-6413-4802</a></td></tr>
-          <tr><td>양명환 목사</td><td>교구선임 · 가락교구 · 출판홍보부</td><td><a href="tel:02-6413-4829">02-6413-4829</a></td></tr>
-          <tr><td>김득수 목사</td><td>강북교구</td><td><a href="tel:02-6413-4827">02-6413-4827</a></td></tr>
-          <tr><td>김민섭 목사</td><td>청년2부</td><td><a href="tel:02-6413-4837">02-6413-4837</a></td></tr>
-          <tr><td>김민우 목사</td><td>영어예배부</td><td><a href="tel:02-6413-4892">02-6413-4892</a></td></tr>
-          <tr><td>김보광 목사</td><td>광진교구 · 다니엘기도회</td><td><a href="tel:02-6413-4826">02-6413-4826</a></td></tr>
-          <tr><td>김성현 목사</td><td>중등2ㆍ3학년부</td><td><a href="tel:02-6413-4880">02-6413-4880</a></td></tr>
-          <tr><td>김영글 목사</td><td>방송 본부장 · 블레싱워십 · 찬양사역부 총괄</td><td><a href="tel:02-6413-4804">02-6413-4804</a></td></tr>
-          <tr><td>김영채 목사</td><td>그레이스공동체 · DNA Ministry</td><td><a href="tel:02-6413-4803">02-6413-4803</a></td></tr>
-          <tr><td>김용주 목사</td><td>초등1학년부</td><td><a href="tel:02-6413-4876">02-6413-4876</a></td></tr>
-          <tr><td>김장현 목사</td><td>청년10부 · 청년국 훈련부</td><td><a href="tel:02-6413-4845">02-6413-4845</a></td></tr>
-          <tr><td>김창석 목사</td><td>경기북교구 · 다니엘기도회</td><td><a href="tel:02-6413-4911">02-6413-4911</a></td></tr>
-          <tr><td>김홍준 목사</td><td>선교지원</td><td><a href="tel:02-6413-4897">02-6413-4897</a></td></tr>
-          <tr><td>노대현 목사</td><td>국내선교부 · 국제사역부 · 오륜국제한가족센터</td><td><a href="tel:02-6413-4889">02-6413-4889</a></td></tr>
-          <tr><td>노승완 목사</td><td>거여마천위례교구 · 새가족부</td><td><a href="tel:02-6413-4818">02-6413-4818</a></td></tr>
-          <tr><td>문종현 목사</td><td>성내2교구</td><td><a href="tel:02-6413-4821">02-6413-4821</a></td></tr>
-          <tr><td>방석일 목사</td><td>목양실 · 8시 초등부</td><td><a href="tel:02-6413-7607">02-6413-7607</a></td></tr>
-          <tr><td>방성율 목사</td><td>잠실교구 · 예배부</td><td><a href="tel:02-6413-4833">02-6413-4833</a></td></tr>
-          <tr><td>배요한 목사</td><td>풍납교구 · 양육훈련부 1부</td><td><a href="tel:02-6413-4823">02-6413-4823</a></td></tr>
-          <tr><td>변상선 목사</td><td>중등1학년부</td><td><a href="tel:02-6413-4886">02-6413-4886</a></td></tr>
-          <tr><td>송성국 목사</td><td>하남교구 · 새생명축제</td><td><a href="tel:02-6413-4867">02-6413-4867</a></td></tr>
-          <tr><td>송시언 목사</td><td>영아부</td><td><a href="tel:02-6413-4870">02-6413-4870</a></td></tr>
-          <tr><td>송영광 목사</td><td>강남교구 · 예배부</td><td><a href="tel:02-6413-4834">02-6413-4834</a></td></tr>
-          <tr><td>송정용 목사</td><td>강동3교구</td><td><a href="tel:02-6413-4822">02-6413-4822</a></td></tr>
-          <tr><td>요하네스 호기 하르디안트 목사</td><td>인도네시아어예배부</td><td></td></tr>
-          <tr><td>우미쉘 목사</td><td>찬양사역부 · 프레전스</td><td></td></tr>
-          <tr><td>유성식 목사</td><td>헤세드 · 청년8부</td><td><a href="tel:02-6413-4838">02-6413-4838</a></td></tr>
-          <tr><td>이갈렙 목사</td><td>청년7부 · 청년국 선교부</td><td><a href="tel:02-6413-4843">02-6413-4843</a></td></tr>
-          <tr><td>이병민 목사</td><td>강동1교구 · 주만나</td><td><a href="tel:02-6413-4835">02-6413-4835</a></td></tr>
-          <tr><td>이성민 목사</td><td>오금교구 · 복지부</td><td><a href="tel:02-6413-4832">02-6413-4832</a></td></tr>
-          <tr><td>이성현 목사</td><td>초등5학년부</td><td><a href="tel:02-6413-4877">02-6413-4877</a></td></tr>
-          <tr><td>이정재 목사</td><td>북한선교부</td><td><a href="tel:02-6413-4891">02-6413-4891</a></td></tr>
-          <tr><td>이준건 목사</td><td>청년4부</td><td><a href="tel:02-6413-4839">02-6413-4839</a></td></tr>
-          <tr><td>이탁열 목사</td><td>청년3부</td><td><a href="tel:02-6413-4838">02-6413-4838</a></td></tr>
-          <tr><td>임예훈 목사</td><td>브릿지워십 · 초등6학년부</td><td><a href="tel:02-6413-4878">02-6413-4878</a></td></tr>
-          <tr><td>임지훈 목사</td><td></td><td></td></tr>
-          <tr><td>장두희 목사</td><td>청년9부 · Remnant Creative</td><td><a href="tel:02-6413-4836">02-6413-4836</a></td></tr>
-          <tr><td>장명근 목사</td><td>청년6부</td><td><a href="tel:02-6413-4841">02-6413-4841</a></td></tr>
-          <tr><td>장원석 목사</td><td>올림픽교구 · 양육훈련부</td><td><a href="tel:02-6413-4828">02-6413-4828</a></td></tr>
-          <tr><td>정광식 목사</td><td>파크리오교구 · 다니엘기도회</td><td><a href="tel:02-6413-4824">02-6413-4824</a></td></tr>
-          <tr><td>정직한 목사</td><td>청년5부 · 청년국 훈련부</td><td><a href="tel:02-6413-4844">02-6413-4844</a></td></tr>
-          <tr><td>정태훈 목사</td><td>경기남교구 · 문화사역부</td><td><a href="tel:02-6413-4831">02-6413-4831</a></td></tr>
-          <tr><td>정현욱 목사</td><td>성내1교구 · 전문인선교부</td><td><a href="tel:02-6413-4820">02-6413-4820</a></td></tr>
-          <tr><td>정형근 목사</td><td>초등3학년부</td><td><a href="tel:02-6413-4874">02-6413-4874</a></td></tr>
-          <tr><td>조인 목사</td><td>회복사역부 · 포레온교구</td><td><a href="tel:02-6413-4907">02-6413-4907</a></td></tr>
-          <tr><td>조형래 목사</td><td>방이교구</td><td><a href="tel:02-6413-4819">02-6413-4819</a></td></tr>
-          <tr><td>주현우 목사</td><td>청년1부 · 청년국 훈련부</td><td><a href="tel:02-6413-4839">02-6413-4839</a></td></tr>
-          <tr><td>최민흥 목사</td><td>강동2교구 · 전도부1</td><td><a href="tel:02-6413-4825">02-6413-4825</a></td></tr>
-          <tr><td>최병주 목사</td><td>고등부</td><td><a href="tel:02-6413-1765">02-6413-1765</a></td></tr>
-          <tr><td>최상문 목사</td><td>유치부</td><td><a href="tel:02-6413-4872">02-6413-4872</a></td></tr>
-          <tr><td>최주영 목사</td><td>청년11부 · 청년국 양육부</td><td><a href="tel:02-6413-4847">02-6413-4847</a></td></tr>
-          <tr><td>하은준 목사</td><td>초등4학년부</td><td><a href="tel:02-6413-8772">02-6413-8772</a></td></tr>
-          <tr><td>휜티탄튀 목사</td><td>베트남어예배부 · 베트남어이중언어학교</td><td><a href="tel:02-6413-4894">02-6413-4894</a></td></tr>
-          <tr><td>김철호 목사</td><td>담임 · 송탄오륜교회</td><td><a href="tel:031-665-0675">031-665-0675</a></td></tr>
-          <tr><td>주성하 목사</td><td>담임</td><td></td></tr>
-          <tr><td>김효태 목사</td><td>센터장 · 오륜비전빌리지</td><td><a href="tel:031-582-5111">031-582-5111</a></td></tr>
-          <tr><td>김선민 목사</td><td>아산병원원목</td><td><a href="tel:02-3010-7877">02-3010-7877</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/7bb964cce5dc.jpg" width="108" height="118" alt="" loading="lazy">박상모 목사</td><td>목양국장</td><td><a href="tel:02-6413-7606">02-6413-7606</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/915bc43b34a7.jpg" width="108" height="118" alt="" loading="lazy">백상원 목사</td><td>교육국장 · 꿈미 소장</td><td><a href="tel:02-6413-4882">02-6413-4882</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/06dcff441769.jpg" width="108" height="118" alt="" loading="lazy">황성훈 목사</td><td>청년국장 · 신혼부부공동체</td><td><a href="tel:02-6413-4848">02-6413-4848</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/c314b91bf7ce.jpg" width="108" height="118" alt="" loading="lazy">고일국 목사</td><td>선교국장</td><td><a href="tel:02-6413-4808">02-6413-4808</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/468bb474d973.jpg" width="108" height="118" alt="" loading="lazy">정능고 목사</td><td>DNA 총괄디렉터 · 다니엘기도회 총괄디렉터</td><td><a href="tel:02-6413-4802">02-6413-4802</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/8c1ca06b4b0d.jpg" width="108" height="118" alt="" loading="lazy">양명환 목사</td><td>교구선임 · 가락교구 · 출판홍보부</td><td><a href="tel:02-6413-4829">02-6413-4829</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/645cb6e23656.jpg" width="108" height="118" alt="" loading="lazy">김득수 목사</td><td>강북교구</td><td><a href="tel:02-6413-4827">02-6413-4827</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/e0cd2eb0c38b.jpg" width="108" height="118" alt="" loading="lazy">김민섭 목사</td><td>청년2부</td><td><a href="tel:02-6413-4837">02-6413-4837</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/53a17ceb72ee.jpg" width="108" height="118" alt="" loading="lazy">김민우 목사</td><td>영어예배부</td><td><a href="tel:02-6413-4892">02-6413-4892</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/c01a320aee15.jpg" width="108" height="118" alt="" loading="lazy">김보광 목사</td><td>광진교구 · 다니엘기도회</td><td><a href="tel:02-6413-4826">02-6413-4826</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/0ad1bfad1f6c.jpg" width="108" height="118" alt="" loading="lazy">김성현 목사</td><td>중등2ㆍ3학년부</td><td><a href="tel:02-6413-4880">02-6413-4880</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/e17bbea365a9.jpg" width="108" height="118" alt="" loading="lazy">김영글 목사</td><td>방송 본부장 · 블레싱워십 · 찬양사역부 총괄</td><td><a href="tel:02-6413-4804">02-6413-4804</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/9489f753728b.jpg" width="108" height="118" alt="" loading="lazy">김영채 목사</td><td>그레이스공동체 · DNA Ministry</td><td><a href="tel:02-6413-4803">02-6413-4803</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/d04dded02fb7.jpg" width="108" height="118" alt="" loading="lazy">김용주 목사</td><td>초등1학년부</td><td><a href="tel:02-6413-4876">02-6413-4876</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/a29b8cf932a1.jpg" width="108" height="118" alt="" loading="lazy">김장현 목사</td><td>청년10부 · 청년국 훈련부</td><td><a href="tel:02-6413-4845">02-6413-4845</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/c27c50e8bf90.jpg" width="108" height="118" alt="" loading="lazy">김창석 목사</td><td>경기북교구 · 다니엘기도회</td><td><a href="tel:02-6413-4911">02-6413-4911</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/15f7731f8af7.jpg" width="108" height="118" alt="" loading="lazy">김홍준 목사</td><td>선교지원</td><td><a href="tel:02-6413-4897">02-6413-4897</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/405213ecc12e.jpg" width="108" height="118" alt="" loading="lazy">노대현 목사</td><td>국내선교부 · 국제사역부 · 오륜국제한가족센터</td><td><a href="tel:02-6413-4889">02-6413-4889</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/de60c43bd6fe.jpg" width="108" height="118" alt="" loading="lazy">노승완 목사</td><td>거여마천위례교구 · 새가족부</td><td><a href="tel:02-6413-4818">02-6413-4818</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/a97125c81d34.jpg" width="108" height="118" alt="" loading="lazy">문종현 목사</td><td>성내2교구</td><td><a href="tel:02-6413-4821">02-6413-4821</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/2b5a1bd7014f.jpg" width="108" height="118" alt="" loading="lazy">방석일 목사</td><td>목양실 · 8시 초등부</td><td><a href="tel:02-6413-7607">02-6413-7607</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/7c145d9112e3.jpg" width="108" height="118" alt="" loading="lazy">방성율 목사</td><td>잠실교구 · 예배부</td><td><a href="tel:02-6413-4833">02-6413-4833</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/c9a61f5ac4dc.jpg" width="108" height="118" alt="" loading="lazy">배요한 목사</td><td>풍납교구 · 양육훈련부 1부</td><td><a href="tel:02-6413-4823">02-6413-4823</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/0566c069bbd1.jpg" width="108" height="118" alt="" loading="lazy">변상선 목사</td><td>중등1학년부</td><td><a href="tel:02-6413-4886">02-6413-4886</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/d01194140961.jpg" width="108" height="118" alt="" loading="lazy">송성국 목사</td><td>하남교구 · 새생명축제</td><td><a href="tel:02-6413-4867">02-6413-4867</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/e102cf4242f1.jpg" width="108" height="118" alt="" loading="lazy">송시언 목사</td><td>영아부</td><td><a href="tel:02-6413-4870">02-6413-4870</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/57ec0da85b35.jpg" width="108" height="118" alt="" loading="lazy">송영광 목사</td><td>강남교구 · 예배부</td><td><a href="tel:02-6413-4834">02-6413-4834</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/c9a68e123948.jpg" width="108" height="118" alt="" loading="lazy">송정용 목사</td><td>강동3교구</td><td><a href="tel:02-6413-4822">02-6413-4822</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/aab596ca2ddc.jpg" width="108" height="118" alt="" loading="lazy">요하네스 호기 하르디안트 목사</td><td>인도네시아어예배부</td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/acac6c3034f1.jpg" width="108" height="118" alt="" loading="lazy">우미쉘 목사</td><td>찬양사역부 · 프레전스</td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/835842135b19.jpg" width="108" height="118" alt="" loading="lazy">유성식 목사</td><td>헤세드 · 청년8부</td><td><a href="tel:02-6413-4838">02-6413-4838</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/b1f1bdc88276.jpg" width="108" height="118" alt="" loading="lazy">이갈렙 목사</td><td>청년7부 · 청년국 선교부</td><td><a href="tel:02-6413-4843">02-6413-4843</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/875bff362676.jpg" width="108" height="118" alt="" loading="lazy">이병민 목사</td><td>강동1교구 · 주만나</td><td><a href="tel:02-6413-4835">02-6413-4835</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/17d96cfaaa3d.jpg" width="108" height="118" alt="" loading="lazy">이성민 목사</td><td>오금교구 · 복지부</td><td><a href="tel:02-6413-4832">02-6413-4832</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/cfe9e7542ea3.jpg" width="108" height="118" alt="" loading="lazy">이성현 목사</td><td>초등5학년부</td><td><a href="tel:02-6413-4877">02-6413-4877</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/e797172f4780.jpg" width="108" height="118" alt="" loading="lazy">이정재 목사</td><td>북한선교부</td><td><a href="tel:02-6413-4891">02-6413-4891</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/a570e6ed74d3.jpg" width="108" height="118" alt="" loading="lazy">이준건 목사</td><td>청년4부</td><td><a href="tel:02-6413-4839">02-6413-4839</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/f8599000b26e.jpg" width="108" height="118" alt="" loading="lazy">이탁열 목사</td><td>청년3부</td><td><a href="tel:02-6413-4838">02-6413-4838</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/6f8ed1a7f230.jpg" width="108" height="118" alt="" loading="lazy">임예훈 목사</td><td>브릿지워십 · 초등6학년부</td><td><a href="tel:02-6413-4878">02-6413-4878</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/6a60d8c04084.jpg" width="108" height="118" alt="" loading="lazy">임지훈 목사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/892cebb3a908.jpg" width="108" height="118" alt="" loading="lazy">장두희 목사</td><td>청년9부 · Remnant Creative</td><td><a href="tel:02-6413-4836">02-6413-4836</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/bfe475780de9.jpg" width="108" height="118" alt="" loading="lazy">장명근 목사</td><td>청년6부</td><td><a href="tel:02-6413-4841">02-6413-4841</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/ca6f9b3e80f1.jpg" width="108" height="118" alt="" loading="lazy">장원석 목사</td><td>올림픽교구 · 양육훈련부</td><td><a href="tel:02-6413-4828">02-6413-4828</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/431c90bf9b4e.jpg" width="108" height="118" alt="" loading="lazy">정광식 목사</td><td>파크리오교구 · 다니엘기도회</td><td><a href="tel:02-6413-4824">02-6413-4824</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/bcbeb8d73e4c.jpg" width="108" height="118" alt="" loading="lazy">정직한 목사</td><td>청년5부 · 청년국 훈련부</td><td><a href="tel:02-6413-4844">02-6413-4844</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/9862cee04f9a.jpg" width="108" height="118" alt="" loading="lazy">정태훈 목사</td><td>경기남교구 · 문화사역부</td><td><a href="tel:02-6413-4831">02-6413-4831</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/69c15aa1d0f9.jpg" width="108" height="118" alt="" loading="lazy">정현욱 목사</td><td>성내1교구 · 전문인선교부</td><td><a href="tel:02-6413-4820">02-6413-4820</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/2e1af691ae5c.jpg" width="108" height="118" alt="" loading="lazy">정형근 목사</td><td>초등3학년부</td><td><a href="tel:02-6413-4874">02-6413-4874</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/2e6212e38570.jpg" width="108" height="118" alt="" loading="lazy">조인 목사</td><td>회복사역부 · 포레온교구</td><td><a href="tel:02-6413-4907">02-6413-4907</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/2934e3b75608.jpg" width="108" height="118" alt="" loading="lazy">조형래 목사</td><td>방이교구</td><td><a href="tel:02-6413-4819">02-6413-4819</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/0b86875ecc6b.jpg" width="108" height="118" alt="" loading="lazy">주현우 목사</td><td>청년1부 · 청년국 훈련부</td><td><a href="tel:02-6413-4839">02-6413-4839</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/d0f40fbbde07.jpg" width="108" height="118" alt="" loading="lazy">최민흥 목사</td><td>강동2교구 · 전도부1</td><td><a href="tel:02-6413-4825">02-6413-4825</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/7c44ccc5337b.jpg" width="108" height="118" alt="" loading="lazy">최병주 목사</td><td>고등부</td><td><a href="tel:02-6413-1765">02-6413-1765</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/3c9902038da2.jpg" width="108" height="118" alt="" loading="lazy">최상문 목사</td><td>유치부</td><td><a href="tel:02-6413-4872">02-6413-4872</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/ace18835bc62.jpg" width="108" height="118" alt="" loading="lazy">최주영 목사</td><td>청년11부 · 청년국 양육부</td><td><a href="tel:02-6413-4847">02-6413-4847</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/835aac6fd49d.jpg" width="108" height="118" alt="" loading="lazy">하은준 목사</td><td>초등4학년부</td><td><a href="tel:02-6413-8772">02-6413-8772</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/69a3deb6592e.jpg" width="108" height="118" alt="" loading="lazy">휜티탄튀 목사</td><td>베트남어예배부 · 베트남어이중언어학교</td><td><a href="tel:02-6413-4894">02-6413-4894</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/e17c4bd3eb8b.jpg" width="108" height="118" alt="" loading="lazy">김철호 목사</td><td>담임 · 송탄오륜교회</td><td><a href="tel:031-665-0675">031-665-0675</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/97f02b5b0ceb.jpg" width="108" height="118" alt="" loading="lazy">주성하 목사</td><td>담임</td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/74ed29c71907.jpg" width="108" height="118" alt="" loading="lazy">김효태 목사</td><td>센터장 · 오륜비전빌리지</td><td><a href="tel:031-582-5111">031-582-5111</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/e44d0e63b71e.jpg" width="108" height="118" alt="" loading="lazy">김선민 목사</td><td>아산병원원목</td><td><a href="tel:02-3010-7877">02-3010-7877</a></td></tr>
         </tbody></table></div></details>
         <details class="fold"><summary><span>강도사<small>1명</small></span></summary>
         <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
-          <tr><td>우경규 강도사</td><td>초등2학년부</td><td><a href="tel:02-6413-4884">02-6413-4884</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/d3333b4fa074.jpg" width="108" height="118" alt="" loading="lazy">우경규 강도사</td><td>초등2학년부</td><td><a href="tel:02-6413-4884">02-6413-4884</a></td></tr>
         </tbody></table></div></details>
         <details class="fold"><summary><span>전도사<small>11명</small></span></summary>
         <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
-          <tr><td>김미영 전도사</td><td>사랑부</td><td><a href="tel:02-6413-4879">02-6413-4879</a></td></tr>
-          <tr><td>김시온 전도사</td><td></td><td></td></tr>
-          <tr><td>노세 사토시 전도사</td><td>일본어예배부</td><td><a href="tel:02-6413-4890">02-6413-4890</a></td></tr>
-          <tr><td>심재영 전도사</td><td>목양실 · 목양비서</td><td><a href="tel:02-6413-4799">02-6413-4799</a></td></tr>
-          <tr><td>애르나자르 전도사</td><td></td><td></td></tr>
-          <tr><td>이아현 전도사</td><td>유아부</td><td><a href="tel:02-6413-4881">02-6413-4881</a></td></tr>
-          <tr><td>이종회 전도사</td><td>에클레시아 · 하이프레이즈</td><td><a href="tel:02-6413-4917">02-6413-4917</a></td></tr>
-          <tr><td>장권오 전도사</td><td></td><td></td></tr>
-          <tr><td>조동혁 전도사</td><td></td><td></td></tr>
-          <tr><td>진상윤 전도사</td><td>중국어예배부</td><td><a href="tel:02-6413-4895">02-6413-4895</a></td></tr>
-          <tr><td>최규민 전도사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/839239a79abd.jpg" width="108" height="118" alt="" loading="lazy">김미영 전도사</td><td>사랑부</td><td><a href="tel:02-6413-4879">02-6413-4879</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/cbff661a1fb5.jpg" width="108" height="118" alt="" loading="lazy">김시온 전도사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/79801a970098.jpg" width="108" height="118" alt="" loading="lazy">노세 사토시 전도사</td><td>일본어예배부</td><td><a href="tel:02-6413-4890">02-6413-4890</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/fcd11f9583dc.jpg" width="108" height="118" alt="" loading="lazy">심재영 전도사</td><td>목양실 · 목양비서</td><td><a href="tel:02-6413-4799">02-6413-4799</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/5a264b8db1c7.jpg" width="108" height="118" alt="" loading="lazy">애르나자르 전도사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/0849ca6f0055.jpg" width="108" height="118" alt="" loading="lazy">이아현 전도사</td><td>유아부</td><td><a href="tel:02-6413-4881">02-6413-4881</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/5a078f8c8761.jpg" width="108" height="118" alt="" loading="lazy">이종회 전도사</td><td>에클레시아 · 하이프레이즈</td><td><a href="tel:02-6413-4917">02-6413-4917</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/671b1bbcf072.jpg" width="108" height="118" alt="" loading="lazy">장권오 전도사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/d2ac55823bb8.jpg" width="108" height="118" alt="" loading="lazy">조동혁 전도사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/1ea145bae934.jpg" width="108" height="118" alt="" loading="lazy">진상윤 전도사</td><td>중국어예배부</td><td><a href="tel:02-6413-4895">02-6413-4895</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/9e18b7db868e.jpg" width="108" height="118" alt="" loading="lazy">최규민 전도사</td><td></td><td></td></tr>
         </tbody></table></div></details>
         <details class="fold"><summary><span>협동목사<small>3명</small></span></summary>
         <div class="tt-wrap"><table class="tt"><thead><tr><th>이름</th><th>담당</th><th>전화</th></tr></thead><tbody>
-          <tr><td>권경현 협동목사</td><td></td><td></td></tr>
-          <tr><td>윤재중 협동목사</td><td></td><td><a href="tel:02-6413-4927">02-6413-4927</a></td></tr>
-          <tr><td>조용진 협동목사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/09b5a4f97685.jpg" width="108" height="118" alt="" loading="lazy">권경현 협동목사</td><td></td><td></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/1014e7038cf4.jpg" width="108" height="118" alt="" loading="lazy">윤재중 협동목사</td><td></td><td><a href="tel:02-6413-4927">02-6413-4927</a></td></tr>
+          <tr><td><img class="st-ph" src="photos/staff/d85b89033518.jpg" width="108" height="118" alt="" loading="lazy">조용진 협동목사</td><td></td><td></td></tr>
         </tbody></table></div></details>
       </div>
 
