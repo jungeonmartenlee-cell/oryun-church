@@ -579,6 +579,15 @@ body.no-title .block-text{display:none;}
 .doc-logo{width:min(320px,70%);height:auto;margin-bottom:10px;}
 .menu-links a b{font-weight:700;}
 @media(max-width:680px){.tree-in{grid-template-columns:1fr;}.tree-sub{padding-left:14px;}}
+.tree-g{grid-column:1/-1;border:1px solid var(--line);border-radius:14px;padding:0 18px;background:rgba(31,86,168,.03);}
+.fold.tree-g summary{padding:15px 0;font-size:15px;}
+.tree-g .tree-in{padding-bottom:16px;}
+.doc li p{font-weight:400;color:var(--ink-2);}
+.doc li p:first-child{font-weight:500;color:var(--ink);}
+.doc p.sub{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--blue);margin:0 0 6px;}
+.doc li b{color:var(--ink);font-weight:500;margin-right:6px;}
+.doc .tt th{white-space:nowrap;}
+.doc tbody th{text-align:left;font-size:14px;font-weight:500;color:var(--ink);padding:12px 18px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;font-family:inherit;letter-spacing:0;}
 </style>
 </head>
 <body>
@@ -741,6 +750,11 @@ body.no-title .block-text{display:none;}
         <details class="fold tree"><summary><span>장소 안내<small>8</small></span></summary><div class="tree-in"><a href="#place-vision" onclick="openPage('place-vision');return false;">비전센터 (본관)<i>→</i></a><a href="#place-odc" onclick="openPage('place-odc');return false;">다니엘센터 (ODC)<i>→</i></a><a href="#place-edu1" onclick="openPage('place-edu1');return false;">제1교육관<i>→</i></a><a href="#place-edu2" onclick="openPage('place-edu2');return false;">제2교육관<i>→</i></a><a href="#place-edu3" onclick="openPage('place-edu3');return false;">제3교육관<i>→</i></a><a href="#place-village" onclick="openPage('place-village');return false;">오륜 비전빌리지<i>→</i></a><a href="#branch" onclick="openPage('branch');return false;">분립교회<i>→</i></a><a href="#reserve" onclick="openPage('reserve');return false;">장소 예약<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>새가족 · 소그룹<small>3</small></span></summary><div class="tree-in"><a href="#worship" onclick="openPage('worship');return false;">새가족 등록<i>→</i></a><a href="#newfam-edu" onclick="openPage('newfam-edu');return false;">새가족 교육<i>→</i></a><a href="#smallgroup" onclick="openPage('smallgroup');return false;">소그룹 안내<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>양육훈련<small>2</small></span></summary><div class="tree-in"><a href="#training" onclick="openPage('training');return false;">철학과 방향<i>→</i></a><a href="#program" onclick="openPage('program');return false;">양육훈련 프로그램<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>교구 · 부서<small>12</small></span></summary><div class="tree-in"><a href="#d-parish" onclick="openPage('d-parish');return false;">교구 안내<i>→</i></a><details class="fold sub tree-g"><summary><span>부서<small>11</small></span></summary><div class="tree-in"><a href="#d-mo107" onclick="openPage('d-mo107');return false;">부서전체<i>→</i></a><a href="#d-mo109" onclick="openPage('d-mo109');return false;">문화사역부<i>→</i></a><a href="#d-mo110" onclick="openPage('d-mo110');return false;">복지부<i>→</i></a><a href="#d-mo111" onclick="openPage('d-mo111');return false;">새가족부<i>→</i></a><a href="#d-mo112" onclick="openPage('d-mo112');return false;">양육훈련부<i>→</i></a><a href="#d-mo113" onclick="openPage('d-mo113');return false;">예배부<i>→</i></a><a href="#d-mo114" onclick="openPage('d-mo114');return false;">전도부<i>→</i></a><a href="#d-mo115" onclick="openPage('d-mo115');return false;">찬양사역부-찬양팀<i>→</i></a><a href="#d-mo368" onclick="openPage('d-mo368');return false;">찬양사역부-콰이어<i>→</i></a><a href="#d-mo116" onclick="openPage('d-mo116');return false;">출판홍보부<i>→</i></a><a href="#d-mo117" onclick="openPage('d-mo117');return false;">회복사역부<i>→</i></a></div></details></div></details>
+        <details class="fold tree"><summary><span>선교국<small>21</small></span></summary><div class="tree-in"><a href="#d-mi158" onclick="openPage('d-mi158');return false;">선교비전<i>→</i></a><a href="#d-mi159" onclick="openPage('d-mi159');return false;">선교사현황<i>→</i></a><a href="#d-mi160" onclick="openPage('d-mi160');return false;">선교활동<i>→</i></a><a href="#d-mi161" onclick="openPage('d-mi161');return false;">선교지원<i>→</i></a><details class="fold sub tree-g"><summary><span>국내 · 전문인 선교<small>5</small></span></summary><div class="tree-in"><a href="#d-mi162" onclick="openPage('d-mi162');return false;">군선교<i>→</i></a><a href="#d-mi163" onclick="openPage('d-mi163');return false;">농어촌선교<i>→</i></a><a href="#d-mi166" onclick="openPage('d-mi166');return false;">교육자선교<i>→</i></a><a href="#d-mi167" onclick="openPage('d-mi167');return false;">찬양선교<i>→</i></a><a href="#d-mi168" onclick="openPage('d-mi168');return false;">북한선교<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>외국어 예배<small>6</small></span></summary><div class="tree-in"><a href="#d-mi169" onclick="openPage('d-mi169');return false;">영어예배<i>→</i></a><a href="#d-mi170" onclick="openPage('d-mi170');return false;">중국어예배<i>→</i></a><a href="#d-mi171" onclick="openPage('d-mi171');return false;">베트남어예배<i>→</i></a><a href="#d-mi172" onclick="openPage('d-mi172');return false;">일본어예배<i>→</i></a><a href="#d-mi173" onclick="openPage('d-mi173');return false;">인도네시아어예배<i>→</i></a><a href="#d-mi174" onclick="openPage('d-mi174');return false;">러시아어예배<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>다문화 · 이주민<small>5</small></span></summary><div class="tree-in"><a href="#d-mi176" onclick="openPage('d-mi176');return false;">선교언어사역<i>→</i></a><a href="#d-mi179" onclick="openPage('d-mi179');return false;">이중언어학교<i>→</i></a><a href="#d-mi178" onclick="openPage('d-mi178');return false;">이주민선교<i>→</i></a><a href="#d-mi177" onclick="openPage('d-mi177');return false;">오륜국제한가족센터 소개<i>→</i></a><a href="#d-mi472" onclick="openPage('d-mi472');return false;">오륜국제한가족센터 프로그램<i>→</i></a></div></details><a href="#d-mi180" onclick="openPage('d-mi180');return false;">선교관 예약 안내<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>교육국<small>22</small></span></summary><div class="tree-in"><a href="#d-ed194" onclick="openPage('d-ed194');return false;">교육국 소개<i>→</i></a><a href="#d-ed195" onclick="openPage('d-ed195');return false;">드림랜드 · 커리큘럼<i>→</i></a><details class="fold sub tree-g"><summary><span>드림키즈 (영유아 · 유치)<small>3</small></span></summary><div class="tree-in"><a href="#d-ed197" onclick="openPage('d-ed197');return false;">영아부<i>→</i></a><a href="#d-ed198" onclick="openPage('d-ed198');return false;">유아부<i>→</i></a><a href="#d-ed199" onclick="openPage('d-ed199');return false;">유치부<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>드림스쿨 (초등)<small>7</small></span></summary><div class="tree-in"><a href="#d-ed200" onclick="openPage('d-ed200');return false;">8시 초등부<i>→</i></a><a href="#d-ed201" onclick="openPage('d-ed201');return false;">초등1학년부<i>→</i></a><a href="#d-ed517" onclick="openPage('d-ed517');return false;">초등2학년부<i>→</i></a><a href="#d-ed202" onclick="openPage('d-ed202');return false;">초등3학년부<i>→</i></a><a href="#d-ed203" onclick="openPage('d-ed203');return false;">초등4학년부<i>→</i></a><a href="#d-ed204" onclick="openPage('d-ed204');return false;">초등5학년부<i>→</i></a><a href="#d-ed205" onclick="openPage('d-ed205');return false;">초등6학년부<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>드림틴즈 (중고등)<small>4</small></span></summary><div class="tree-in"><a href="#d-ed206" onclick="openPage('d-ed206');return false;">8시 중고등부<i>→</i></a><a href="#d-ed207" onclick="openPage('d-ed207');return false;">중등1학년부<i>→</i></a><a href="#d-ed208" onclick="openPage('d-ed208');return false;">중등2·3학년부<i>→</i></a><a href="#d-ed277" onclick="openPage('d-ed277');return false;">고등부<i>→</i></a></div></details><a href="#d-ed274" onclick="openPage('d-ed274');return false;">사랑부<i>→</i></a><details class="fold sub tree-g"><summary><span>연합집회<small>3</small></span></summary><div class="tree-in"><a href="#d-ed210" onclick="openPage('d-ed210');return false;">어린이 수요예배<i>→</i></a><a href="#d-ed211" onclick="openPage('d-ed211');return false;">플라잉워십(미취학부)<i>→</i></a><a href="#d-ed280" onclick="openPage('d-ed280');return false;">플라잉워십(취학부)<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>이마고데이스쿨<small>2</small></span></summary><div class="tree-in"><a href="#d-ed365" onclick="openPage('d-ed365');return false;">이마고데이스쿨 소개<i>→</i></a><a href="#d-ed366" onclick="openPage('d-ed366');return false;">이마고데이스쿨 프로그램<i>→</i></a></div></details></div></details>
+        <details class="fold tree"><summary><span>청년국<small>17</small></span></summary><div class="tree-in"><a href="#d-yo388" onclick="openPage('d-yo388');return false;">공동체 소개<i>→</i></a><a href="#d-yo386" onclick="openPage('d-yo386');return false;">양육 · 훈련 프로그램<i>→</i></a><details class="fold sub tree-g"><summary><span>D.M. 공동체<small>4</small></span></summary><div class="tree-in"><a href="#d-yo118" onclick="openPage('d-yo118');return false;">청년1부<i>→</i></a><a href="#d-yo119" onclick="openPage('d-yo119');return false;">청년2부<i>→</i></a><a href="#d-yo120" onclick="openPage('d-yo120');return false;">청년3부<i>→</i></a><a href="#d-yo121" onclick="openPage('d-yo121');return false;">청년4부<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>S.M. 공동체<small>5</small></span></summary><div class="tree-in"><a href="#d-yo124" onclick="openPage('d-yo124');return false;">청년5부<i>→</i></a><a href="#d-yo125" onclick="openPage('d-yo125');return false;">청년6부<i>→</i></a><a href="#d-yo126" onclick="openPage('d-yo126');return false;">청년7부<i>→</i></a><a href="#d-yo127" onclick="openPage('d-yo127');return false;">청년8부<i>→</i></a><a href="#d-yo128" onclick="openPage('d-yo128');return false;">청년9부<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>P.M. 공동체<small>2</small></span></summary><div class="tree-in"><a href="#d-yo130" onclick="openPage('d-yo130');return false;">청년10부<i>→</i></a><a href="#d-yo131" onclick="openPage('d-yo131');return false;">청년11부<i>→</i></a></div></details><details class="fold sub tree-g"><summary><span>그 밖의 공동체<small>4</small></span></summary><div class="tree-in"><a href="#d-yo122" onclick="openPage('d-yo122');return false;">수험생부<i>→</i></a><a href="#d-yo123" onclick="openPage('d-yo123');return false;">신혼부부 (쀼)<i>→</i></a><a href="#d-yo129" onclick="openPage('d-yo129');return false;">그레이스1부<i>→</i></a><a href="#d-yo451" onclick="openPage('d-yo451');return false;">그레이스2부<i>→</i></a></div></details></div></details>
+        <details class="fold tree"><summary><span>교회 시설<small>4</small></span></summary><div class="tree-in"><a href="#d-li260" onclick="openPage('d-li260');return false;">웨딩안내<i>→</i></a><a href="#d-li261" onclick="openPage('d-li261');return false;">도서관<i>→</i></a><a href="#d-li262" onclick="openPage('d-li262');return false;">오륜서점<i>→</i></a><a href="#d-li263" onclick="openPage('d-li263');return false;">토비아스 카페<i>→</i></a></div></details>
       </div>
     </div></div>
   </article>
@@ -1978,6 +1992,18 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
     </div></div>
   </article>
 
+  <!-- 트리에서 여는 글 (data/docs.js) -->
+  <article class="page" id="p-doc">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow" id="doc-b"></p>
+      <h1 class="p-title" id="doc-t"></h1>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="doc" id="doc-h"></div>
+      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </div></div>
+  </article>
+
   <!-- 한 주간 사역 -->
   <article class="page" id="p-weekly">
     <header class="p-hero"><div class="p-wrap">
@@ -2404,6 +2430,7 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
 <script src="data/sermon.js"></script>
 <script src="data/weekly.js"></script>
 <script src="data/shuttle.js"></script>
+<script src="data/docs.js"></script>
 <script>
 // ── CURSOR ──
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
@@ -2737,7 +2764,14 @@ function toggleMenu(){
 const pagesEl=document.getElementById('pages');
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{root:pagesEl,threshold:.12});
 function openPage(id,fromHash){
-  const pg=document.getElementById('p-'+id);
+  let pg=document.getElementById('p-'+id);
+  const dc=window.DOCS&&window.DOCS[id];
+  if(dc){                                            // 트리에서 여는 글은 한 페이지에 내용만 바꿔 넣는다
+    pg=document.getElementById('p-doc');
+    document.getElementById('doc-b').textContent='교회 안내 — '+dc.b;
+    document.getElementById('doc-t').textContent=dc.t;
+    document.getElementById('doc-h').innerHTML=dc.h;
+  }
   if(!pg)return;
   document.querySelectorAll('.page').forEach(d=>d.classList.remove('show'));
   pg.classList.add('show');
@@ -2767,7 +2801,7 @@ pagesEl.addEventListener('scroll',function(){
 },{passive:true});
 function syncHash(){
   const id=location.hash.slice(1);
-  if(id&&document.getElementById('p-'+id))openPage(id,true);else closePage(true);
+  if(id&&(document.getElementById('p-'+id)||(window.DOCS&&window.DOCS[id])))openPage(id,true);else closePage(true);
 }
 window.addEventListener('popstate',syncHash);
 window.addEventListener('resize',()=>{updateUI();hisDraw();});
