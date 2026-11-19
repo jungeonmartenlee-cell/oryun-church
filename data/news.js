@@ -1,0 +1,16 @@
+// update_news.py 가 자동으로 만든 파일입니다. 직접 고치지 마세요.
+window.NEWS = [{"key":"notice","name":"공지","items":[{"d":"2026-11-01","t":"11월 신착도서 안내","i":["news/notice/f1ed0d209f-1.jpg"]},
+{"d":"2026-10-27","t":"2026 다니엘기도회 가이드 북 안내","i":["news/notice/c90dfeeb03-1.jpg","news/notice/c90dfeeb03-2.jpg","news/notice/c90dfeeb03-3.jpg"],"f":[{"n":"2026_다니엘기도회_가이드북_내지_펼침면.pdf","u":"news/notice/c90dfeeb03-1.pdf"}]},
+{"d":"2026-10-09","t":"오륜교회 엘리베이터 대수선 공사 입찰 안내","i":["news/notice/5abd134fd5-1.jpg"],"f":[{"n":"입찰참가신청서_오륜교회.docx","u":"news/notice/5abd134fd5-1.docx"},{"n":"입찰참가신청서_오륜교회.hwp","u":"news/notice/5abd134fd5-2.hwp"}]},
+{"d":"2026-10-04","t":"10월 신착도서 안내","i":["news/notice/1ad251468e-1.jpg"]},
+{"d":"2026-09-17","t":"아산병원 주차안내","i":["news/notice/3b7030e330-1.jpg"]},
+{"d":"2026-09-06","t":"9월 신착도서 안내","i":["news/notice/61de60e0e0-1.jpg"]},
+{"d":"2026-08-21","t":"2026년 하반기 장소 당첨 안내","i":["news/notice/361f593e84-1.jpg"],"f":[{"n":"2026하반기 당첨현황(교육관).pdf","u":"news/notice/361f593e84-1.pdf"},{"n":"2026하반기 당첨현황(다니엘센터).pdf","u":"news/notice/361f593e84-2.pdf"},{"n":"2026하반기 당첨현황(비전센터).pdf","u":"news/notice/361f593e84-3.pdf"},{"n":"2026하반기 당첨현황(이노빌딩).pdf","u":"news/notice/361f593e84-4.pdf"}]},
+{"d":"2026-08-01","t":"8월 신착도서 안내","i":["news/notice/1c8af94fe3-1.jpg"]},
+{"d":"2026-01-30","t":"기부금 영수증 발급 유의사항 안내","i":["news/notice/d48fcf4c10-1.jpg"]},
+{"d":"2025-03-19","t":"주일 외부 주차장 이용안내","i":["news/notice/489c1fd881-1.jpg"]}]},{"key":"event","name":"행사","items":[{"d":"2026-11-01","t":"한국교회와 함께 큐티를 보다 11월 안내","e":"2026-11-30","i":["news/event/ab5909f71b-1.jpg"]},
+{"d":"2026-10-07","t":"프렌즈 동행 공모전","e":"2026-10-25","i":["news/event/6b15fa9e88-1.jpg","news/event/6b15fa9e88-2.jpg"]},
+{"d":"2026-10-01","t":"2026 다니엘기도회 준비기도회","e":"2026-10-21","i":["news/event/ce8ecaaca2-1.jpg"]},
+{"d":"2026-10-01","t":"한국교회와 함께 큐티를 보다 10월 안내","e":"2026-10-31","i":["news/event/7f2af1a5de-1.jpg"]},
+{"d":"2026-09-25","t":"2026 다니엘기도회 마중물 기도회","i":["news/event/86304c3ba3-1.jpg"]},
+{"d":"2026-09-10","t":"오륜 상담아카데미 (6기)","e":"2026-10-22","i":["news/event/0e6540aff9-1.jpg","news/event/0e6540aff9-2.jpg","news/event/0e6540aff9-3.jpg"]}]},{"key":"family","name":"교우소식","items":[]},{"key":"bulletin","name":"주보","items":[]},{"key":"qt","name":"QT","items":[]}];

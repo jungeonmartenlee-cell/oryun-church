@@ -588,6 +588,15 @@ body.no-title .block-text{display:none;}
 .doc li b{color:var(--ink);font-weight:500;margin-right:6px;}
 .doc .tt th{white-space:nowrap;}
 .doc tbody th{text-align:left;font-size:14px;font-weight:500;color:var(--ink);padding:12px 18px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;font-family:inherit;letter-spacing:0;}
+/* 소식 */
+.nw-d{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--blue);margin-right:14px;white-space:nowrap;}
+.nw-body{padding:4px 0 24px;max-width:820px;}
+.nw-body p{font-size:15.5px;line-height:2;color:var(--ink-2);word-break:keep-all;margin-bottom:16px;}
+.nw-body img{display:block;width:100%;height:auto;border-radius:16px;margin-bottom:14px;border:1px solid var(--line);}
+.nw-files{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.nw-files a{font-size:13px;color:var(--blue);text-decoration:none;border:1px solid rgba(31,86,168,.3);border-radius:999px;padding:9px 16px;}
+.nw-files a:hover{background:var(--blue);color:#fff;}
+@media(max-width:680px){.nw-d{display:block;margin:0 0 4px;}}
 </style>
 </head>
 <body>
@@ -720,6 +729,7 @@ body.no-title .block-text{display:none;}
       <h3>교회 안내</h3>
       <div class="menu-links">
         <a href="#guide" onclick="openPage('guide');toggleMenu();return false;"><b>전체 안내 보기</b></a>
+        <a href="#news" onclick="openPage('news');toggleMenu();return false;"><b>소식</b></a>
         <a href="#worship" onclick="openPage('worship');toggleMenu();return false;">예배 시간</a>
         <a href="#location" onclick="openPage('location');toggleMenu();return false;">오시는 길 · 주차</a>
         <a href="#shuttle" onclick="openPage('shuttle');toggleMenu();return false;">예배 차량</a>
@@ -744,6 +754,7 @@ body.no-title .block-text{display:none;}
     </div></header>
     <div class="p-body"><div class="p-wrap">
       <div class="reveal">
+        <details class="fold tree"><summary><span>소식<small>NEW</small></span></summary><div class="tree-in"><a href="#news" onclick="openPage('news');return false;">공지 · 행사 · 교우소식 · 주보 · QT<i>→</i></a><a href="#weekly" onclick="openPage('weekly');return false;">한 주간 사역<i>→</i></a></div></details>
         <details class="fold tree" open><summary><span>교회 소개<small>6</small></span></summary><div class="tree-in"><a href="#vision" onclick="openPage('vision');return false;">비전 · 2027 표어<i>→</i></a><a href="#history" onclick="openPage('history');return false;">걸어온 길<i>→</i></a><a href="#greeting" onclick="openPage('greeting');return false;">담임목사 인사말<i>→</i></a><a href="#founder" onclick="openPage('founder');return false;">설립목사<i>→</i></a><a href="#people" onclick="openPage('people');return false;">섬기는 분들 · 교역자<i>→</i></a><a href="#logo" onclick="openPage('logo');return false;">로고<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>예배<small>3</small></span></summary><div class="tree-in"><a href="#worship" onclick="openPage('worship');return false;">예배 시간 · 장소<i>→</i></a><a href="#worship-about" onclick="openPage('worship-about');return false;">오륜교회의 예배<i>→</i></a><a href="#shuttle" onclick="openPage('shuttle');return false;">예배 차량 시간표<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>오시는 길 · 연락처<small>2</small></span></summary><div class="tree-in"><a href="#location" onclick="openPage('location');return false;">교통 · 주차<i>→</i></a><a href="#phone" onclick="openPage('phone');return false;">전화번호 안내<i>→</i></a></div></details>
@@ -2004,6 +2015,18 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
     </div></div>
   </article>
 
+  <!-- 소식 (data/news.js) -->
+  <article class="page" id="p-news">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">News</p>
+      <h1 class="p-title">소식</h1>
+      <p class="p-lead">종류를 고르고, 제목을 누르면 내용이 펼쳐집니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="reveal" id="news-tree"></div>
+    </div></div>
+  </article>
+
   <!-- 한 주간 사역 -->
   <article class="page" id="p-weekly">
     <header class="p-hero"><div class="p-wrap">
@@ -2431,6 +2454,7 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
 <script src="data/weekly.js"></script>
 <script src="data/shuttle.js"></script>
 <script src="data/docs.js"></script>
+<script src="data/news.js"></script>
 <script>
 // ── CURSOR ──
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
@@ -2634,6 +2658,24 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
     const d=b.closest('[data-r]'),r=D[+d.closest('[data-w]').dataset.w].regions[+d.dataset.r];
     d.querySelector('.sh-view').innerHTML=run(r,+b.dataset.k);
   });
+})();
+// ── 소식: 종류 > 글 제목 > 내용 ──
+(function news(){
+  const N=(window.NEWS||[]).filter(c=>c.items&&c.items.length),box=document.getElementById('news-tree');
+  if(!box)return;
+  if(!N.length){box.innerHTML='<p class="note">아직 올라온 소식이 없습니다.</p>';return;}
+  const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const dot=d=>d.slice(2).replace(/-/g,'.');
+  box.innerHTML=N.map((c,i)=>'<details class="fold tree" data-c="'+i+'"'+(i===0?' open':'')+'><summary><span>'+esc(c.name)+'<small>'+c.items.length+'</small></span></summary><div class="tree-sub">'
+    +c.items.map((p,j)=>'<details class="fold sub" data-p="'+j+'"><summary><span><i class="nw-d">'+dot(p.d)+(p.e?' ~ '+dot(p.e):'')+'</i>'+esc(p.t)+'</span></summary><div class="nw-body"></div></details>').join('')+'</div></details>').join('');
+  box.addEventListener('toggle',e=>{                       // 글을 펼칠 때 사진을 불러온다
+    const d=e.target;if(!d.open||d.dataset.p===undefined||d.dataset.done)return;
+    d.dataset.done=1;
+    const p=N[+d.closest('[data-c]').dataset.c].items[+d.dataset.p];
+    d.querySelector('.nw-body').innerHTML=(p.b?'<p>'+esc(p.b).replace(/\n/g,'<br>')+'</p>':'')
+      +(p.i||[]).map(u=>'<img src="'+esc(u)+'" alt="" loading="lazy">').join('')
+      +(p.f&&p.f.length?'<div class="nw-files">'+p.f.map(f=>'<a href="'+esc(f.u)+'" target="_blank" rel="noopener">'+esc(f.n)+' ↓</a>').join('')+'</div>':'');
+  },true);
 })();
 function reserveSubmit(e){
   e.preventDefault();
