@@ -597,6 +597,20 @@ body.no-title .block-text{display:none;}
 .nw-files a{font-size:13px;color:var(--blue);text-decoration:none;border:1px solid rgba(31,86,168,.3);border-radius:999px;padding:9px 16px;}
 .nw-files a:hover{background:var(--blue);color:#fff;}
 @media(max-width:680px){.nw-d{display:block;margin:0 0 4px;}}
+/* 설교 · 영상, 생방송 */
+.vd-list{padding:0 0 18px;}
+.vd{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:14px 4px;cursor:pointer;font:inherit;color:var(--ink);}
+.vd:hover b{color:var(--blue);}
+.vd b{font-weight:500;font-size:15.5px;word-break:keep-all;}
+.vd em{font-style:normal;font-size:13px;color:var(--ink-2);margin-left:auto;text-align:right;white-space:nowrap;}
+.vd span{font-size:11px;color:var(--blue);flex:none;}
+.vd em+span{margin-left:0;}
+.vd b+span{margin-left:auto;}
+.live-box{padding:8px 0 0;}
+.live-btn{display:inline-flex;align-items:center;gap:12px;font:inherit;font-size:16px;font-weight:500;color:#fff;background:var(--blue);border:0;border-radius:999px;padding:18px 34px;cursor:pointer;}
+.live-btn:hover{filter:brightness(1.1);}
+.live-dot{width:9px;height:9px;border-radius:50%;background:#ff5a5a;box-shadow:0 0 0 4px rgba(255,90,90,.25);}
+@media(max-width:680px){.vd{flex-wrap:wrap;gap:4px 12px;}.vd b{flex:1 1 100%;order:2;}.vd .nw-d{order:1;margin:0;}.vd em{order:3;margin-left:0;white-space:normal;text-align:left;}.vd span{order:4;margin-left:auto;}}
 </style>
 </head>
 <body>
@@ -730,6 +744,8 @@ body.no-title .block-text{display:none;}
       <div class="menu-links">
         <a href="#guide" onclick="openPage('guide');toggleMenu();return false;"><b>전체 안내 보기</b></a>
         <a href="#news" onclick="openPage('news');toggleMenu();return false;"><b>소식</b></a>
+        <a href="#videos" onclick="openPage('videos');toggleMenu();return false;"><b>설교 · 영상</b></a>
+        <a href="#live" onclick="openPage('live');toggleMenu();return false;"><b>예배 생방송</b></a>
         <a href="#worship" onclick="openPage('worship');toggleMenu();return false;">예배 시간</a>
         <a href="#location" onclick="openPage('location');toggleMenu();return false;">오시는 길 · 주차</a>
         <a href="#shuttle" onclick="openPage('shuttle');toggleMenu();return false;">예배 차량</a>
@@ -755,6 +771,7 @@ body.no-title .block-text{display:none;}
     <div class="p-body"><div class="p-wrap">
       <div class="reveal">
         <details class="fold tree"><summary><span>소식<small>NEW</small></span></summary><div class="tree-in"><a href="#news" onclick="openPage('news');return false;">공지 · 행사 · 교우소식 · 주보 · QT<i>→</i></a><a href="#weekly" onclick="openPage('weekly');return false;">한 주간 사역<i>→</i></a></div></details>
+        <details class="fold tree"><summary><span>설교 · 영상<small>NEW</small></span></summary><div class="tree-in"><a href="#videos" onclick="openPage('videos');return false;">설교 · 영상 모음<i>→</i></a><a href="#live" onclick="openPage('live');return false;">예배 생방송<i>→</i></a></div></details>
         <details class="fold tree" open><summary><span>교회 소개<small>6</small></span></summary><div class="tree-in"><a href="#vision" onclick="openPage('vision');return false;">비전 · 2027 표어<i>→</i></a><a href="#history" onclick="openPage('history');return false;">걸어온 길<i>→</i></a><a href="#greeting" onclick="openPage('greeting');return false;">담임목사 인사말<i>→</i></a><a href="#founder" onclick="openPage('founder');return false;">설립목사<i>→</i></a><a href="#people" onclick="openPage('people');return false;">섬기는 분들 · 교역자<i>→</i></a><a href="#logo" onclick="openPage('logo');return false;">로고<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>예배<small>3</small></span></summary><div class="tree-in"><a href="#worship" onclick="openPage('worship');return false;">예배 시간 · 장소<i>→</i></a><a href="#worship-about" onclick="openPage('worship-about');return false;">오륜교회의 예배<i>→</i></a><a href="#shuttle" onclick="openPage('shuttle');return false;">예배 차량 시간표<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>오시는 길 · 연락처<small>2</small></span></summary><div class="tree-in"><a href="#location" onclick="openPage('location');return false;">교통 · 주차<i>→</i></a><a href="#phone" onclick="openPage('phone');return false;">전화번호 안내<i>→</i></a></div></details>
@@ -2027,6 +2044,44 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
     </div></div>
   </article>
 
+  <!-- 설교 · 영상 모음 (data/videos.js) -->
+  <article class="page" id="p-videos">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">Messages &amp; Videos</p>
+      <h1 class="p-title">설교 · 영상</h1>
+      <p class="p-lead">종류를 고르고, 제목을 누르면 그 자리에서 재생됩니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="reveal" id="video-tree"></div>
+    </div></div>
+  </article>
+
+  <!-- 생방송 -->
+  <article class="page" id="p-live">
+    <header class="p-hero"><div class="p-wrap">
+      <p class="p-eyebrow">Live</p>
+      <h1 class="p-title">예배 생방송</h1>
+      <p class="p-lead">주일 2부부터 6부까지, 예배 시간에 맞추어 방송됩니다.</p>
+    </div></header>
+    <div class="p-body"><div class="p-wrap">
+      <div class="live-box reveal">
+        <button class="live-btn" onclick="playVideo('live')"><span class="live-dot"></span>생방송 보기</button>
+        <p class="note">방송 시간이 아니면 화면이 나오지 않습니다. 지난 예배는 <a href="#videos" onclick="openPage('videos');return false;">설교 · 영상</a>에서 보실 수 있습니다.</p>
+      </div>
+      <div class="sec-lbl">주일 생방송 시간</div>
+      <div class="tt-wrap reveal"><table class="tt">
+        <thead><tr><th>구분</th><th>시간</th></tr></thead>
+        <tbody>
+          <tr><td>2부</td><td class="tm">08:00</td></tr>
+          <tr><td>3부</td><td class="tm">10:00</td></tr>
+          <tr><td>4부</td><td class="tm">12:00</td></tr>
+          <tr><td>5부</td><td class="tm">14:00</td></tr>
+          <tr><td>6부</td><td class="tm">16:00</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </article>
+
   <!-- 한 주간 사역 -->
   <article class="page" id="p-weekly">
     <header class="p-hero"><div class="p-wrap">
@@ -2455,6 +2510,7 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
 <script src="data/shuttle.js"></script>
 <script src="data/docs.js"></script>
 <script src="data/news.js"></script>
+<script src="data/videos.js"></script>
 <script>
 // ── CURSOR ──
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
@@ -2603,12 +2659,17 @@ function playShow(el,on){
 function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;playShow(el,on);el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
 
 // ── 말씀: 누르면 그 자리에서 재생 ──
-function playSermon(){
-  if(!SM.youtube)return;
+function playVideo(y,title){
+  if(!y)return;
   clearInterval(autoTimer);playVideos(slides[cs],false);
-  document.getElementById('player-frame').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(SM.youtube)+'?autoplay=1&rel=0&playsinline=1" title="'+(SM.title||'설교')+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  const src=y==='live'?'https://www.youtube.com/embed/live_stream?channel=UCCATFGVyXoa361VN6lELz3w&autoplay=1&playsinline=1'
+    :'https://www.youtube-nocookie.com/embed/'+encodeURIComponent(y)+'?autoplay=1&rel=0&playsinline=1';
+  const f=document.createElement('iframe');f.src=src;f.title=title||(y==='live'?'예배 생방송':'영상');
+  f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;
+  const box=document.getElementById('player-frame');box.innerHTML='';box.appendChild(f);
   document.getElementById('player').classList.add('open');playerOpen=true;
 }
+function playSermon(){playVideo(SM.youtube,SM.title||'설교');}
 function closeSermon(){
   if(!playerOpen)return;
   document.getElementById('player').classList.remove('open');
@@ -2676,6 +2737,29 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
       +(p.i||[]).map(u=>'<img src="'+esc(u)+'" alt="" loading="lazy">').join('')
       +(p.f&&p.f.length?'<div class="nw-files">'+p.f.map(f=>'<a href="'+esc(f.u)+'" target="_blank" rel="noopener">'+esc(f.n)+' ↓</a>').join('')+'</div>':'');
   },true);
+})();
+// ── 설교 · 영상: 묶음 > 종류 > 제목 (누르면 재생) ──
+(function videos(){
+  const V=(window.VIDEOS||[]).map(g=>({name:g.name,cats:(g.cats||[]).filter(c=>c.items&&c.items.length)})).filter(g=>g.cats.length),box=document.getElementById('video-tree');
+  if(!box)return;
+  if(!V.length){box.innerHTML='<p class="note">아직 올라온 영상이 없습니다.</p>';return;}
+  const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const dot=d=>d.slice(2).replace(/-/g,'.');
+  box.innerHTML=V.map((g,i)=>'<details class="fold tree" data-g="'+i+'"'+(i===0?' open':'')+'><summary><span>'+esc(g.name)+'<small>'+g.cats.length+'</small></span></summary><div class="tree-sub">'
+    +g.cats.map((c,j)=>'<details class="fold sub" data-c="'+j+'"'+(i===0&&j===0?' open':'')+'><summary><span>'+esc(c.name)+'<small>'+c.items.length+'</small></span></summary><div class="vd-list"></div></details>').join('')+'</div></details>').join('');
+  const fill=d=>{
+    if(!d.open||d.dataset.c===undefined||d.dataset.done)return;
+    d.dataset.done=1;
+    const c=V[+d.closest('[data-g]').dataset.g].cats[+d.dataset.c];
+    d.querySelector('.vd-list').innerHTML=c.items.map((v,k)=>'<button class="vd" data-k="'+k+'"><i class="nw-d">'+dot(v.d)+'</i><b>'+esc(v.t)+'</b>'+(v.s?'<em>'+esc(v.s)+'</em>':'')+'<span>▶</span></button>').join('');
+  };
+  box.addEventListener('toggle',e=>fill(e.target),true);
+  box.querySelectorAll('details[data-c][open]').forEach(fill);
+  box.addEventListener('click',e=>{
+    const b=e.target.closest('.vd');if(!b)return;
+    const d=b.closest('[data-c]'),v=V[+d.closest('[data-g]').dataset.g].cats[+d.dataset.c].items[+b.dataset.k];
+    playVideo(v.y,v.t);
+  });
 })();
 function reserveSubmit(e){
   e.preventDefault();
