@@ -421,13 +421,13 @@ body.on-photo:not(.page-open) .marquee-track p{color:rgba(255,255,255,.82);}
 body.on-photo:not(.page-open) .menu-btn{color:#fff;}
 body.page-open #header{background:rgba(255,255,255,.78);}
 /* ── 올해 표어: 나는 제자입니다 ── */
-.motto-badge{position:absolute;z-index:3;right:var(--pad);top:calc(var(--head) + 34px);display:flex;align-items:center;gap:16px;text-decoration:none;
+.motto-badge{position:absolute;z-index:3;right:var(--pad);top:calc(var(--head) + 34px);display:flex;align-items:center;gap:13px;text-decoration:none;
   padding-left:18px;border-left:1px solid rgba(255,255,255,.38);opacity:0;transform:translateY(12px);transition:opacity .9s .6s,transform .9s .6s var(--ease);}
 .slide.active .motto-badge{opacity:.96;transform:none;}
 .motto-badge:hover{opacity:1;}
-.motto-badge .mb-emblem{height:56px;width:auto;display:block;filter:drop-shadow(0 4px 14px rgba(8,16,34,.45));}
-.motto-badge .mb-text{height:27px;width:auto;display:block;filter:drop-shadow(0 3px 12px rgba(8,16,34,.5));}
-.motto-badge small{display:block;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.78);}
+.motto-badge .mb-emblem{height:44px;width:auto;display:block;filter:drop-shadow(0 4px 14px rgba(8,16,34,.45));}
+.motto-badge .mb-text{height:21px;width:auto;display:block;filter:drop-shadow(0 3px 12px rgba(8,16,34,.5));}
+.motto-badge small{display:block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.78);}
 .motto-block{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:44px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:26px 34px 26px 26px;}
 .motto-block .mo-poster{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 24px 50px -26px rgba(60,40,10,.55);}
 .motto-block .mo-title{height:46px;width:auto;max-width:100%;display:block;}
@@ -436,9 +436,9 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 .motto-block .mo-ref{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--ink-3);}
 @media(max-width:680px){
   .motto-badge{right:22px;bottom:auto;top:calc(var(--head) + 16px);gap:10px;padding-left:12px;}
-  .motto-badge .mb-emblem{height:40px;}
-  .motto-badge .mb-text{height:19px;}
-  .motto-badge small{font-size:8px;margin-top:6px;letter-spacing:.2em;}
+  .motto-badge .mb-emblem{height:32px;}
+  .motto-badge .mb-text{height:15px;}
+  .motto-badge small{font-size:7px;margin-top:5px;letter-spacing:.2em;}
   .motto-block{grid-template-columns:1fr;gap:24px;padding:20px;}
   .motto-block .mo-poster{max-width:260px;}
   .motto-block .mo-title{height:36px;}
@@ -479,11 +479,11 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 #player .pv-off span{font-size:14px;color:rgba(255,255,255,.66);line-height:1.6;word-break:keep-all;}
 #player .x{position:absolute;right:24px;top:20px;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:10px 18px;font-size:12px;letter-spacing:.14em;cursor:pointer;font-family:'JetBrains Mono',monospace;}
 /* 한 주간 사역: 장면 위 목록 */
-.week-list{list-style:none;width:min(380px,34vw);display:grid;gap:2px;}
-.week-list .wk{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.24em;color:rgba(255,255,255,.78);margin-bottom:12px;}
-.week-list li.it{display:flex;gap:16px;align-items:baseline;padding:11px 16px;border-radius:14px;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);}
-.week-list li.it i{font-style:normal;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.1em;color:var(--sky);min-width:46px;}
-.week-list li.it span{font-size:14.5px;font-weight:500;}
+.week-list{list-style:none;width:min(460px,38vw);display:grid;gap:4px;}
+.week-list .wk{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;color:rgba(255,255,255,.78);margin-bottom:12px;}
+.week-list li.it{display:flex;gap:18px;align-items:baseline;padding:14px 20px;border-radius:16px;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);}
+.week-list li.it i{font-style:normal;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;color:var(--sky);min-width:54px;}
+.week-list li.it span{font-size:17px;font-weight:500;}
 /* 한 주간 사역: 상세 */
 .wk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
 .wk-card{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg);}
