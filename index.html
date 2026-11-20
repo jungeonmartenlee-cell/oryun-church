@@ -473,6 +473,9 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 #player.open{display:flex;}
 #player .frame{width:min(1200px,100%);aspect-ratio:16/9;max-height:calc(100vh - 120px);background:#000;border-radius:18px;overflow:hidden;box-shadow:0 50px 120px -30px #000;}
 #player iframe{width:100%;height:100%;border:0;display:block;}
+#player .pv-off{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center;color:#fff;background:#0b101c;}
+#player .pv-off b{font-size:clamp(18px,2.4vw,26px);font-weight:600;}
+#player .pv-off span{font-size:14px;color:rgba(255,255,255,.66);line-height:1.6;word-break:keep-all;}
 #player .x{position:absolute;right:24px;top:20px;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:999px;padding:10px 18px;font-size:12px;letter-spacing:.14em;cursor:pointer;font-family:'JetBrains Mono',monospace;}
 /* 한 주간 사역: 장면 위 목록 */
 .week-list{list-style:none;width:min(380px,34vw);display:grid;gap:2px;}
@@ -596,6 +599,9 @@ body.no-title .block-text{display:none;}
 .vd b{font-weight:500;font-size:15.5px;word-break:keep-all;}
 .vd em{font-style:normal;font-size:13px;color:var(--ink-2);margin-left:auto;text-align:right;white-space:nowrap;}
 .vd span{font-size:11px;color:var(--blue);flex:none;}
+.vd.off b{color:var(--ink-2);}
+.vd.off:hover b{color:var(--ink-2);}
+.vd.off span{color:var(--ink-2);border:1px solid var(--line);border-radius:999px;padding:2px 9px;}
 .vd em+span{margin-left:0;}
 .vd b+span{margin-left:auto;}
 .live-box{padding:8px 0 0;}
@@ -2689,6 +2695,19 @@ function playShow(el,on){
 }
 function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;playShow(el,on);el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
 
+// ── 비공개 영상 확인: 유튜브가 볼 수 없는 영상에는 120×90 빈 미리보기 그림을 준다 ──
+const ytSeen={};
+function ytCheck(y){
+  if(!y||y==='live')return Promise.resolve(true);
+  if(ytSeen[y])return ytSeen[y];
+  const p=new Promise(res=>{
+    const im=new Image();let done=false;const fin=v=>{if(!done){done=true;res(v);}};
+    im.onload=()=>fin(!(im.naturalWidth===120&&im.naturalHeight===90));
+    im.onerror=()=>fin(null);setTimeout(()=>fin(null),6000);
+    im.src='https://i.ytimg.com/vi/'+encodeURIComponent(y)+'/mqdefault.jpg';
+  }).then(v=>{if(v===null){delete ytSeen[y];return true;}return v;});
+  return ytSeen[y]=p;
+}
 // ── 말씀: 누르면 그 자리에서 재생 ──
 function playVideo(y,title){
   if(!y)return;
@@ -2699,6 +2718,7 @@ function playVideo(y,title){
   f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;
   const box=document.getElementById('player-frame');box.innerHTML='';box.appendChild(f);
   document.getElementById('player').classList.add('open');playerOpen=true;
+  ytCheck(y).then(ok=>{if(!ok&&f.parentNode===box)box.innerHTML='<div class="pv-off"><b>비공개 영상입니다</b><span>지금은 볼 수 없는 영상입니다.</span></div>';});
 }
 function playSermon(){playVideo(SM.youtube,SM.title||'설교');}
 function closeSermon(){
@@ -2783,6 +2803,7 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
     d.dataset.done=1;
     const c=V[+d.closest('[data-g]').dataset.g].cats[+d.dataset.c];
     d.querySelector('.vd-list').innerHTML=c.items.map((v,k)=>'<button class="vd" data-k="'+k+'"><i class="nw-d">'+dot(v.d)+'</i><b>'+esc(v.t)+'</b>'+(v.s?'<em>'+esc(v.s)+'</em>':'')+'<span>▶</span></button>').join('');
+    d.querySelectorAll('.vd').forEach((b,k)=>ytCheck(c.items[k].y).then(ok=>{if(!ok){b.classList.add('off');b.querySelector('span').textContent='비공개';}}));
   };
   box.addEventListener('toggle',e=>fill(e.target),true);
   box.querySelectorAll('details[data-c][open]').forEach(fill);
