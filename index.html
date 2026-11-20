@@ -490,14 +490,6 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 .wk-card p{margin-top:10px;font-size:14.5px;line-height:1.85;color:var(--ink-2);word-break:keep-all;}
 .wk-note{margin-top:22px;font-size:12.5px;color:var(--ink-3);}
 /* 장소 예약 */
-.rs-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 18px;border:1px solid var(--line);border-radius:24px;padding:30px;background:var(--bg);}
-.rs-form label{display:grid;gap:8px;font-size:12.5px;color:var(--ink-3);letter-spacing:.04em;}
-.rs-form .wide{grid-column:1/-1;}
-.rs-form input,.rs-form select,.rs-form textarea{font:inherit;font-size:15px;color:var(--ink);padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;width:100%;}
-.rs-form textarea{min-height:92px;resize:vertical;}
-.rs-form button{grid-column:1/-1;justify-self:start;border:0;border-radius:999px;padding:14px 26px;font:inherit;font-size:14px;font-weight:700;color:#fff;background:var(--blue);cursor:pointer;}
-.rs-msg{grid-column:1/-1;font-size:13.5px;line-height:1.8;color:var(--ink-2);display:none;padding:14px 16px;border-radius:12px;background:rgba(31,86,168,.07);}
-.rs-msg.on{display:block;}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:st;}
 .steps li{list-style:none;border:1px solid var(--line);border-radius:18px;padding:22px 20px;font-size:14.5px;line-height:1.7;color:var(--ink-2);word-break:keep-all;counter-increment:st;}
 .steps li::before{content:'STEP ' counter(st);display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:var(--blue);margin-bottom:10px;}
@@ -523,7 +515,7 @@ body.no-title .block-text{display:none;}
   .play-btn .meta b{font-size:19px;max-width:none;}
   .week-list{width:100%;}
   .week-list li.it:nth-child(n+5){display:none;}
-  .wk-grid,.rs-form,.steps{grid-template-columns:1fr;}
+  .wk-grid,.steps{grid-template-columns:1fr;}
   .r-card{width:58vw;border-radius:22px;}
   .his-words{flex-direction:column;gap:0;}
   .his-hint{right:var(--pad);bottom:auto;top:calc(var(--head) + 22px);}
@@ -2137,39 +2129,42 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
     <header class="p-hero"><div class="p-wrap">
       <p class="p-eyebrow">03 — Book a Space</p>
       <h1 class="p-title">장소 예약</h1>
-      <p class="p-lead">모임과 사역에 필요한 공간을 신청하는 곳입니다. 사용할 날짜와 공간을 적어 보내 주시면 담당 부서가 확인한 뒤 알려 드립니다.</p>
+      <p class="p-lead">예약을 받는 곳은 오륜교회 선교관입니다. 신청은 이메일을 통한 예약만 가능합니다.</p>
     </div></header>
     <div class="p-body"><div class="p-wrap">
-      <div class="sec-lbl">신청할 수 있는 공간</div>
-      <div class="grid g3">
-        <div class="card reveal"><span class="card-n">본관</span><h3 class="card-t">비전센터</h3><p class="card-b">강동대로 235. 비전홀, 그레이스홀, 에벤에셀홀과 층별 세미나실이 있습니다.</p></div>
-        <div class="card reveal"><span class="card-n">제2성전</span><h3 class="card-t">다니엘센터 (ODC)</h3><p class="card-b">2024년에 문을 연 공간으로, 집회와 훈련 모임에 씁니다.</p></div>
-        <div class="card reveal"><span class="card-n">교육 공간</span><h3 class="card-t">제1 · 2 · 3교육관, 이노빌딩</h3><p class="card-b">다음 세대 예배실과 소그룹 모임방이 있습니다.</p></div>
+      <div class="sec-lbl">예약절차</div>
+      <ol class="steps reveal">
+        <li>홈페이지 내용확인</li>
+        <li>입실가능여부확인 (전화/이메일)</li>
+        <li>파송(소속)증명서 발송 (이메일)</li>
+        <li>입실예약 확정</li>
+      </ol>
+      <div class="doc reveal">
+        <a class="btn" href="mailto:oryunms@oryun.org">이메일로 예약하기 <span>→</span></a>
+        <p class="note">오륜교회 선교국 <a href="tel:0264134809">02-6413-4809</a> · 이메일 oryunms@oryun.org</p>
       </div>
 
-      <div class="sec-lbl">신청 절차</div>
-      <ol class="steps reveal">
-        <li>날짜와 공간, 인원을 정합니다.</li>
-        <li>아래 양식으로 신청합니다.</li>
-        <li>담당 부서가 겹치는 일정이 없는지 확인합니다.</li>
-        <li>확정 여부를 연락처로 알려 드립니다.</li>
-      </ol>
-
-      <div class="sec-lbl">신청 양식</div>
-      <form class="rs-form reveal" id="rs-form" onsubmit="return reserveSubmit(event)">
-        <label>공간<select name="place" required><option value="">선택</option><option>비전센터</option><option>다니엘센터 (ODC)</option><option>제1교육관</option><option>제2교육관</option><option>제3교육관</option><option>이노빌딩</option></select></label>
-        <label>사용 날짜<input type="date" name="date" required></label>
-        <label>시작 시간<input type="time" name="from" required></label>
-        <label>마치는 시간<input type="time" name="to" required></label>
-        <label>부서 · 모임 이름<input type="text" name="group" required placeholder="예: 청년4부 리더 모임"></label>
-        <label>인원<input type="number" name="people" min="1" required placeholder="예: 20"></label>
-        <label class="wide">사용 목적<textarea name="purpose" placeholder="모임 내용과 필요한 장비를 적어 주세요."></textarea></label>
-        <button type="submit">신청 내용 확인</button>
-        <p class="rs-msg" id="rs-msg"></p>
-      </form>
-      <p class="src">지금은 시안이라 신청 내용이 어디에도 전송·저장되지 않습니다. 접수 방식과 공간 목록, 절차는 담당 부서의 실제 운영에 맞춰 확정합니다.</p>
+      <div class="sec-lbl">선교관 예약 안내</div>
+      <div class="doc reveal">
+        <ul>
+          <li>오륜교회 선교관은 모든 선교사들에게 개방되어 있으며 성도들의 기도와 봉사로 운영되고 있습니다.</li>
+          <li>오륜교회 선교관은 사용희망일자 60일 전부터 신청 가능하시며 1회 최소 30일 부터 최대 60일까지 이용하실 수 있습니다.</li>
+          <li>선교관은 퇴실일 기준 년 1회 사용 가능하십니다.</li>
+          <li>반드시 국내의 공인된 교단 및 교회, 선교단체 (KWMA 기준)에서 파송받은 선교사만 신청 및 이용이 가능합니다. (소속기관, 단체교회 파송 없이 개인으로 사역하는 분은 이용할 수 없습니다.)</li>
+          <li>선교관 사용신청서와 교단(교회) 및 선교단체의 파송증명서를 꼭 첨부 하셔야 예약하실 수 있습니다. (발행일 기준 1년 이내)</li>
+          <li>선교관 이용료는 무료입니다.</li>
+          <li>안전관리의 이유로 보호자 없이 선교사자녀만의 입실은 불가합니다.</li>
+        </ul>
+        <h4>예약 유의사항</h4>
+        <ul>
+          <li>일주일 이내로 이메일 답변이 없으신 경우 및 예약된 날짜에 입실하지 않으신 경우 자동취소됩니다.</li>
+          <li>사전 연락 없이 미입실로 취소된 경우 다음 예약에 불이익을 받을 수 있습니다.</li>
+          <li>예약취소는 이메일(oryunms@oryun.org)로 보내주시기 바랍니다.</li>
+        </ul>
+        <a class="btn ghost" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+      </div>
     </div></div>
-  </article>
+</article>
 
   <!-- 01 비전 -->
   <article class="page" id="p-vision">
@@ -2804,12 +2799,6 @@ document.addEventListener('click',e=>{
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(n).then(done,()=>{});
   else{const x=document.createElement('textarea');x.value=n;document.body.appendChild(x);x.select();try{document.execCommand('copy');done();}catch(_){}x.remove();}
 });
-function reserveSubmit(e){
-  e.preventDefault();
-  const f=new FormData(e.target),m=document.getElementById('rs-msg');
-  m.textContent=f.get('date')+' '+f.get('from')+'~'+f.get('to')+', '+f.get('place')+', '+f.get('group')+' '+f.get('people')+'명. 입력 내용을 확인했습니다. 시안이라 실제로 접수되지는 않았습니다.';
-  m.classList.add('on');return false;
-}
 
 // ── 역사: 사진 띠 ──
 const ribEl=document.getElementById('rib-track'),hisA=document.getElementById('his-a'),hisB=document.getElementById('his-b');
