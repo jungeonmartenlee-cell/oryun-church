@@ -17,6 +17,13 @@ op = urllib.request.build_opener(); op.addheaders = [('User-Agent', 'Mozilla/5.0
 get = lambda u: op.open(u if u.startswith('http') else B + u, timeout=90).read()
 txt = lambda x: re.sub(r'[ \t\xa0]+', ' ', html.unescape(re.sub(r'<[^>]+>', '', x))).strip()
 safe = lambda x: re.sub(r'[\\/:*?"<>|]', ' ', x).strip()
+import unicodedata
+def short(name, limit=170):
+    """나스는 파일 이름이 255바이트를 넘으면 받지 못합니다. 한글은 풀어 쓰면 글자당 9바이트까지 되므로 넉넉히 자릅니다."""
+    name = unicodedata.normalize('NFC', name)
+    while len(unicodedata.normalize('NFD', name).encode('utf-8')) > limit:
+        name = name[:-1]
+    return name.strip()
 lines = lambda x: '\n'.join(l for l in (txt(p) for p in re.sub(r'<(br|/p|/div|/li|/dd|/dt)[^>]*>', '\n', x).split('\n')) if l)
 today = datetime.date.today()
 
@@ -63,7 +70,7 @@ def family():
         if len(got) >= 30: break
     d = os.path.join(SRC, '교우소식'); os.makedirs(d, exist_ok=True)
     for bid, part, title, date, t in got[:30]:
-        name = ('%s %s' % (date, safe(('[%s] ' % part if part else '') + title)))[:90].strip()
+        name = short('%s %s' % (date, safe(('[%s] ' % part if part else '') + title)))
         open(os.path.join(d, name + '.txt'), 'w', encoding='utf-8').write(t + '\n')
     print('교우소식: %d건' % len(got[:30])); return len(got[:30])
 
