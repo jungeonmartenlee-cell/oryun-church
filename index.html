@@ -108,6 +108,7 @@ body.on-photo:not(.page-open) .menu-btn{background:rgba(255,255,255,.16);border-
 .title-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;}
 .first-cta{display:none;margin-left:10px;background:rgba(255,255,255,.14) !important;color:#fff !important;border:1.5px solid rgba(255,255,255,.7);box-shadow:none !important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);cursor:pointer;}
 body.first-slide .first-cta{display:inline-flex;}
+body.first-slide .week-cta{display:none;}body.week-slide .week-cta{display:inline-flex;}
 .first-cta:hover,.first-cta.open{background:#fff !important;color:var(--blue-deep) !important;}
 .first-cta svg{transition:transform .3s;}.first-cta.open svg{transform:rotate(180deg);}
 #first-pop{position:fixed;z-index:60;min-width:270px;background:#fff;border-radius:18px;padding:8px;box-shadow:0 30px 70px -24px rgba(8,16,34,.55);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .35s var(--ease),visibility 0s .25s;}
@@ -658,6 +659,69 @@ body.no-title .block-text{display:none;}
 .pc:not(.plain)::after{content:'';display:block;width:18px;height:2px;border-radius:2px;background:var(--line);margin:10px auto 0;transition:background .3s,width .3s;}
 .pc:hover::after,.pc.on::after{background:var(--blue);width:30px;}
 @media(max-width:680px){.pcards{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;}.pc{padding:12px 8px;border-radius:14px;}.pc-ph,.pc-av{width:72px;height:80px;}.pc b{font-size:14px;}}
+/* 담임목사 · 설립목사 */
+.page.pz{background:#070b1c;color:#fff;}
+.pz-hero{position:relative;overflow:hidden;padding:70px var(--pad) 0;min-height:min(calc(100vh - var(--head) - 56px),820px);display:flex;align-items:flex-end;}
+.pz-glow{position:absolute;inset:-20%;background:radial-gradient(42% 46% at 72% 38%,rgba(126,58,242,.5),transparent 70%),radial-gradient(40% 44% at 22% 78%,rgba(31,86,168,.6),transparent 70%),radial-gradient(30% 30% at 88% 88%,rgba(236,120,60,.22),transparent 70%);filter:blur(30px);animation:pzGlow 16s ease-in-out infinite alternate;}
+@keyframes pzGlow{to{transform:translate3d(-4%,3%,0) scale(1.08);}}
+.pz-wrap{position:relative;width:100%;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,460px);gap:56px;align-items:end;}
+.pz-txt{padding-bottom:64px;}
+.pz-eye{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.24em;color:rgba(255,255,255,.6);}
+.pz-role{margin-top:26px;font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,7.4vw,112px);line-height:.92;letter-spacing:.01em;color:#fff;}
+.pz-name{margin-top:18px;font-size:clamp(28px,3vw,44px);font-weight:700;letter-spacing:-.03em;}
+.pz-name span{font-size:.55em;font-weight:500;color:rgba(255,255,255,.7);margin-left:8px;}
+.pz-quote{margin-top:22px;font-size:clamp(17px,1.5vw,21px);line-height:1.7;color:rgba(255,255,255,.86);word-break:keep-all;}
+.pz-tabs{position:relative;display:inline-flex;gap:4px;margin-top:40px;padding:5px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
+.pz-tabs button{position:relative;z-index:1;border:0;background:none;color:rgba(255,255,255,.75);font:inherit;font-size:15px;font-weight:600;padding:11px 22px;border-radius:999px;cursor:pointer;transition:color .3s;}
+.pz-tabs button.on{color:#0b1433;}
+.pz-ink{position:absolute;z-index:0;top:5px;bottom:5px;left:5px;width:60px;border-radius:999px;background:#fff;transition:transform .5s var(--ease),width .5s var(--ease);}
+.pz-photo{margin:0;border-radius:28px 28px 0 0;overflow:hidden;aspect-ratio:4/5;box-shadow:0 60px 120px -40px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.2);transform:translate3d(0,var(--py,0),0);}
+.pz-photo img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.04);transition:transform 1.4s var(--ease);}
+.page.pz.show .pz-photo img,.pz-photo:hover img{transform:scale(1);}
+.pz-body{position:relative;background:linear-gradient(#070b1c,#0b1230 30%,#070b1c);padding:90px var(--pad) 120px;}
+.pz-wrap2{max-width:980px;margin:0 auto;}
+.pz-sec{padding:26px 0 70px;scroll-margin-top:20px;}
+.pz-lbl{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.24em;color:#8fb4ff;margin-bottom:26px;display:flex;align-items:center;gap:14px;}
+.pz-lbl::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.14);}
+.pz-greet p{font-size:clamp(17px,1.45vw,20px);line-height:2;color:rgba(255,255,255,.84);word-break:keep-all;margin-bottom:22px;}
+.pz-greet p.first{font-size:clamp(24px,2.7vw,38px);line-height:1.5;font-weight:700;letter-spacing:-.03em;color:#fff;margin-bottom:34px;}
+.pz-greet .pz-sign{margin-top:40px;font-size:15px;letter-spacing:.06em;color:rgba(255,255,255,.6);}
+.pz-fold{border:1px solid rgba(255,255,255,.14);border-radius:20px;background:rgba(255,255,255,.05);margin-bottom:12px;overflow:hidden;transition:background .3s,border-color .3s;}
+.pz-fold[open],.pz-fold:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);}
+.pz-fold summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:22px 26px;font-size:19px;font-weight:700;letter-spacing:-.02em;}
+.pz-fold summary::-webkit-details-marker{display:none;}
+.pz-fold summary em{font-style:normal;font-family:'Bebas Neue',sans-serif;font-size:20px;color:#8fb4ff;display:flex;align-items:center;gap:12px;}
+.pz-fold summary em::after{content:'+';font-family:inherit;font-size:26px;line-height:1;color:#fff;transition:transform .4s var(--ease);}
+.pz-fold[open] summary em::after{transform:rotate(45deg);}
+.pz-fold ul{list-style:none;padding:0 26px 24px;}
+.pz-fold li{padding:12px 0;border-top:1px solid rgba(255,255,255,.1);font-size:16px;line-height:1.7;color:rgba(255,255,255,.85);word-break:keep-all;}
+.pz-wide{margin:34px 0 0;border-radius:24px;overflow:hidden;max-width:420px;box-shadow:0 40px 90px -40px rgba(0,0,0,.9);}
+.pz-wide img{display:block;width:100%;height:auto;}
+.pz-hint{font-size:13.5px;color:rgba(255,255,255,.55);margin:-10px 0 18px;}
+.pz-shelf{list-style:none;display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px 6px 34px;margin:0 -6px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.3) transparent;cursor:grab;perspective:1200px;}
+.pz-shelf.drag{cursor:grabbing;scroll-snap-type:none;}
+.bk{flex:0 0 172px;scroll-snap-align:start;outline:none;}
+.bk-cv{position:relative;display:block;border-radius:6px 12px 12px 6px;overflow:hidden;aspect-ratio:2/3;background:#1a2242;box-shadow:0 30px 50px -24px rgba(0,0,0,.9),inset 4px 0 0 rgba(255,255,255,.14);transform-origin:left center;transition:transform .6s var(--ease),box-shadow .6s var(--ease);}
+.bk-cv img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;}
+.bk-cv i{position:absolute;top:10px;right:10px;font-style:normal;font-size:11px;font-weight:700;background:#ff7a45;color:#fff;padding:4px 9px;border-radius:999px;}
+.bk:hover .bk-cv,.bk:focus-visible .bk-cv{transform:rotateY(-16deg) translateY(-10px);box-shadow:26px 40px 60px -26px rgba(0,0,0,.95),inset 4px 0 0 rgba(255,255,255,.2);}
+.bk b{display:block;margin-top:16px;font-size:15.5px;font-weight:700;line-height:1.45;letter-spacing:-.02em;word-break:keep-all;}
+.bk small{display:block;margin-top:6px;font-size:12.5px;color:rgba(255,255,255,.6);}
+.pz-foot{display:flex;flex-wrap:wrap;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);}
+.pz-btn{display:inline-flex;align-items:center;gap:12px;padding:15px 26px;border-radius:999px;background:#fff;color:#0b1433;font-size:15px;font-weight:700;text-decoration:none;transition:transform .4s var(--ease),background .25s;}
+.pz-btn.ghost{background:none;color:#fff;border:1.5px solid rgba(255,255,255,.5);}
+.pz-btn:hover{transform:translateX(6px);}
+@media(max-width:820px){
+  .pz-hero{padding-top:34px;min-height:0;}
+  .pz-wrap{grid-template-columns:1fr;gap:30px;}
+  .pz-txt{padding-bottom:0;}
+  .pz-photo{border-radius:22px 22px 0 0;aspect-ratio:1/1;}
+  .pz-tabs button{padding:10px 16px;font-size:14px;}
+  .pz-body{padding:60px var(--pad) 90px;}
+  .bk{flex-basis:138px;}
+  .pz-fold summary{padding:18px 20px;font-size:17px;}.pz-fold ul{padding:0 20px 18px;}
+}
+
 .st-ph{width:40px;height:44px;object-fit:cover;object-position:top;border-radius:9px;vertical-align:middle;margin-right:12px;background:var(--line);}
 @media(max-width:680px){.ph-grid{grid-template-columns:repeat(2,1fr);gap:8px;}.ph-grid.wide,.ph-grid.two,.ph-grid.plan{grid-template-columns:1fr;}.st-ph{width:34px;height:38px;margin-right:9px;}}
 /* 계좌 표: 누르면 복사 */
@@ -695,6 +759,8 @@ body.no-title .block-text{display:none;}
   <a href="#" id="header-link">
     <div class="block-text" id="block-text"></div>
     <span class="title-cta"><span id="cta-text">자세히</span>
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span><span class="title-cta first-cta week-cta" id="week-cta" role="button" tabindex="0">이번 주 주보
       <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </span><span class="title-cta first-cta" id="first-cta" role="button" tabindex="0" aria-haspopup="true">처음 오셨나요?
       <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
@@ -806,7 +872,7 @@ body.no-title .block-text{display:none;}
     </div>
     <div>
       <h3>교회 안내</h3>
-      <div class="menu-links">
+      <div class="menu-links"><a href="#news" onclick="openBulletin();toggleMenu();return false;" style="background:var(--blue);color:#fff;border-color:var(--blue)">이번 주 주보</a>
         <a href="#guide" onclick="openPage('guide');toggleMenu();return false;"><b>전체 안내 보기</b></a>
         <a href="#news" onclick="openPage('news');toggleMenu();return false;"><b>소식</b></a>
         <a href="#videos" onclick="openPage('videos');toggleMenu();return false;"><b>설교 · 영상</b></a>
@@ -868,61 +934,29 @@ body.no-title .block-text{display:none;}
     </div></div>
   </article>
 
-  <article class="page" id="p-founder">
-    <header class="p-hero"><div class="p-wrap">
-      <p class="p-eyebrow">교회 안내 — 교회 소개</p>
-      <h1 class="p-title">설립목사 김은호</h1>
-    </div></header>
-    <div class="p-body"><div class="p-wrap">
-      <div class="doc reveal">
-
-<p>예수 그리스도의 복음 앞에 역전의 은혜를 경험하는 인생이 있습니다.</p>
-<p>믿음의 행함으로 이 땅에 하나님 나라를 세워가는 인생<br>소망을 기대하며 고귀한 가치에 도전하는 인생<br>사랑의 나눔 있는 곳에서 세상의 소금과 빛이 되는 인생</p>
-<p>말씀의 능력으로 회복의 은혜를 경험하는 예배<br>기도의 연합이 기적을 상식으로 바꾸는 예배<br>찬양의 영감으로 하나님께 온전히 영광 올리는 예배</p>
-<p>행복의 시작 예수 그리스도를 만나며<br>하나님의 꿈을 꾸는 오륜교회로 오십시오.<br>당신이 바로 그 간증의 주인공입니다!</p>
-<p class="sign">설립목사 김은호</p>
-<h5>경력 및 활동</h5>
-<ul>
-<li>국민일보 이사</li>
-<li>다니엘기도회 운영위원장</li>
-<li>GOOD TV 공동대표이사</li>
-<li>오륜교회 설립목사</li>
-<li>DNA ministry 대표</li>
-</ul>
-<h5>학력</h5>
-<ul>
-<li>개혁신학연구원 신학부(M.Div) 졸업</li>
-<li>연세대 연합신학대학원(목회자지도자과정) 수료</li>
-<li>총신대학교 신학대학원(M.Div.Equiv) 졸업</li>
-</ul>
-<h5>가족사항</h5>
-<ul>
-<li>정송이 사모</li>
-<li>자녀 김바울, 김은지</li>
-<li>사위 이의환</li>
-<li>외손녀 이수아</li>
-</ul>
-<h4>김은호 목사 설교방송</h4>
-<p>TV</p>
-<ul>
-<li>GOOD TV 「주일예배」 (본방)주일 오전 11:00 </li>
-<li>GOOD TV 「주일예배」 (재방)수요일 새벽 1:00 </li>
-<li>CTS 「생명의 말씀」 주일 오후 1:00~1:30 </li>
-<li>CBS 「TV강단」 주일 저녁 6:00~6:30 </li>
-</ul>
-<p>인터넷</p>
-<ul>
-<li>C3TV | www.c3tv.com</li>
-<li>CTS | www.cts.tv </li>
-<li>CBS | www.cbs.co.kr </li>
-<li>극동방송 | www.febc.net</li>
-</ul>
-<p>라디오</p>
-<ul>
-<li>극동방송 FM 106.9 화요일 오후 4:00~4:10 </li>
-</ul>
+  <article class="page pz" id="p-founder">
+    <header class="pz-hero">
+      <div class="pz-glow" aria-hidden="true"></div>
+      <div class="pz-wrap">
+        <div class="pz-txt">
+          <p class="pz-eye">교회 안내 — 교회 소개</p>
+          <p class="pz-role">Founding Pastor</p>
+          <h1 class="pz-name">김은호 <span>설립목사</span></h1>
+          <p class="pz-quote">예수 그리스도의 복음 앞에<br>역전의 은혜를 경험하는 인생</p>
+          <nav class="pz-tabs" aria-label="김은호 설립목사 안내"><button type="button" data-to="g" class="on">인사말</button><button type="button" data-to="a">소개</button><button type="button" data-to="b">저서 7</button><i class="pz-ink" aria-hidden="true"></i></nav>
+        </div>
+        <figure class="pz-photo"><img src="assets/pastor/kim-portrait.jpg" alt="김은호 설립목사" style="object-position:50% 12%"></figure>
       </div>
-      <a class="btn ghost" style="margin-left:0" href="#guide" onclick="openPage('guide');return false;">← 교회 안내</a>
+    </header>
+    <div class="pz-body"><div class="pz-wrap2">
+      <section class="pz-sec" data-sec="g"><p class="pz-lbl">Greeting · 인사말</p>
+        <div class="pz-greet reveal"><p class="first">예수 그리스도의 복음 앞에 역전의 은혜를 경험하는 인생이 있습니다.</p><p>믿음의 행함으로 이 땅에 하나님 나라를 세워가는 인생<br>소망을 기대하며 고귀한 가치에 도전하는 인생<br>사랑의 나눔 있는 곳에서 세상의 소금과 빛이 되는 인생</p><p>말씀의 능력으로 회복의 은혜를 경험하는 예배<br>기도의 연합이 기적을 상식으로 바꾸는 예배<br>찬양의 영감으로 하나님께 온전히 영광 올리는 예배</p><p>행복의 시작 예수 그리스도를 만나며<br>하나님의 꿈을 꾸는 오륜교회로 오십시오.<br>당신이 바로 그 간증의 주인공입니다!</p><p class="pz-sign">설립목사 김은호</p></div>
+      </section>
+      <section class="pz-sec" data-sec="a"><p class="pz-lbl">About · 소개</p>
+        <div class="pz-acc reveal"><details class="pz-fold" open><summary><span>경력 및 활동</span><em>5</em></summary><ul><li>국민일보 이사</li><li>다니엘기도회 운영위원장</li><li>GOOD TV 공동대표이사</li><li>오륜교회 설립목사</li><li>DNA ministry 대표</li></ul></details><details class="pz-fold"><summary><span>학력</span><em>3</em></summary><ul><li>개혁신학연구원 신학부(M.Div) 졸업</li><li>연세대 연합신학대학원(목회자지도자과정) 수료</li><li>총신대학교 신학대학원(M.Div.Equiv) 졸업</li></ul></details><details class="pz-fold"><summary><span>설교 방송 · TV</span><em>4</em></summary><ul><li>GOOD TV 「주일예배」 (본방) 주일 오전 11:00</li><li>GOOD TV 「주일예배」 (재방) 수요일 새벽 1:00</li><li>CTS 「생명의 말씀」 주일 오후 1:00~1:30</li><li>CBS 「TV강단」 주일 저녁 6:00~6:30</li></ul></details><details class="pz-fold"><summary><span>설교 방송 · 인터넷 · 라디오</span><em>5</em></summary><ul><li>C3TV | www.c3tv.com</li><li>CTS | www.cts.tv</li><li>CBS | www.cbs.co.kr</li><li>극동방송 | www.febc.net</li><li>극동방송 FM 106.9 화요일 오후 4:00~4:10</li></ul></details></div><figure class="pz-wide reveal"><img src="assets/pastor/kim-casual.jpg" alt="" loading="lazy"></figure>
+      </section>
+      <section class="pz-sec" data-sec="b"><p class="pz-lbl">Books · 저서</p><p class="pz-hint">옆으로 넘겨 보세요 <span>→</span></p><ul class="pz-shelf"><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-6d3e3dd2.jpg" alt="" loading="lazy"><i>신간</i></span><b>다니엘 프로젝트 · 개정확장판</b><small>꿈미 · 2026 · 272쪽</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-aff3f8e5.jpg" alt="" loading="lazy"></span><b>다시! Again, Again</b><small>꿈미 · 2025 · 312쪽</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-bad5fa4c.jpg" alt="" loading="lazy"></span><b>다시 무릎으로 승부하라</b><small>꿈미 · 2025 · 336쪽</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-411f1330.jpg" alt="" loading="lazy"></span><b>그래도 나는 하나님의 사람</b><small>꿈미 · 2024 · 340쪽</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-0888d1c8.jpg" alt="" loading="lazy"></span><b>당신이 기도했으면 좋겠습니다</b><small>꿈미 · 2023 · 272쪽</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-7bba5519.jpg" alt="" loading="lazy"></span><b>오늘 하나님을 만나다</b><small>꿈미 · 2022 · 260쪽</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bk-05dcebed.jpg" alt="" loading="lazy"></span><b>인생의 밤을 만났을 때</b><small>꿈미 · 2021 · 272쪽</small></li></ul></section>
+      <div class="pz-foot"><a class="pz-btn" href="#greeting" onclick="openPage('greeting');return false;">담임목사 주경훈 <span>→</span></a><a class="pz-btn ghost" href="#people" onclick="openPage('people');return false;">섬기는 분들 <span>→</span></a></div>
     </div></div>
   </article>
 
@@ -2265,29 +2299,29 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
   </article>
 
   <!-- 02 인사말 -->
-  <article class="page" id="p-greeting">
-    <header class="p-hero"><div class="p-wrap">
-      <p class="p-eyebrow">03 — Greeting</p>
-      <h1 class="p-title">주님과 동행할 때<br>길이 열립니다</h1>
-      <p class="p-lead">수풀이 우거져 길이 보이지 않는 곳도, 한 번도 걸어 보지 않은 인생의 길도 예수님과 함께 걸으면 길이 됩니다. 주경훈 담임목사가 오륜교회를 찾는 모든 분께 전하는 초대입니다.</p>
-    </div></header>
-    <div class="p-body"><div class="p-wrap">
-      <div class="greet reveal">
-        <p class="first">험난한 수풀이 우거진 곳도 예수님과 함께하면 길이 됩니다.</p>
-        <p>한 번도 걷지 않은 우리의 인생도 주님과 동행할 때 길이 열립니다.</p>
-        <p>인생의 해답은 오직 예수님께 있습니다. 행복의 시작 예수 그리스도를 만나십시오. 복음의 능력을 경험할 때 하나님 나라를 누릴 수 있습니다.</p>
-        <p>인간의 대안이 아닌 하나님의 원안으로 돌아가는 교회. 말씀과 기도로 회복과 성장이 있는 교회. 꿈과 비전을 가지고 열방을 향해 나아가는 교회. 바로, 오륜교회입니다.</p>
-        <p>오륜공동체에서 하나님의 풍성한 은혜를 누리십시오. 하나님의 꿈을 꾸고, 하나님 나라를 세워가는 간증의 주인공 되시길 바랍니다.</p>
-        <p class="sign">담임목사 주경훈</p>
+  <article class="page pz" id="p-greeting">
+    <header class="pz-hero">
+      <div class="pz-glow" aria-hidden="true"></div>
+      <div class="pz-wrap">
+        <div class="pz-txt">
+          <p class="pz-eye">교회 안내 — 교회 소개</p>
+          <p class="pz-role">Senior Pastor</p>
+          <h1 class="pz-name">주경훈 <span>담임목사</span></h1>
+          <p class="pz-quote">주님과 동행할 때<br>길이 열립니다</p>
+          <nav class="pz-tabs" aria-label="주경훈 담임목사 안내"><button type="button" data-to="g" class="on">인사말</button><button type="button" data-to="a">소개</button><button type="button" data-to="b">저서 8</button><i class="pz-ink" aria-hidden="true"></i></nav>
+        </div>
+        <figure class="pz-photo"><img src="assets/pastor/joo-stage.jpg" alt="주경훈 담임목사" style="object-position:32% 30%"></figure>
       </div>
-
-      <div class="sec-lbl">오륜교회가 되고 싶은 교회</div>
-      <div class="grid g3">
-        <div class="card reveal"><span class="card-n">01</span><h3 class="card-t">하나님의 원안으로</h3><p class="card-b">사람이 만든 대안이 아니라 하나님이 처음 뜻하신 자리로 돌아가는 교회.</p></div>
-        <div class="card reveal"><span class="card-n">02</span><h3 class="card-t">회복과 성장</h3><p class="card-b">말씀과 기도로 무너진 삶이 회복되고 믿음이 자라는 교회.</p></div>
-        <div class="card reveal"><span class="card-n">03</span><h3 class="card-t">열방을 향하여</h3><p class="card-b">꿈과 비전을 품고 온 세상을 향해 나아가는 교회.</p></div>
-      </div>
-      <a class="btn" href="#" onclick="openPage('people');return false;">섬기는 분들 보기</a>
+    </header>
+    <div class="pz-body"><div class="pz-wrap2">
+      <section class="pz-sec" data-sec="g"><p class="pz-lbl">Greeting · 인사말</p>
+        <div class="pz-greet reveal"><p class="first">험난한 수풀이 우거진 곳도 예수님과 함께하면 길이 됩니다.</p><p>한 번도 걷지 않은 우리의 인생도 주님과 동행할 때 길이 열립니다.</p><p>인생의 해답은 오직 예수님께 있습니다. 행복의 시작 예수 그리스도를 만나십시오. 복음의 능력을 경험할 때 하나님 나라를 누릴 수 있습니다.</p><p>인간의 대안이 아닌 하나님의 원안으로 돌아가는 교회. 말씀과 기도로 회복과 성장이 있는 교회. 꿈과 비전을 가지고 열방을 향해 나아가는 교회. 바로, 오륜교회입니다.</p><p>오륜공동체에서 하나님의 풍성한 은혜를 누리십시오. 하나님의 꿈을 꾸고, 하나님 나라를 세워가는 간증의 주인공 되시길 바랍니다.</p><p class="pz-sign">담임목사 주경훈</p></div>
+      </section>
+      <section class="pz-sec" data-sec="a"><p class="pz-lbl">About · 소개</p>
+        <div class="pz-acc reveal"><details class="pz-fold" open><summary><span>걸어온 길</span><em>3</em></summary><ul><li>2023년 12월 오륜교회 담임목사 취임</li><li>가정과 교회를 잇는 다음 세대 교육 사역</li><li>「원 포인트 통합교육」 등 저술</li></ul></details><details class="pz-fold"><summary><span>오륜교회가 되고 싶은 교회</span><em>3</em></summary><ul><li>하나님의 원안으로 — 사람이 만든 대안이 아니라 하나님이 처음 뜻하신 자리로 돌아가는 교회</li><li>회복과 성장 — 말씀과 기도로 무너진 삶이 회복되고 믿음이 자라는 교회</li><li>열방을 향하여 — 꿈과 비전을 품고 온 세상을 향해 나아가는 교회</li></ul></details></div><figure class="pz-wide reveal"><img src="assets/pastor/joo-portrait.jpg" alt="" loading="lazy"></figure>
+      </section>
+      <section class="pz-sec" data-sec="b"><p class="pz-lbl">Books · 저서</p><p class="pz-hint">옆으로 넘겨 보세요 <span>→</span></p><ul class="pz-shelf"><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-c2f24bd6.jpg" alt="" loading="lazy"><i>신간</i></span><b>다시쓰는 원포인트 통합교육</b><small>2024</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-50ff4a49.jpg" alt="" loading="lazy"></span><b>한국교회 트랜드 2024</b><small>규장 · 2023</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-caf9a1c4.jpg" alt="" loading="lazy"></span><b>원 포인트 통합교육</b><small>두란노 · 2023</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-a1f99c9d.jpg" alt="" loading="lazy"></span><b>온 가족이 함께 떠나는 바이블 원정대 3</b><small>꿈미 · 2023</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-99b9bd39.jpg" alt="" loading="lazy"></span><b>온 가족이 함께 떠나는 바이블 원정대 2</b><small>꿈미 · 2023</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-272a6713.jpg" alt="" loading="lazy"></span><b>온 가족이 함께 떠나는 바이블 원정대 1</b><small>꿈미 · 2023</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-541ab13d.jpg" alt="" loading="lazy"></span><b>도전과 해법</b><small>꿈미 · 2023</small></li><li class="bk" tabindex="0"><span class="bk-cv"><img src="assets/pastor/bj-69f0ff3a.jpg" alt="" loading="lazy"></span><b>주 가정예배 3</b><small>꿈미 · 2023 · 52쪽</small></li></ul></section>
+      <div class="pz-foot"><a class="pz-btn" href="#founder" onclick="openPage('founder');return false;">설립목사 김은호 <span>→</span></a><a class="pz-btn ghost" href="#people" onclick="openPage('people');return false;">섬기는 분들 <span>→</span></a></div>
     </div></div>
   </article>
 
@@ -2334,14 +2368,14 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
     <div class="p-body"><div class="p-wrap">
       <div class="sec-lbl">목회자</div>
       <div class="grid g2">
-        <div class="card reveal"><div class="person">
-          <div class="avatar" aria-hidden="true">주</div>
+        <div class="card reveal" style="cursor:pointer" onclick="openPage('greeting')"><div class="person">
+          <img class="avatar" src="assets/pastor/joo-portrait.jpg" alt="" style="object-fit:cover;object-position:50% 14%">
           <div><span class="role">Senior Pastor · 담임목사</span><h3 class="card-t" style="margin-top:10px">주경훈 목사</h3>
           <p class="card-b">2023년 12월 담임목사로 취임했습니다. 가정과 교회를 잇는 다음 세대 교육에 오래 힘써 왔으며 「원 포인트 통합교육」 등을 썼습니다.</p>
           <div class="chips"><span class="chip">다음 세대</span><span class="chip">가정예배</span><span class="chip">말씀과 기도</span></div></div>
         </div></div>
-        <div class="card reveal"><div class="person">
-          <div class="avatar" aria-hidden="true" style="background:linear-gradient(135deg,#ffd9a0,#e08a4a)">김</div>
+        <div class="card reveal" style="cursor:pointer" onclick="openPage('founder')"><div class="person">
+          <img class="avatar" src="assets/pastor/kim-portrait.jpg" alt="" style="object-fit:cover;object-position:50% 14%">
           <div><span class="role">Founding Pastor · 설립목사</span><h3 class="card-t" style="margin-top:10px">김은호 목사</h3>
           <p class="card-b">오륜교회를 세우고 30여 년 목회했으며 2023년 설립목사로 추대되었습니다. 다니엘기도회 운영위원장, DNA Ministry 대표로 섬기고 있습니다.</p>
           <div class="chips"><span class="chip">다니엘기도회</span><span class="chip">DNA Ministry</span></div></div>
@@ -2579,6 +2613,25 @@ const SLIDE_INTERVAL=15000;   // 장면(슬라이드)이 넘어가는 간격
 const PHOTO_INTERVAL=3000;   // 넘어가는 사진 한 장을 보여 주는 시간
 
 document.addEventListener('click',e=>{const c=e.target.closest('.pc');if(!c||e.target.closest('a'))return;const on=c.classList.contains('on');document.querySelectorAll('.pc.on').forEach(o=>o.classList.remove('on'));if(!on&&!c.classList.contains('plain'))c.classList.add('on');});
+// 담임목사 · 설립목사 페이지: 탭, 스크롤 따라 탭 바꾸기, 책장 끌기
+(function(){
+  document.querySelectorAll('.page.pz').forEach(pg=>{
+    const tabs=[...pg.querySelectorAll('.pz-tabs button')],ink=pg.querySelector('.pz-ink'),secs=[...pg.querySelectorAll('.pz-sec')],ph=pg.querySelector('.pz-photo');
+    const set=k=>{tabs.forEach(b=>b.classList.toggle('on',b.dataset.to===k));const b=tabs.find(x=>x.dataset.to===k);if(b&&ink){ink.style.width=b.offsetWidth+'px';ink.style.transform='translateX('+(b.offsetLeft-5)+'px)';}};
+    tabs.forEach(b=>b.onclick=()=>{const s=secs.find(x=>x.dataset.sec===b.dataset.to);if(s)s.scrollIntoView({behavior:'smooth',block:'start'});set(b.dataset.to);});
+    const sc=document.getElementById('pages');
+    sc.addEventListener('scroll',()=>{if(!pg.classList.contains('show'))return;if(ph)ph.style.setProperty('--py',Math.min(60,sc.scrollTop*.12)+'px');let cur=secs[0];secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.45)cur=s;});if(cur)set(cur.dataset.sec);},{passive:true});
+    new MutationObserver(()=>{if(pg.classList.contains('show'))requestAnimationFrame(()=>set((tabs.find(b=>b.classList.contains('on'))||tabs[0]).dataset.to));}).observe(pg,{attributes:true,attributeFilter:['class']});
+    addEventListener('resize',()=>set((tabs.find(b=>b.classList.contains('on'))||tabs[0]).dataset.to));
+  });
+  document.querySelectorAll('.pz-shelf').forEach(sh=>{let down=false,x=0,sl=0,moved=0;
+    sh.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')return;down=true;moved=0;x=e.clientX;sl=sh.scrollLeft;});
+    addEventListener('pointermove',e=>{if(!down)return;const d=e.clientX-x;moved=Math.abs(d);if(moved>4)sh.classList.add('drag');sh.scrollLeft=sl-d;});
+    addEventListener('pointerup',()=>{down=false;sh.classList.remove('drag');});
+  });
+})();
+function openBulletin(){openPage('news');setTimeout(()=>{const p=document.getElementById('p-news');const c=[...p.querySelectorAll('details')].find(d=>/^주보/.test(d.querySelector('summary').textContent.trim()));if(!c)return;c.open=true;const it=c.querySelector('details');if(it)it.open=true;c.scrollIntoView({behavior:'smooth',block:'start'});},450);}
+document.addEventListener('click',e=>{if(e.target.closest('#week-cta')){e.preventDefault();e.stopPropagation();openBulletin();}},true);
 function closeFirst(){const p=document.getElementById('first-pop'),b=document.getElementById('first-cta');if(p)p.classList.remove('open');if(b)b.classList.remove('open');}
 document.addEventListener('click',e=>{
   const b=e.target.closest('#first-cta'),p=document.getElementById('first-pop');
@@ -2598,7 +2651,7 @@ function renderTitle(idx){
     `<div class="block-text__line"><span class="word"><span class="mask-text"><span style="animation-delay:${i*80}ms">${w}</span></span></span></div>`).join('');
   document.body.classList.toggle('no-title',!t.lines.length);
   document.getElementById('cta-text').textContent=t.cta;
-  document.body.classList.toggle('first-slide',idx===0);closeFirst();
+  document.body.classList.toggle('first-slide',idx===0);document.body.classList.toggle('week-slide',idx===1);closeFirst();
   const lnk=document.getElementById('header-link');
   lnk.href=t.page?'#'+t.page:'#';
   lnk.onclick=e=>{e.preventDefault();t.action==='sermon'?playSermon():openPage(t.page);};
