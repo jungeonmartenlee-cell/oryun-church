@@ -71,6 +71,27 @@ a{color:inherit;}
 .menu-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff !important;transform:translateY(-1px);}
 body.on-photo:not(.page-open) .menu-btn{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.6);}
 .menu-btn:hover{color:var(--blue);}
+.live-pill{display:flex;align-items:center;gap:9px;margin:0 10px 0 auto;padding:9px 16px;border-radius:999px;font:inherit;font-size:12.5px;font-weight:700;letter-spacing:.02em;white-space:nowrap;cursor:pointer;flex:0 0 auto;
+  border:1.5px solid var(--line);background:rgba(255,255,255,.6);color:var(--ink-3);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background .3s,color .3s,border-color .3s,transform .3s,box-shadow .3s;}
+.live-pill:hover{transform:translateY(-1px);color:var(--ink);}
+.live-pill b{font-weight:700;}
+.live-pill small{font-size:11.5px;font-weight:500;opacity:.8;}
+.live-pill small:empty{display:none;}
+.lp-dot{width:8px;height:8px;border-radius:50%;background:#aab2c0;flex:0 0 auto;}
+body.on-photo:not(.page-open) .live-pill{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.75);}
+body.on-photo:not(.page-open) .live-pill .lp-dot{background:rgba(255,255,255,.55);}
+body.is-live .live-pill,body.is-live.on-photo:not(.page-open) .live-pill{background:#e0232b;border-color:#e0232b;color:#fff;box-shadow:0 10px 26px -10px rgba(224,35,43,.75);}
+body.is-live .live-pill small{opacity:.92;}
+body.is-live .live-pill .lp-dot,body.is-live.on-photo:not(.page-open) .live-pill .lp-dot{background:#fff;animation:lpPulse 1.6s ease-out infinite;}
+@keyframes lpPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.75);}100%{box-shadow:0 0 0 9px rgba(255,255,255,0);}}
+@media(prefers-reduced-motion:reduce){body.is-live .live-pill .lp-dot{animation:none;}}
+@media(max-width:680px){.live-pill{padding:8px 12px;font-size:12px;gap:7px;margin-right:8px;}.live-pill small{display:none;}}
+body:not(.is-live) .live-btn{background:#8a93a3;}
+body:not(.is-live) .live-btn .live-dot{background:#d5dae2;box-shadow:none;}
+body.is-live .live-btn{background:#e0232b;box-shadow:0 14px 34px -14px rgba(224,35,43,.8);}
+body.is-live .live-btn .live-dot{background:#fff;animation:lpPulse 1.6s ease-out infinite;}
+.live-state{margin:14px 0 0;font-size:15px;font-weight:600;color:var(--ink-2);}
+body.is-live .live-state{color:#e0232b;}
 .menu-lines{display:flex;flex-direction:column;gap:5px;}
 .menu-lines span{display:block;height:2px;background:currentColor;transition:width .3s;}
 .menu-lines span:nth-child(1){width:22px;}
@@ -658,6 +679,12 @@ body.no-title .block-text{display:none;}
 .pc:not(.plain):hover,.pc:not(.plain):focus-visible,.pc:not(.plain).on{border-bottom-color:transparent;z-index:5;}
 .pc:not(.plain)::after{content:'';display:block;width:18px;height:2px;border-radius:2px;background:var(--line);margin:10px auto 0;transition:background .3s,width .3s;}
 .pc:hover::after,.pc.on::after{background:var(--blue);width:30px;}
+.pcards.mini{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px;}
+.pc.nop{padding:13px 10px 11px;border-radius:14px;}
+.pc.nop b{font-size:15px;}
+.pc.nop:not(.plain)::after{margin-top:8px;}
+.pc.nop .pc-more{top:calc(100% - 12px);border-radius:0 0 14px 14px;padding:4px 8px 12px;font-size:12.5px;}
+.pcards.mini .pc.nop .pc-more{left:-1px;right:-1px;min-width:100%;}
 @media(max-width:680px){.pcards{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;}.pc{padding:12px 8px;border-radius:14px;}.pc-ph,.pc-av{width:72px;height:80px;}.pc b{font-size:14px;}}
 /* 담임목사 · 설립목사 */
 .page.pz{background:#070b1c;color:#fff;}
@@ -749,6 +776,7 @@ body.no-title .block-text{display:none;}
       <p>나는 제자입니다 · I AM A DISCIPLE · HAPPY CHURCH · HEALTHY CHURCH · 행복한 교회 건강한 교회 · 예배 · 사람 · 섬김과 나눔 · 다음 세대 · ORYUN COMMUNITY CHURCH · SINCE 1989 ·</p>
     </div>
   </div>
+  <button class="live-pill" id="live-pill" type="button" onclick="liveGo()" aria-label="예배 생방송"><span class="lp-dot" aria-hidden="true"></span><b id="lp-main">생방송</b><small id="lp-sub"></small></button>
   <button class="menu-btn" onclick="toggleMenu()" aria-label="메뉴 열기">
     <span class="menu-lines"><span></span><span></span></span>Menu
   </button>
@@ -943,7 +971,7 @@ body.no-title .block-text{display:none;}
           <p class="pz-role">Founding Pastor</p>
           <h1 class="pz-name">김은호 <span>설립목사</span></h1>
           <p class="pz-quote">예수 그리스도의 복음 앞에<br>역전의 은혜를 경험하는 인생</p>
-          <nav class="pz-tabs" aria-label="김은호 설립목사 안내"><button type="button" data-to="g" class="on">인사말</button><button type="button" data-to="a">소개</button><button type="button" data-to="b">저서 7</button><i class="pz-ink" aria-hidden="true"></i></nav>
+          <nav class="pz-tabs" aria-label="김은호 설립목사 안내"><button type="button" data-to="g" class="on">인사말</button><button type="button" data-to="a">소개</button><button type="button" data-to="b">저서</button><i class="pz-ink" aria-hidden="true"></i></nav>
         </div>
         <figure class="pz-photo"><img src="assets/pastor/kim-portrait.jpg" alt="김은호 설립목사" style="object-position:50% 12%"></figure>
       </div>
@@ -2177,22 +2205,26 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
     <header class="p-hero"><div class="p-wrap">
       <p class="p-eyebrow">Live</p>
       <h1 class="p-title">예배 생방송</h1>
-      <p class="p-lead">주일 2부부터 6부까지, 예배 시간에 맞추어 방송됩니다.</p>
+      <p class="p-lead">주일예배와 수요예배, 금요기도회를 예배 시간에 맞추어 방송합니다.</p>
     </div></header>
     <div class="p-body"><div class="p-wrap">
       <div class="live-box reveal">
-        <button class="live-btn" onclick="playVideo('live')"><span class="live-dot"></span>생방송 보기</button>
+        <button class="live-btn" onclick="playVideo('live')"><span class="live-dot"></span><span id="live-btn-txt">생방송 보기</span></button>
+        <p class="live-state" id="live-state"></p>
         <p class="note">방송 시간이 아니면 화면이 나오지 않습니다. 지난 예배는 <a href="#videos" onclick="openPage('videos');return false;">설교 · 영상</a>에서 보실 수 있습니다.</p>
       </div>
-      <div class="sec-lbl">주일 생방송 시간</div>
+      <div class="sec-lbl">생방송 시간</div>
       <div class="tt-wrap reveal"><table class="tt">
         <thead><tr><th>구분</th><th>시간</th></tr></thead>
         <tbody>
-          <tr><td>2부</td><td class="tm">08:00</td></tr>
-          <tr><td>3부</td><td class="tm">10:00</td></tr>
-          <tr><td>4부</td><td class="tm">12:00</td></tr>
-          <tr><td>5부</td><td class="tm">14:00</td></tr>
-          <tr><td>6부</td><td class="tm">16:00</td></tr>
+          <tr><td>주일 2부</td><td class="tm">08:00</td></tr>
+          <tr><td>주일 3부</td><td class="tm">10:00</td></tr>
+          <tr><td>주일 4부</td><td class="tm">12:00</td></tr>
+          <tr><td>주일 5부</td><td class="tm">14:00</td></tr>
+          <tr><td>주일 6부</td><td class="tm">16:00</td></tr>
+          <tr><td>수요 오전예배</td><td class="tm">11:00</td></tr>
+          <tr><td>수요 오후예배</td><td class="tm">19:30</td></tr>
+          <tr><td>금요기도회</td><td class="tm">20:30</td></tr>
         </tbody>
       </table></div>
     </div></div>
@@ -2308,7 +2340,7 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
           <p class="pz-role">Senior Pastor</p>
           <h1 class="pz-name">주경훈 <span>담임목사</span></h1>
           <p class="pz-quote">주님과 동행할 때<br>길이 열립니다</p>
-          <nav class="pz-tabs" aria-label="주경훈 담임목사 안내"><button type="button" data-to="g" class="on">인사말</button><button type="button" data-to="a">소개</button><button type="button" data-to="b">저서 8</button><i class="pz-ink" aria-hidden="true"></i></nav>
+          <nav class="pz-tabs" aria-label="주경훈 담임목사 안내"><button type="button" data-to="g" class="on">인사말</button><button type="button" data-to="a">소개</button><button type="button" data-to="b">저서</button><i class="pz-ink" aria-hidden="true"></i></nav>
         </div>
         <figure class="pz-photo"><img src="assets/pastor/joo-stage.jpg" alt="주경훈 담임목사" style="object-position:32% 30%"></figure>
       </div>
@@ -2421,17 +2453,17 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
       <div class="sec-lbl">직원</div>
       <div class="reveal">
         <details class="fold"><summary><span>행정실<small>19명</small></span></summary>
-        <div class="fold-in"><ul class="pcards"><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">최</span><b>최용조</b><div class="pc-more"><span>사무국장 · 사무국</span><a href="tel:02-6413-4807">02-6413-4807</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">박</span><b>박송희</b><div class="pc-more"><span>행정실장 · 행정실</span><a href="tel:02-6413-4811">02-6413-4811</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이수연</b><div class="pc-more"><span>재정팀 · 회계 출납</span><a href="tel:02-6413-4909">02-6413-4909</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">원</span><b>원소연</b><div class="pc-more"><span>재정팀 · 회계 출납</span><a href="tel:02-6413-5735">02-6413-5735</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">강</span><b>강수정</b><div class="pc-more"><span>재정팀 · 기부금 헌금</span><a href="tel:02-6413-5734">02-6413-5734</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김명규</b><div class="pc-more"><span>총무팀장 · 총무팀</span><a href="tel:02-6413-4815">02-6413-4815</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">양</span><b>양금희</b><div class="pc-more"><span>웨딩 · 총무팀 분실물</span><a href="tel:02-6413-4814">02-6413-4814</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김진홍</b><div class="pc-more"><span>총무팀</span><a href="tel:02-6413-4813">02-6413-4813</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">배</span><b>배현덕</b><div class="pc-more"><span>조리실장 · 총무팀</span><a href="tel:02-6413-4951">02-6413-4951</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">윤</span><b>윤재혁</b><div class="pc-more"><span>출판팀장 · 출판팀</span><a href="tel:02-6413-5731">02-6413-5731</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">강</span><b>강유나</b><div class="pc-more"><span>출판팀</span><a href="tel:02-6413-5732">02-6413-5732</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이은숙</b><div class="pc-more"><span>출판팀</span><a href="tel:02-6413-4920">02-6413-4920</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">조</span><b>조계수</b><div class="pc-more"><span>차량팀장 · 차량팀</span>010-3217-2330</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이병수</b><div class="pc-more"><span>차량팀</span>010-8742-0320</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">최</span><b>최필서</b><div class="pc-more"><span>차량팀</span>010-2064-7372</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이미선</b><div class="pc-more"><span>도서실장 · 도서관</span><a href="tel:02-6413-4947">02-6413-4947</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이아영</b><div class="pc-more"><span>서점운영 · 오륜서점</span><a href="tel:02-6413-4949">02-6413-4949</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">송</span><b>송승희</b><div class="pc-more"><span>선교지원 · 선교</span><a href="tel:02-6413-4809">02-6413-4809</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">장</span><b>장세란</b><div class="pc-more"><span>DNA</span><a href="tel:02-6413-4805">02-6413-4805</a></div></li></ul></div></details>
+        <div class="fold-in"><ul class="pcards mini"><li class="pc nop" tabindex="0"><b>최용조</b><div class="pc-more"><span>사무국장 · 사무국</span><a href="tel:02-6413-4807">02-6413-4807</a></div></li><li class="pc nop" tabindex="0"><b>박송희</b><div class="pc-more"><span>행정실장 · 행정실</span><a href="tel:02-6413-4811">02-6413-4811</a></div></li><li class="pc nop" tabindex="0"><b>이수연</b><div class="pc-more"><span>재정팀 · 회계 출납</span><a href="tel:02-6413-4909">02-6413-4909</a></div></li><li class="pc nop" tabindex="0"><b>원소연</b><div class="pc-more"><span>재정팀 · 회계 출납</span><a href="tel:02-6413-5735">02-6413-5735</a></div></li><li class="pc nop" tabindex="0"><b>강수정</b><div class="pc-more"><span>재정팀 · 기부금 헌금</span><a href="tel:02-6413-5734">02-6413-5734</a></div></li><li class="pc nop" tabindex="0"><b>김명규</b><div class="pc-more"><span>총무팀장 · 총무팀</span><a href="tel:02-6413-4815">02-6413-4815</a></div></li><li class="pc nop" tabindex="0"><b>양금희</b><div class="pc-more"><span>웨딩 · 총무팀 분실물</span><a href="tel:02-6413-4814">02-6413-4814</a></div></li><li class="pc nop" tabindex="0"><b>김진홍</b><div class="pc-more"><span>총무팀</span><a href="tel:02-6413-4813">02-6413-4813</a></div></li><li class="pc nop" tabindex="0"><b>배현덕</b><div class="pc-more"><span>조리실장 · 총무팀</span><a href="tel:02-6413-4951">02-6413-4951</a></div></li><li class="pc nop" tabindex="0"><b>윤재혁</b><div class="pc-more"><span>출판팀장 · 출판팀</span><a href="tel:02-6413-5731">02-6413-5731</a></div></li><li class="pc nop" tabindex="0"><b>강유나</b><div class="pc-more"><span>출판팀</span><a href="tel:02-6413-5732">02-6413-5732</a></div></li><li class="pc nop" tabindex="0"><b>이은숙</b><div class="pc-more"><span>출판팀</span><a href="tel:02-6413-4920">02-6413-4920</a></div></li><li class="pc nop" tabindex="0"><b>조계수</b><div class="pc-more"><span>차량팀장 · 차량팀</span>010-3217-2330</div></li><li class="pc nop" tabindex="0"><b>이병수</b><div class="pc-more"><span>차량팀</span>010-8742-0320</div></li><li class="pc nop" tabindex="0"><b>최필서</b><div class="pc-more"><span>차량팀</span>010-2064-7372</div></li><li class="pc nop" tabindex="0"><b>이미선</b><div class="pc-more"><span>도서실장 · 도서관</span><a href="tel:02-6413-4947">02-6413-4947</a></div></li><li class="pc nop" tabindex="0"><b>이아영</b><div class="pc-more"><span>서점운영 · 오륜서점</span><a href="tel:02-6413-4949">02-6413-4949</a></div></li><li class="pc nop" tabindex="0"><b>송승희</b><div class="pc-more"><span>선교지원 · 선교</span><a href="tel:02-6413-4809">02-6413-4809</a></div></li><li class="pc nop" tabindex="0"><b>장세란</b><div class="pc-more"><span>DNA</span><a href="tel:02-6413-4805">02-6413-4805</a></div></li></ul></div></details>
         <details class="fold"><summary><span>방송실<small>17명</small></span></summary>
-        <div class="fold-in"><ul class="pcards"><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이기섭</b><div class="pc-more"><span>방송실장 · 방송실</span><a href="tel:02-6413-4931">02-6413-4931</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">최</span><b>최승훈</b><div class="pc-more"><span>영상팀장 · 영상팀</span><a href="tel:02-6413-5328">02-6413-5328</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김경건</b><div class="pc-more"><span>예배중계/조명장비관리 · 영상팀</span><a href="tel:02-6413-4904">02-6413-4904</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">최</span><b>최연훈</b><div class="pc-more"><span>예배중계/영상편집/장비관리 · 영상팀</span><a href="tel:02-6413-5329">02-6413-5329</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김민아</b><div class="pc-more"><span>LED운용/영상자막디자인/자막송출 · 영상팀</span><a href="tel:02-6413-4930">02-6413-4930</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">한</span><b>한겨레</b><div class="pc-more"><span>LED운용/LED디자인/자막송출 · 영상팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이현철</b><div class="pc-more"><span>제작팀장 · 제작팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">고</span><b>고한빛</b><div class="pc-more"><span>영상편집/예배중계/장비관리 · 제작팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">고</span><b>고진우</b><div class="pc-more"><span>영상편집/예배중계/장비관리 · 제작팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">최</span><b>최명호</b><div class="pc-more"><span>음향팀장 · 음향팀</span><a href="tel:02-6413-4932">02-6413-4932</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김준철</b><div class="pc-more"><span>예배음향/동시녹음/장비관리 · 음향팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김태완</b><div class="pc-more"><span>예배음향/동시녹음/장비관리 · 음향팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김우진</b><div class="pc-more"><span>예배음향/동시녹음/장비관리 · 음향팀</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">곽</span><b>곽병희</b><div class="pc-more"><span>인터넷팀장 · 인터넷팀</span><a href="tel:02-6413-4908">02-6413-4908</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">황</span><b>황보정빈</b><div class="pc-more"><span>홈페이지관리/네트워크관리 · 인터넷팀</span><a href="tel:02-6413-4934">02-6413-4934</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">박</span><b>박수정</b><div class="pc-more"><span>웹디자인 · 인터넷팀</span><a href="tel:02-6413-1760">02-6413-1760</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이동원</b><div class="pc-more"><span>예배송출/장비유지보수 · 인터넷팀</span><a href="tel:02-6413-4933">02-6413-4933</a></div></li></ul></div></details>
+        <div class="fold-in"><ul class="pcards mini"><li class="pc nop" tabindex="0"><b>이기섭</b><div class="pc-more"><span>방송실장 · 방송실</span><a href="tel:02-6413-4931">02-6413-4931</a></div></li><li class="pc nop" tabindex="0"><b>최승훈</b><div class="pc-more"><span>영상팀장 · 영상팀</span><a href="tel:02-6413-5328">02-6413-5328</a></div></li><li class="pc nop" tabindex="0"><b>김경건</b><div class="pc-more"><span>예배중계/조명장비관리 · 영상팀</span><a href="tel:02-6413-4904">02-6413-4904</a></div></li><li class="pc nop" tabindex="0"><b>최연훈</b><div class="pc-more"><span>예배중계/영상편집/장비관리 · 영상팀</span><a href="tel:02-6413-5329">02-6413-5329</a></div></li><li class="pc nop" tabindex="0"><b>김민아</b><div class="pc-more"><span>LED운용/영상자막디자인/자막송출 · 영상팀</span><a href="tel:02-6413-4930">02-6413-4930</a></div></li><li class="pc nop" tabindex="0"><b>한겨레</b><div class="pc-more"><span>LED운용/LED디자인/자막송출 · 영상팀</span></div></li><li class="pc nop" tabindex="0"><b>이현철</b><div class="pc-more"><span>제작팀장 · 제작팀</span></div></li><li class="pc nop" tabindex="0"><b>고한빛</b><div class="pc-more"><span>영상편집/예배중계/장비관리 · 제작팀</span></div></li><li class="pc nop" tabindex="0"><b>고진우</b><div class="pc-more"><span>영상편집/예배중계/장비관리 · 제작팀</span></div></li><li class="pc nop" tabindex="0"><b>최명호</b><div class="pc-more"><span>음향팀장 · 음향팀</span><a href="tel:02-6413-4932">02-6413-4932</a></div></li><li class="pc nop" tabindex="0"><b>김준철</b><div class="pc-more"><span>예배음향/동시녹음/장비관리 · 음향팀</span></div></li><li class="pc nop" tabindex="0"><b>김태완</b><div class="pc-more"><span>예배음향/동시녹음/장비관리 · 음향팀</span></div></li><li class="pc nop" tabindex="0"><b>김우진</b><div class="pc-more"><span>예배음향/동시녹음/장비관리 · 음향팀</span></div></li><li class="pc nop" tabindex="0"><b>곽병희</b><div class="pc-more"><span>인터넷팀장 · 인터넷팀</span><a href="tel:02-6413-4908">02-6413-4908</a></div></li><li class="pc nop" tabindex="0"><b>황보정빈</b><div class="pc-more"><span>홈페이지관리/네트워크관리 · 인터넷팀</span><a href="tel:02-6413-4934">02-6413-4934</a></div></li><li class="pc nop" tabindex="0"><b>박수정</b><div class="pc-more"><span>웹디자인 · 인터넷팀</span><a href="tel:02-6413-1760">02-6413-1760</a></div></li><li class="pc nop" tabindex="0"><b>이동원</b><div class="pc-more"><span>예배송출/장비유지보수 · 인터넷팀</span><a href="tel:02-6413-4933">02-6413-4933</a></div></li></ul></div></details>
         <details class="fold"><summary><span>꿈미법인<small>1명</small></span></summary>
-        <div class="fold-in"><ul class="pcards"><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">심</span><b>심재영</b><div class="pc-more"><span>행정실장 · 꿈미법인</span>02-470-3252</div></li></ul></div></details>
+        <div class="fold-in"><ul class="pcards mini"><li class="pc nop" tabindex="0"><b>심재영</b><div class="pc-more"><span>행정실장 · 꿈미법인</span>02-470-3252</div></li></ul></div></details>
         <details class="fold"><summary><span>꿈미학교<small>4명</small></span></summary>
-        <div class="fold-in"><ul class="pcards"><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">권</span><b>권경현</b><div class="pc-more"><span>교장 · 꿈미학교</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">최</span><b>최병훈</b><div class="pc-more"><span>교감 · 꿈미학교</span></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">교</span><b>교무실</b><div class="pc-more"><span>행정 · 꿈미학교</span>02-484-5301</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">교</span><b>교무실</b><div class="pc-more"><span>재정 · 꿈미학교</span>02-484-5302</div></li></ul></div></details>
+        <div class="fold-in"><ul class="pcards mini"><li class="pc nop" tabindex="0"><b>권경현</b><div class="pc-more"><span>교장 · 꿈미학교</span></div></li><li class="pc nop" tabindex="0"><b>최병훈</b><div class="pc-more"><span>교감 · 꿈미학교</span></div></li><li class="pc nop" tabindex="0"><b>교무실</b><div class="pc-more"><span>행정 · 꿈미학교</span>02-484-5301</div></li><li class="pc nop" tabindex="0"><b>교무실</b><div class="pc-more"><span>재정 · 꿈미학교</span>02-484-5302</div></li></ul></div></details>
         <details class="fold"><summary><span>비전빌리지<small>4명</small></span></summary>
-        <div class="fold-in"><ul class="pcards"><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">김</span><b>김은정</b><div class="pc-more"><span>오륜비전빌리지 · 행정/재정</span>031-582-5111</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이봉기</b><div class="pc-more"><span>소장 · 오륜비전빌리지</span>031-582-5111</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">도</span><b>도진태</b><div class="pc-more"><span>마라나타 하늘정원 · 오륜비전빌리지</span>031-582-6901</div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이요한</b><div class="pc-more"><span>방송기술지원 · 오륜비전빌리지</span></div></li></ul></div></details>
+        <div class="fold-in"><ul class="pcards mini"><li class="pc nop" tabindex="0"><b>김은정</b><div class="pc-more"><span>오륜비전빌리지 · 행정/재정</span>031-582-5111</div></li><li class="pc nop" tabindex="0"><b>이봉기</b><div class="pc-more"><span>소장 · 오륜비전빌리지</span>031-582-5111</div></li><li class="pc nop" tabindex="0"><b>도진태</b><div class="pc-more"><span>마라나타 하늘정원 · 오륜비전빌리지</span>031-582-6901</div></li><li class="pc nop" tabindex="0"><b>이요한</b><div class="pc-more"><span>방송기술지원 · 오륜비전빌리지</span></div></li></ul></div></details>
         <details class="fold"><summary><span>다니엘기도회<small>4명</small></span></summary>
-        <div class="fold-in"><ul class="pcards"><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">안</span><b>안봉주</b><div class="pc-more"><span>운영 · 다니엘기도회</span><a href="tel:02-6413-4924">02-6413-4924</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">송</span><b>송선영</b><div class="pc-more"><span>디자인 · 다니엘기도회</span><a href="tel:02-6413-5326">02-6413-5326</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">이</span><b>이동훈</b><div class="pc-more"><span>행정 · 다니엘기도회</span><a href="tel:02-6413-4923">02-6413-4923</a></div></li><li class="pc" tabindex="0"><span class="pc-av" aria-hidden="true">한</span><b>한찬희</b><div class="pc-more"><span>행정 · 다니엘기도회</span><a href="tel:02-6413-4922">02-6413-4922</a></div></li></ul></div></details>
+        <div class="fold-in"><ul class="pcards mini"><li class="pc nop" tabindex="0"><b>안봉주</b><div class="pc-more"><span>운영 · 다니엘기도회</span><a href="tel:02-6413-4924">02-6413-4924</a></div></li><li class="pc nop" tabindex="0"><b>송선영</b><div class="pc-more"><span>디자인 · 다니엘기도회</span><a href="tel:02-6413-5326">02-6413-5326</a></div></li><li class="pc nop" tabindex="0"><b>이동훈</b><div class="pc-more"><span>행정 · 다니엘기도회</span><a href="tel:02-6413-4923">02-6413-4923</a></div></li><li class="pc nop" tabindex="0"><b>한찬희</b><div class="pc-more"><span>행정 · 다니엘기도회</span><a href="tel:02-6413-4922">02-6413-4922</a></div></li></ul></div></details>
       </div>
 
       <div class="sec-lbl">함께하는 공동체</div>
@@ -2794,6 +2826,36 @@ function playVideo(y,title){
   document.getElementById('player').classList.add('open');playerOpen=true;
   ytCheck(y).then(ok=>{if(!ok&&f.parentNode===box)box.innerHTML='<div class="pv-off"><b>비공개 영상입니다</b><span>지금은 볼 수 없는 영상입니다.</span></div>';});
 }
+
+// ── 예배 생방송: 방송 시간이면 빨간 단추, 아니면 회색 ──
+// [요일(0=주일), 시작(분), 끝(분), 이름] — 한국 시각 기준. 시작 10분 전부터 켜집니다.
+const LIVE_TIMES=[[0,480,600,'주일 2부'],[0,600,720,'주일 3부'],[0,720,840,'주일 4부'],[0,840,960,'주일 5부'],[0,960,1065,'주일 6부'],
+  [3,660,750,'수요 오전예배'],[3,1170,1275,'수요 오후예배'],[5,1230,1380,'금요기도회']];
+const LIVE_DAYS=['주일','월','화','수','목','금','토'];
+function liveNow(){
+  const k=new Date(Date.now()+9*3600e3),d=k.getUTCDay(),m=k.getUTCHours()*60+k.getUTCMinutes();
+  let on=null,next=null,gap=1e9;
+  LIVE_TIMES.forEach(t=>{
+    if(t[0]===d&&m>=t[1]-10&&m<t[2])on=on||t;
+    let g=((t[0]-d+7)%7)*1440+t[1]-m;if(g<=0)g+=10080;
+    if(g<gap){gap=g;next=t;}
+  });
+  return{on,next,gap,today:!!next&&next[0]===d&&gap<1440};
+}
+function liveTick(){
+  const s=liveNow(),hm=t=>String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');
+  document.body.classList.toggle('is-live',!!s.on);
+  const nx=s.next?(s.today?'오늘 ':LIVE_DAYS[s.next[0]]+(s.next[0]?'요일 ':' '))+hm(s.next[1]):'';
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set('lp-main',s.on?'LIVE':'생방송');
+  set('lp-sub',s.on?s.on[3]:nx);
+  const p=document.getElementById('live-pill');
+  if(p)p.setAttribute('aria-label',s.on?'지금 생방송 중 · '+s.on[3]+' 보기':'예배 생방송 · 다음 방송 '+nx);
+  set('live-btn-txt',s.on?'지금 생방송 보기':'생방송 보기');
+  set('live-state',s.on?'지금 '+s.on[3]+' 방송 중입니다.':(s.next?'지금은 방송 시간이 아닙니다. 다음 방송은 '+nx+' '+s.next[3]+'입니다.':''));
+}
+function liveGo(){if(liveNow().on)playVideo('live','예배 생방송');else openPage('live');}
+liveTick();setInterval(liveTick,30000);
 function playSermon(){playVideo(SM.youtube,SM.title||'설교');}
 function closeSermon(){
   if(!playerOpen)return;
