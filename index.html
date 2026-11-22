@@ -149,6 +149,8 @@ body.first-slide .week-cta{display:none;}body.week-slide .week-cta{display:inlin
 /* 영상을 넣고 싶을 때: .slide-bg 안에 <video class="video-layer" muted loop playsinline src="videos/..."> 추가 */
 .video-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
 .slide.photo .video-layer{filter:none;}
+.video-layer.clip{z-index:1;opacity:0;transition:opacity .9s ease;}
+.video-layer.clip.on{opacity:1;}
 .slide-dim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(244,247,251,.92) 0%,rgba(244,247,251,.35) 38%,transparent 62%),linear-gradient(to right,rgba(244,247,251,.6) 0%,transparent 55%);}
 
 /* 배경 빛 */
@@ -2844,6 +2846,38 @@ const slides=document.querySelectorAll('.slide');
 const TOTAL=slides.length;
 let cs=0,lock=false,autoTimer,menuOpen=false,pageOpen=false;
 
+// ── 첫 장면 영상 순서: 타임랩스 2번 → 영상 하나 → 타임랩스 2번 → 다음 영상 … 되풀이 ──
+// 영상을 바꾸거나 더하려면 아래 FIRST_CLIPS 목록만 고칩니다. (소리는 나지 않습니다)
+const FIRST_CLIPS=['assets/video/preview-parable.mp4','assets/video/scripture-reading.mp4'];
+const BASE_REPEAT=2;
+(function(){
+  const sl=slides[0],base=sl&&sl.querySelector('video.video-layer');
+  if(!base||!FIRST_CLIPS.length)return;
+  const clip=document.createElement('video');
+  clip.className='video-layer clip';clip.muted=true;clip.playsInline=true;clip.preload='none';
+  clip.setAttribute('muted','');clip.setAttribute('playsinline','');clip.setAttribute('webkit-playsinline','');
+  clip.setAttribute('aria-hidden','true');clip.dataset.idle='1';
+  base.after(clip);
+  base.loop=false;base.removeAttribute('loop');
+  let n=0,k=0;sl._seq=true;
+  const live=()=>sl.classList.contains('active')&&!pageOpen&&!menuOpen;
+  function backToBase(){
+    clip.classList.remove('on');clip.dataset.idle='1';clip.pause();
+    delete base.dataset.idle;n=0;base.currentTime=0;if(live())base.play().catch(()=>{});
+  }
+  base.addEventListener('ended',()=>{
+    n++;
+    if(n<BASE_REPEAT){base.currentTime=0;base.play().catch(()=>{});return;}
+    clip.src=FIRST_CLIPS[k%FIRST_CLIPS.length];k++;
+    delete clip.dataset.idle;base.dataset.idle='1';
+    clip.currentTime=0;
+    const p=clip.play();if(p&&p.catch)p.catch(()=>{if(live())backToBase();});
+  });
+  clip.addEventListener('playing',()=>clip.classList.add('on'));
+  clip.addEventListener('ended',backToBase);
+  clip.addEventListener('error',backToBase);
+})();
+
 function stepShow(sh){
   const imgs=sh.box.children;if(imgs.length<2)return;
   const cur=imgs[sh.i],ni=(sh.i+1)%imgs.length,nx=imgs[ni];
@@ -2869,7 +2903,7 @@ function playShow(el,on){
   },left);
 
 }
-function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;playShow(el,on);el.querySelectorAll('video').forEach(v=>{v.muted=true;on?v.play().catch(()=>{}):v.pause();});}
+function playVideos(el,on){if(on&&matchMedia('(prefers-reduced-motion:reduce)').matches)on=false;playShow(el,on);el.querySelectorAll('video').forEach(v=>{v.muted=true;on&&!v.dataset.idle?v.play().catch(()=>{}):v.pause();});}
 
 // ── 비공개 영상 확인: 유튜브가 볼 수 없는 영상에는 120×90 빈 미리보기 그림을 준다 ──
 const ytSeen={};
@@ -3101,6 +3135,7 @@ function resetAuto(){
   clearInterval(autoTimer);
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   if(cs===HIS)return;                              // 역사 장면은 자동으로 넘기지 않는다
+  if(cs===0&&slides[0]._seq)return;                // 첫 장면은 영상이 차례로 돌아가므로 자동으로 넘기지 않는다
   autoTimer=setInterval(()=>{if(!pageOpen&&!menuOpen&&!playerOpen&&!document.hidden)next();},SLIDE_INTERVAL);
 }
 
