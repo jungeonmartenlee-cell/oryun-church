@@ -145,7 +145,7 @@ body.is-live .live-state{color:#e0232b;}
 .title-cta svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;}
 .first-cta{display:none;margin-left:10px;background:rgba(255,255,255,.14) !important;color:#fff !important;border:1.5px solid rgba(255,255,255,.7);box-shadow:none !important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);cursor:pointer;}
 body.first-slide .first-cta{display:inline-flex;}
-body.first-slide .week-cta,body.first-slide .past-cta{display:none;}body.sermon-slide .past-cta{display:inline-flex;}body.week-slide .week-cta{display:inline-flex;}
+body.first-slide .week-cta,body.first-slide .past-cta{display:none;}body.sermon-slide .past-cta{display:inline-flex;}body.first-slide .with-cta{display:none;}body.history-slide .with-cta{display:inline-flex;}body.week-slide .week-cta{display:inline-flex;}
 .first-cta:hover,.first-cta.open{background:#fff !important;color:var(--blue-deep) !important;}
 .first-cta svg{transition:transform .3s;}.first-cta.open svg{transform:rotate(180deg);}
 #first-pop{position:fixed;z-index:60;min-width:270px;background:#fff;border-radius:18px;padding:8px;box-shadow:0 30px 70px -24px rgba(8,16,34,.55);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .35s var(--ease),visibility 0s .25s;}
@@ -332,6 +332,13 @@ body.on-photo #scrollbar-thumb{background:#fff;}
 .menu-links{display:flex;flex-wrap:wrap;gap:8px;}
 .menu-links a{font-size:14.5px;font-weight:500;text-decoration:none;color:var(--blue);border:1px solid rgba(31,86,168,.3);padding:8px 14px;border-radius:999px;transition:background .2s,color .2s;}
 .menu-links a:hover{background:var(--blue);color:#fff;}
+/* 넓은 화면: 왼쪽(넓은 칸)에 목사 카드·예배·오시는 길·교회 안내, 오른쪽에 장면 목록 */
+@media(min-width:981px){
+  .menu-right{order:-1;border-left:none;border-right:1px solid var(--line);padding:104px 64px 56px var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:34px 44px;align-content:start;}
+  .menu-right>.menu-leads,.menu-right>div:last-child{grid-column:1/-1;}
+  .menu-left{padding:104px var(--pad) 56px 52px;}
+  .menu-nav a{font-size:clamp(23px,2.5vw,36px);}
+}
 .menu-close{position:fixed;top:14px;right:var(--pad);background:none;border:none;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 0;z-index:2;}
 .menu-close:hover{color:var(--blue);}
 
@@ -778,9 +785,11 @@ body.no-title .block-text{display:none;}
 .ch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
 .ch-card{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:28px 28px 24px;scroll-margin-top:120px;display:flex;flex-direction:column;}
 .ch-card.hit{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,86,168,.14);}
+.ch-card{position:relative;overflow:hidden;}
+.ch-card>*{position:relative;z-index:1;}
+.ch-card.has-bg::before{content:'';position:absolute;z-index:0;top:-10px;right:-10px;width:70%;height:210px;background:var(--ph) center/cover no-repeat;filter:blur(3px) saturate(1.08);opacity:.72;-webkit-mask-image:linear-gradient(to left,#000 20%,transparent 100%);mask-image:linear-gradient(to left,#000 20%,transparent 100%);}
+.ch-card.has-bg::after{content:'';position:absolute;z-index:0;top:0;left:0;right:0;height:201px;background:linear-gradient(180deg,rgba(244,247,251,.12) 0%,rgba(244,247,251,.5) 50%,var(--bg) 100%);}
 .ch-head{display:flex;gap:18px;align-items:flex-start;}
-.ch-ph{order:3;margin-left:auto;width:92px;height:110px;object-fit:cover;object-position:50% 20%;border-radius:16px;background:var(--line);flex:0 0 auto;}
-@media(max-width:680px){.ch-ph{width:76px;height:92px;border-radius:14px;}}
 .ch-n{font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:.9;color:var(--blue);letter-spacing:.02em;}
 .ch-head em{font-style:normal;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--blue);}
 .ch-head h3{margin-top:4px;font-size:23px;font-weight:750;letter-spacing:-.03em;color:var(--ink);word-break:keep-all;}
@@ -935,6 +944,8 @@ body.no-title .block-text{display:none;}
       <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </span><span class="title-cta first-cta past-cta" id="past-cta" role="button" tabindex="0">지난 설교 보기
       <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span><span class="title-cta first-cta with-cta" id="with-cta" role="button" tabindex="0">함께하는 교회
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </span><span class="title-cta first-cta" id="first-cta" role="button" tabindex="0" aria-haspopup="true">처음 오셨나요?
       <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
     </span>
@@ -1065,7 +1076,8 @@ body.no-title .block-text{display:none;}
         <a href="#worship" onclick="openPage('worship');toggleMenu();return false;">예배 시간</a>
         <a href="#location" onclick="openPage('location');toggleMenu();return false;">오시는 길 · 주차</a>
         <a href="#shuttle" onclick="openPage('shuttle');toggleMenu();return false;">예배 차량</a>
-        <a href="#pastors" onclick="openPage('pastors');toggleMenu();return false;">담임목사 · 설립목사</a>
+        <a href="#founder" onclick="openPage('founder');toggleMenu();return false;">설립목사</a>
+        <a href="#greeting" onclick="openPage('greeting');toggleMenu();return false;">담임목사</a>
         <a href="#people" onclick="openPage('people');toggleMenu();return false;">섬기는 분들</a>
         <a href="#d-li252" onclick="openPage('d-li252');toggleMenu();return false;">헌금 안내</a>
       </div>
@@ -1090,7 +1102,7 @@ body.no-title .block-text{display:none;}
       <div class="reveal">
         <details class="fold tree"><summary><span>소식<small>NEW</small></span></summary><div class="tree-in"><a href="#news" onclick="openPage('news');return false;">공지 · 행사 · 교우소식 · 주보 · QT<i>→</i></a><a href="#weekly" onclick="openPage('weekly');return false;">한 주간 사역<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>설교 · 영상<small>NEW</small></span></summary><div class="tree-in"><a href="#videos" onclick="openPage('videos');return false;">설교 · 영상 모음<i>→</i></a><a href="#live" onclick="openPage('live');return false;">예배 생방송<i>→</i></a></div></details>
-        <details class="fold tree" open><summary><span>교회 소개</span></summary><div class="tree-in"><a href="#vision" onclick="openPage('vision');return false;">비전 · 2027 표어<i>→</i></a><a href="#history" onclick="openPage('history');return false;">걸어온 길<i>→</i></a><a href="#pastors" onclick="openPage('pastors');return false;">담임목사 · 설립목사<i>→</i></a><a href="#people" onclick="openPage('people');return false;">섬기는 분들 · 교역자<i>→</i></a><a href="#logo" onclick="openPage('logo');return false;">로고<i>→</i></a></div></details>
+        <details class="fold tree" open><summary><span>교회 소개</span></summary><div class="tree-in"><a href="#vision" onclick="openPage('vision');return false;">비전 · 2027 표어<i>→</i></a><a href="#history" onclick="openPage('history');return false;">걸어온 길<i>→</i></a><a href="#pastors" onclick="openPage('pastors');return false;">설립목사 · 담임목사<i>→</i></a><a href="#people" onclick="openPage('people');return false;">섬기는 분들 · 교역자<i>→</i></a><a href="#logo" onclick="openPage('logo');return false;">로고<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>예배</span></summary><div class="tree-in"><a href="#worship" onclick="openPage('worship');return false;">예배 시간 · 장소<i>→</i></a><a href="#worship-about" onclick="openPage('worship-about');return false;">오륜교회의 예배<i>→</i></a><a href="#shuttle" onclick="openPage('shuttle');return false;">예배 차량 시간표<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>오시는 길 · 연락처</span></summary><div class="tree-in"><a href="#location" onclick="openPage('location');return false;">교통 · 주차<i>→</i></a><a href="#phone" onclick="openPage('phone');return false;">전화번호 안내<i>→</i></a></div></details>
         <details class="fold tree"><summary><span>장소 안내</span></summary><div class="tree-in"><a href="#place-vision" onclick="openPage('place-vision');return false;">비전센터 (본관)<i>→</i></a><a href="#place-odc" onclick="openPage('place-odc');return false;">다니엘센터 (ODC)<i>→</i></a><a href="#place-edu1" onclick="openPage('place-edu1');return false;">제1교육관<i>→</i></a><a href="#place-edu2" onclick="openPage('place-edu2');return false;">제2교육관<i>→</i></a><a href="#place-edu3" onclick="openPage('place-edu3');return false;">제3교육관<i>→</i></a><a href="#place-village" onclick="openPage('place-village');return false;">오륜 비전빌리지<i>→</i></a><a href="#branch" onclick="openPage('branch');return false;">분립교회 · 함께하는 교회<i>→</i></a><a href="#reserve" onclick="openPage('reserve');return false;">장소 예약<i>→</i></a></div></details>
@@ -1916,47 +1928,47 @@ body.no-title .block-text{display:none;}
       <ol class="ch-index reveal"><li><a href="#ch-01" data-ch="01"><span class="n">01</span><b>별내오륜교회</b><small>경기 남양주 · 2012</small></a></li><li><a href="#ch-02" data-ch="02"><span class="n">02</span><b>영훈오륜교회</b><small>서울 강북 · 2016</small></a></li><li><a href="#ch-03" data-ch="03"><span class="n">03</span><b>분당오륜교회</b><small>경기 성남 · 2016</small></a></li><li><a href="#ch-04" data-ch="04"><span class="n">04</span><b>송탄오륜교회</b><small>경기 평택 · 2018</small></a></li><li><a href="#ch-05" data-ch="05"><span class="n">05</span><b>오륜330처치</b><small>경기 하남 · 2026</small></a></li><li><a href="#ch-06" data-ch="06"><span class="n">06</span><b>오륜비전빌리지 예배당</b><small>경기 가평 · 2013</small></a></li><li><a href="#ch-07" data-ch="07"><span class="n">07</span><b>서울아산병원교회</b><small>서울 송파 · 2016</small></a></li></ol>
       <div class="sec-lbl">분립 개척 교회</div>
       <div class="ch-grid">
-        <section class="ch-card reveal" id="ch-01">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-01.jpg" width="300" height="360" alt="설삼열 목사" loading="lazy"><span class="ch-n">01</span><div><em>분립 개척 1호</em><h3>별내오륜교회</h3><p class="ch-since">2012년 10월 설립 · 2019년 완전 분립</p></div></div>
+        <section class="ch-card has-bg reveal" id="ch-01" style="--ph:url(photos/branch/bg-01.jpg)">
+          <div class="ch-head"><span class="ch-n">01</span><div><em>분립 개척 1호</em><h3>별내오륜교회</h3><p class="ch-since">2012년 10월 설립 · 2019년 완전 분립</p></div></div>
           <p class="ch-intro">오륜교회가 세운 첫 번째 분립교회입니다. 건강한 교회, 행복한 성도를 꿈꾸며 별내 지역을 섬깁니다.</p>
           <table class="ch-tt"><tr><td class="k">담당</td><td>설삼열 목사</td></tr><tr><td class="k">예배</td><td>주일 1부 오전 10:00 · 2부 정오 12:00</td></tr><tr><td class="k">주소</td><td>경기도 남양주시 별내5로5번길 마들프라자 7층</td></tr><tr><td class="k">전화</td><td><a href="tel:031-527-4051">031-527-4051</a></td></tr></table>
           <a class="ch-go" href="https://bnoryun.com" target="_blank" rel="noopener">bnoryun.com <i>↗</i></a>
         </section>
-        <section class="ch-card reveal" id="ch-02">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-02.jpg" width="300" height="360" alt="이우광 목사" loading="lazy"><span class="ch-n">02</span><div><em>분립 개척 2호</em><h3>영훈오륜교회</h3><p class="ch-since">2016년 3월 설립</p></div></div>
+        <section class="ch-card has-bg reveal" id="ch-02" style="--ph:url(photos/branch/bg-02.jpg)">
+          <div class="ch-head"><span class="ch-n">02</span><div><em>분립 개척 2호</em><h3>영훈오륜교회</h3><p class="ch-since">2016년 3월 설립</p></div></div>
           <p class="ch-intro">영훈고등학교 안에서 예배하는 교회입니다. 예배의 회복과 지역 섬김, 다음 세대와 선교를 향한 꿈을 품고 있습니다.</p>
           <table class="ch-tt"><tr><td class="k">담당</td><td>이우광 목사</td></tr><tr><td class="k">예배</td><td>주일 1부 오전 9:00 · 2부 오전 11:00</td></tr><tr><td class="k">주소</td><td>서울 강북구 도봉로13가길 영훈고등학교 (영훈비전센터 2층)</td></tr><tr><td class="k">전화</td><td><a href="tel:02-945-5251">02-945-5251</a></td></tr></table>
           <a class="ch-go" href="http://yhoryun.org" target="_blank" rel="noopener">yhoryun.org <i>↗</i></a>
         </section>
-        <section class="ch-card reveal" id="ch-03">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-03.jpg" width="300" height="360" alt="강도형 목사" loading="lazy"><span class="ch-n">03</span><div><em>분립 개척 3호</em><h3>분당오륜교회</h3><p class="ch-since">2016년 12월 설립 · 2022년 완전 분립</p></div></div>
+        <section class="ch-card has-bg reveal" id="ch-03" style="--ph:url(photos/branch/bg-03.jpg)">
+          <div class="ch-head"><span class="ch-n">03</span><div><em>분립 개척 3호</em><h3>분당오륜교회</h3><p class="ch-since">2016년 12월 설립 · 2022년 완전 분립</p></div></div>
           <p class="ch-intro">‘아가페’와 ‘블레싱’을 비전으로, 분립된 교회로서 또 다른 교회를 낳는 사명을 이어 갑니다.</p>
           <table class="ch-tt"><tr><td class="k">담당</td><td>강도형 목사</td></tr><tr><td class="k">예배</td><td>주일 1부 오전 10:00 · 2부 낮 12:00</td></tr><tr><td class="k">주소</td><td>주일 — 경기도 성남시 분당구 불정로 100 계원예고 벽강예술관<br>주중 — 분당구 정자로 56 상록마을 라이프아파트 상가 202호 (아가페홀)</td></tr><tr><td class="k">전화</td><td><a href="tel:070-8806-0191">070-8806-0191</a></td></tr></table>
           <a class="ch-go" href="https://www.bundangoryun.org" target="_blank" rel="noopener">bundangoryun.org <i>↗</i></a>
         </section>
-        <section class="ch-card reveal" id="ch-04">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-04.jpg" width="300" height="360" alt="김철호 목사" loading="lazy"><span class="ch-n">04</span><div><em>분립 개척 4호</em><h3>송탄오륜교회</h3><p class="ch-since">2018년 12월 설립</p></div></div>
+        <section class="ch-card has-bg reveal" id="ch-04" style="--ph:url(photos/branch/bg-04.jpg)">
+          <div class="ch-head"><span class="ch-n">04</span><div><em>분립 개척 4호</em><h3>송탄오륜교회</h3><p class="ch-since">2018년 12월 설립</p></div></div>
           <p class="ch-intro">오륜교회 설립 30주년을 맞으며 세운 네 번째 분립교회입니다. 쉼과 사랑과 행복이 있는 교회로 평택·송탄 지역을 섬깁니다.</p>
           <table class="ch-tt"><tr><td class="k">담당</td><td>김철호 목사</td></tr><tr><td class="k">예배</td><td>주일 1부 오전 10:00 · 2부 정오 12:00</td></tr><tr><td class="k">주소</td><td>경기도 평택시 송탄로40번길 63-22</td></tr><tr><td class="k">전화</td><td><a href="tel:031-665-0675">031-665-0675</a></td></tr></table>
           <a class="ch-go" href="http://www.storyun.org" target="_blank" rel="noopener">storyun.org <i>↗</i></a>
         </section>
-        <section class="ch-card reveal" id="ch-05">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-05.jpg" width="300" height="360" alt="주성하 목사" loading="lazy"><span class="ch-n">05</span><div><em>분립 개척 5호</em><h3>오륜330처치</h3><p class="ch-since">2026년 10월 첫 예배 · 11월 설립감사예배</p></div></div>
+        <section class="ch-card has-bg reveal" id="ch-05" style="--ph:url(photos/branch/bg-05.jpg)">
+          <div class="ch-head"><span class="ch-n">05</span><div><em>분립 개척 5호</em><h3>오륜330처치</h3><p class="ch-since">2026년 10월 첫 예배 · 11월 설립감사예배</p></div></div>
           <p class="ch-intro">요한복음 3장 30절, “그는 흥하여야 하겠고 나는 쇠하여야 하리라”에서 이름을 가져왔습니다. 삶의 모든 자리에서 예수님만 높이는 교회를 꿈꿉니다.</p>
-          <table class="ch-tt"><tr><td class="k">담당</td><td>주성하 목사</td></tr><tr><td class="k">예배</td><td>주일 오전 11:00 (온 세대가 함께)</td></tr><tr><td class="k">주소</td><td>경기도 하남시 미사강변한강로 135 스카이폴리스 다동 216호</td></tr></table>
+          <table class="ch-tt"><tr><td class="k">담당</td><td>주성하 목사</td></tr><tr><td class="k">예배</td><td>주일 오전 11:00 (온 세대가 함께) · 금요기도회 오후 8:00</td></tr><tr><td class="k">주소</td><td>경기도 하남시 미사강변한강로 135 스카이폴리스 다동 216호</td></tr></table>
           <a class="ch-go" href="https://330church.kr" target="_blank" rel="noopener">330church.kr <i>↗</i></a>
         </section>
       </div>
       <div class="sec-lbl">함께 세워 가는 교회</div>
       <div class="ch-grid">
-        <section class="ch-card reveal" id="ch-06">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-06.jpg" width="300" height="360" alt="김효태 목사" loading="lazy"><span class="ch-n">06</span><div><em>수양관 예배당</em><h3>오륜비전빌리지 예배당</h3><p class="ch-since">2013년 비전빌리지 개관 · 2017년 예배당 입당</p></div></div>
+        <section class="ch-card has-bg reveal" id="ch-06" style="--ph:url(photos/branch/bg-06.jpg)">
+          <div class="ch-head"><span class="ch-n">06</span><div><em>수양관 예배당</em><h3>오륜비전빌리지 예배당</h3><p class="ch-since">2013년 비전빌리지 개관 · 2017년 예배당 입당</p></div></div>
           <p class="ch-intro">가평 오륜비전빌리지 안에 세운 예배당입니다. 수련회와 쉼을 위해 찾는 이들, 그리고 지역의 이웃과 함께 예배합니다.</p>
           <table class="ch-tt"><tr><td class="k">담당</td><td>김효태 목사 (센터장)</td></tr><tr><td class="k">예배</td><td>주일 오전 11:00 · 오후 2:00</td></tr><tr><td class="k">주소</td><td>경기도 가평군 가평읍 호반로 2424-22</td></tr><tr><td class="k">전화</td><td><a href="tel:031-582-5111">031-582-5111</a></td></tr></table>
           <a class="ch-go" href="https://oryunvillage.org" target="_blank" rel="noopener">oryunvillage.org <i>↗</i></a>
         </section>
         <section class="ch-card reveal" id="ch-07">
-          <div class="ch-head"><img class="ch-ph" src="photos/branch/p-07.jpg" width="300" height="360" alt="김선민 목사" loading="lazy"><span class="ch-n">07</span><div><em>병원 교회</em><h3>서울아산병원교회</h3><p class="ch-since">2016년부터 오륜교회 교역자가 원목으로 섬김</p></div></div>
+          <div class="ch-head"><span class="ch-n">07</span><div><em>병원 교회</em><h3>서울아산병원교회</h3><p class="ch-since">2016년부터 오륜교회 교역자가 원목으로 섬김</p></div></div>
           <p class="ch-intro">서울아산병원 안에서 환자와 가족, 병원 가족을 위해 예배하고 기도하는 교회입니다.</p>
           <table class="ch-tt"><tr><td class="k">담당</td><td>김선민 목사 (원목)</td></tr><tr><td class="k">예배</td><td>주일 오후 3:00 · 새벽 6:00 · 수요 오전 11:00</td></tr><tr><td class="k">주소</td><td>서울 송파구 올림픽로43길 88 서울아산병원 서관 (예배실 3층 강당 · 원목실 지하 1층)</td></tr><tr><td class="k">전화</td><td><a href="tel:02-3010-7877">02-3010-7877</a></td></tr></table>
           
@@ -2853,7 +2865,7 @@ document.addEventListener('click',e=>{const a=e.target.closest('.ch-index a');if
   });
 })();
 function openBulletin(){openPage('news');setTimeout(()=>{const p=document.getElementById('p-news');const c=[...p.querySelectorAll('details')].find(d=>/^주보/.test(d.querySelector('summary').textContent.trim()));if(!c)return;c.open=true;const it=c.querySelector('details');if(it)it.open=true;c.scrollIntoView({behavior:'smooth',block:'start'});},450);}
-document.addEventListener('click',e=>{if(e.target.closest('#week-cta')){e.preventDefault();e.stopPropagation();openBulletin();}else if(e.target.closest('#past-cta')){e.preventDefault();e.stopPropagation();openPage('videos');}},true);
+document.addEventListener('click',e=>{if(e.target.closest('#week-cta')){e.preventDefault();e.stopPropagation();openBulletin();}else if(e.target.closest('#past-cta')){e.preventDefault();e.stopPropagation();openPage('videos');}else if(e.target.closest('#with-cta')){e.preventDefault();e.stopPropagation();openPage('branch');}},true);
 function closeFirst(){const p=document.getElementById('first-pop'),b=document.getElementById('first-cta');if(p)p.classList.remove('open');if(b)b.classList.remove('open');}
 document.addEventListener('click',e=>{
   const b=e.target.closest('#first-cta'),p=document.getElementById('first-pop');
@@ -2864,7 +2876,7 @@ document.addEventListener('click',e=>{
   if(a){e.preventDefault();closeFirst();openPage(a.dataset.go);return;}
   closeFirst();
 },true);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFirst();if((e.key==='Enter'||e.key===' ')&&document.activeElement&&/^(first|week|past)-cta$/.test(document.activeElement.id)){e.preventDefault();document.activeElement.click();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFirst();if((e.key==='Enter'||e.key===' ')&&document.activeElement&&/^(first|week|past|with)-cta$/.test(document.activeElement.id)){e.preventDefault();document.activeElement.click();}});
 function renderTitle(idx){
   const t=SLIDES[idx];
   const sl=document.getElementById('s'+idx);
@@ -2873,7 +2885,7 @@ function renderTitle(idx){
     `<div class="block-text__line"><span class="word"><span class="mask-text"><span style="animation-delay:${i*80}ms">${w}</span></span></span></div>`).join('');
   document.body.classList.toggle('no-title',!t.lines.length);
   document.getElementById('cta-text').textContent=t.cta;
-  document.body.classList.toggle('first-slide',idx===0);document.body.classList.toggle('week-slide',idx===1);document.body.classList.toggle('sermon-slide',idx===2);closeFirst();
+  document.body.classList.toggle('first-slide',idx===0);document.body.classList.toggle('week-slide',idx===1);document.body.classList.toggle('sermon-slide',idx===2);document.body.classList.toggle('history-slide',idx===4);closeFirst();
   const lnk=document.getElementById('header-link');
   lnk.href=t.page?'#'+t.page:'#';
   lnk.onclick=e=>{e.preventDefault();t.action==='sermon'?playSermon():openPage(t.page);};
