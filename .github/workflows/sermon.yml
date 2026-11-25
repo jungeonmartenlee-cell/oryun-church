@@ -1,0 +1,30 @@
+# 매주 월요일 아침(한국 시간 6시, 혹시 늦게 올라올 때를 대비해 낮 12시에 한 번 더)
+# 교회 유튜브 채널에서 가장 최근 주일 설교를 찾아 홈페이지에 반영합니다.
+name: 주일 설교 자동 반영
+on:
+  schedule:
+    - cron: '0 21 * * 0'   # 월요일 06:00 (한국 시간)
+    - cron: '0 3 * * 1'    # 월요일 12:00 (한국 시간)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sermon
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 최근 주일 설교 찾기
+        run: python3 update_sermon.py
+      - name: 바뀐 것이 있으면 올리기
+        run: |
+          git add data/sermon.js data/sermon-poster.jpg data/videos.js
+          if git diff --cached --quiet; then
+            echo "바뀐 것이 없습니다."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Update the Sunday sermon from the church YouTube channel"
+            git push
+          fi
