@@ -2725,12 +2725,12 @@ XEE 전도훈련은 이 사명을 삶의 현장에서 구체적으로 이루어 
 
 <div id="player" role="dialog" aria-label="설교 영상"><button class="x" onclick="closeSermon()">CLOSE ✕</button><div class="frame" id="player-frame"></div></div>
 <script src="slides/manifest.js"></script>
-<script src="data/sermon.js"></script>
-<script src="data/weekly.js?v=3"></script>
+<script>
+// 자주 바뀌는 자료(설교 · 한 주간 사역 · 소식 · 영상)는 브라우저가 옛것을 붙들지 않도록 10분마다 새 주소로 불러온다
+(function(){var t=Math.floor(Date.now()/600000);['sermon','weekly','news','videos'].forEach(function(n){document.write('<script src="data/'+n+'.js?t='+t+'"><\/script>');});})();
+</script>
 <script src="data/shuttle.js"></script>
 <script src="data/docs.js"></script>
-<script src="data/news.js"></script>
-<script src="data/videos.js"></script>
 <script>
 // ── CURSOR ──
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
