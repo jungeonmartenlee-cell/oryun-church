@@ -724,9 +724,9 @@ body.no-title .block-text{display:none;}
 @media(max-width:860px){.lead-cards{grid-template-columns:1fr;gap:16px;}.lead-card{min-height:0;padding:22px 20px 18px;border-radius:22px;gap:18px;}.lc-ph{width:92px;height:110px;border-radius:14px;}.lc-main{gap:16px;}.lc-p{font-size:13.5px;}}
 .menu-leads{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .menu-leads .lead-card{min-height:0;padding:16px 16px 14px;gap:14px;border-radius:20px;}
-.menu-leads .lc-role b{font-size:12.5px;padding:5px 12px;}
+.menu-leads .lc-r{display:block;margin-bottom:5px;font-style:normal;font-size:13px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.82);}
 .menu-leads .lc-main{gap:13px;}
-.menu-leads .lc-ph{width:68px;height:82px;border-radius:13px;}
+.menu-leads .lc-ph{width:76px;height:92px;border-radius:14px;}
 .menu-leads .lc-tx strong{font-size:clamp(18px,1.55vw,23px);word-break:keep-all;}
 .menu-leads .lc-go{padding-top:12px;font-size:13.5px;}
 .menu-leads .lc-go svg{width:30px;height:30px;padding:8px;}
@@ -964,14 +964,12 @@ body.no-title .block-text{display:none;}
     <div class="menu-leads">
       <a class="lead-card" href="#founder" onclick="openPage('founder');toggleMenu();return false;" aria-label="설립목사 김은호 목사 소개 보기">
         <span class="lc-bg" style="background-image:url(assets/pastor/kim-casual.jpg)" aria-hidden="true"></span>
-        <span class="lc-role"><b>설립목사</b></span>
-        <span class="lc-main"><img class="lc-ph" src="assets/pastor/kim-portrait.jpg" alt="" loading="lazy"><span class="lc-tx"><strong>김은호 목사</strong></span></span>
+        <span class="lc-main"><img class="lc-ph" src="assets/pastor/kim-portrait.jpg" alt="" loading="lazy"><span class="lc-tx"><em class="lc-r">설립목사</em><strong>김은호 목사</strong></span></span>
         <span class="lc-go"><span>소개 보기</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
       <a class="lead-card" href="#greeting" onclick="openPage('greeting');toggleMenu();return false;" aria-label="담임목사 주경훈 목사 소개 보기">
         <span class="lc-bg" style="background-image:url(assets/pastor/joo-stage.jpg)" aria-hidden="true"></span>
-        <span class="lc-role"><b>담임목사</b></span>
-        <span class="lc-main"><img class="lc-ph" src="assets/pastor/joo-portrait.jpg" alt="" loading="lazy"><span class="lc-tx"><strong>주경훈 목사</strong></span></span>
+        <span class="lc-main"><img class="lc-ph" src="assets/pastor/joo-portrait.jpg" alt="" loading="lazy"><span class="lc-tx"><em class="lc-r">담임목사</em><strong>주경훈 목사</strong></span></span>
         <span class="lc-go"><span>소개 보기</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
     </div>
