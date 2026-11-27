@@ -936,21 +936,21 @@ body.no-title .block-text{display:none;}
 #intro{position:fixed;inset:0;z-index:5000;display:none;overflow:hidden;background:#0a1230;cursor:pointer;}
 html.intro-on #intro{display:block;}
 html.intro-on body{overflow:hidden;}
-#intro .in-photo{position:absolute;inset:-2% -30% -2% -2%;background:url(assets/intro.jpg) 56% 42%/cover no-repeat;opacity:0;transform:scale(1.14);transition:opacity 1.1s ease,transform 3.6s cubic-bezier(.2,.6,.2,1);}
+#intro .in-photo{position:absolute;inset:-2% -30% -2% -2%;background:url(assets/intro.jpg) 56% 42%/cover no-repeat;opacity:0;transform:scale(1.14);transition:opacity .8s ease,transform 3.4s cubic-bezier(.2,.6,.2,1);}
 #intro.ready .in-photo{opacity:1;transform:scale(1.02);}
 #intro::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(10,18,48,.38) 0%,rgba(10,18,48,.72) 60%,rgba(6,10,28,.92) 100%);}
-#intro .in-c::before{content:'';position:absolute;left:50%;top:50%;width:min(150vmin,1100px);height:min(110vmin,800px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(7,12,36,.9) 0%,rgba(7,12,36,.72) 45%,rgba(7,12,36,0) 100%);opacity:0;animation:inDim 1s ease .55s forwards;z-index:-1;}
+#intro .in-c::before{content:'';position:absolute;left:50%;top:50%;width:min(150vmin,1100px);height:min(110vmin,800px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(7,12,36,.9) 0%,rgba(7,12,36,.72) 45%,rgba(7,12,36,0) 100%);opacity:0;animation:inDim .8s ease .15s forwards;z-index:-1;}
 #intro .in-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2.6vh,24px);padding:24px;}
-#intro .in-sym{width:clamp(76px,13vmin,132px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym 1s cubic-bezier(.2,1.2,.3,1) .5s forwards;}
-#intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .9s cubic-bezier(.2,.7,.2,1) 1.05s forwards;}
+#intro .in-sym{width:clamp(76px,13vmin,132px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym .8s cubic-bezier(.2,1.2,.3,1) .2s forwards;}
+#intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .7s cubic-bezier(.2,.7,.2,1) .45s forwards;}
 #intro.out{opacity:0;transform:scale(1.05);transition:opacity .75s ease,transform .75s ease;pointer-events:none;}
-#intro .in-tag{font-size:clamp(13px,2.1vmin,18px);letter-spacing:.14em;color:#c9d5f3;opacity:0;transform:translateY(8px);animation:inTag .7s ease 1.55s forwards;word-break:keep-all;text-align:center;margin-top:-4px;}
+#intro .in-tag{font-size:clamp(13px,2.1vmin,18px);letter-spacing:.14em;color:#c9d5f3;opacity:0;transform:translateY(8px);animation:inTag .6s ease .8s forwards;word-break:keep-all;text-align:center;margin-top:-4px;}
 /* 로고 아래에서 ID 가 I'M A DISCIPLE 로 펼쳐진다 (한 화면에 함께 보임) */
-#intro .in-c .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .6s ease 2.15s forwards;margin-top:clamp(2px,1vh,10px);}
-#intro .in-c .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(40px,8.6vw,104px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.94);white-space:pre;opacity:0;transform:scale(1.5);animation:inId .7s cubic-bezier(.2,.9,.3,1) 2.3s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
+#intro .in-c .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .5s ease .9s forwards;margin-top:clamp(2px,1vh,10px);}
+#intro .in-c .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(40px,8.6vw,104px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.94);white-space:pre;opacity:0;transform:scale(1.5);animation:inId .6s cubic-bezier(.2,.9,.3,1) 1s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
 #intro .in-c .w b{font-weight:400;color:#8fd3ff;}
-#intro .in-c .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow 1s cubic-bezier(.3,.7,.2,1) 3.1s forwards;}
-#intro .in-c .k{width:clamp(140px,22vmin,230px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .8s ease 3.8s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
+#intro .in-c .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow .85s cubic-bezier(.3,.7,.2,1) 1.6s forwards;}
+#intro .in-c .k{width:clamp(140px,22vmin,230px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .6s ease 2s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
 @keyframes inId{to{opacity:1;transform:none;}}
 @keyframes inGrow{to{max-width:4.6em;opacity:1;}}
 @keyframes inLine{to{transform:none;}}
@@ -973,7 +973,7 @@ html.intro-on body{overflow:hidden;}
 try{sessionStorage.setItem('oryunIntro','1');}catch(e){}
 var im=new Image(),done=false;im.onload=function(){el.classList.add('ready');};im.src='assets/intro.jpg';
 function end(){if(done)return;done=true;el.classList.add('out');d.classList.remove('intro-keep');setTimeout(function(){d.classList.remove('intro-on');el.remove();},800);}
-el.addEventListener('click',end);setTimeout(end,5700);})();</script>
+el.addEventListener('click',end);setTimeout(end,3700);})();</script>
 
 <div id="cur"></div><div id="cur2"></div>
 <div id="prog"><div id="prog-bar"></div></div>
