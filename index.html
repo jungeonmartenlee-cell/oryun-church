@@ -945,11 +945,25 @@ html.intro-on body{overflow:hidden;}
 #intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .9s cubic-bezier(.2,.7,.2,1) 1.35s forwards;}
 #intro .in-tag{font-size:clamp(14px,2.3vmin,19px);letter-spacing:.14em;color:#c9d5f3;opacity:0;transform:translateY(8px);animation:inTag .7s ease 1.9s forwards;word-break:keep-all;text-align:center;}
 #intro.out{opacity:0;transform:scale(1.05);transition:opacity .75s ease,transform .75s ease;pointer-events:none;}
+/* 둘째 장면: ID → I'M A DISCIPLE */
+#intro .in-c{animation:inLeave .6s ease 2.75s forwards;}
+#intro .in-dim2{position:absolute;inset:0;z-index:1;background:rgba(6,10,28,.58);opacity:0;animation:inDim .8s ease 2.75s forwards;}
+#intro .in-id{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3vh,30px);padding:24px;pointer-events:none;}
+#intro .in-id .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(46px,12.5vw,150px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.92);white-space:pre;opacity:0;transform:scale(1.55);animation:inId .75s cubic-bezier(.2,.9,.3,1) 3.05s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
+#intro .in-id .w b{font-weight:400;color:#8fd3ff;}
+#intro .in-id .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow 1s cubic-bezier(.3,.7,.2,1) 3.95s forwards;}
+#intro .in-id .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .6s ease 4.6s forwards;}
+#intro .in-id .k{width:clamp(150px,26vmin,270px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .8s ease 4.75s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
+@keyframes inLeave{to{opacity:0;transform:translateY(-14px);}}
+@keyframes inId{to{opacity:1;transform:none;}}
+@keyframes inGrow{to{max-width:4.6em;opacity:1;}}
+@keyframes inLine{to{transform:none;}}
 @keyframes inDim{to{opacity:1;}}
 @media(orientation:portrait){
   #intro .in-photo{inset:-2%;}
   #intro .in-c{justify-content:flex-start;padding-top:12vh;}
   #intro .in-c::before{top:24%;}
+  #intro .in-id{justify-content:flex-start;padding-top:19vh;}
 }
 @keyframes inSym{to{opacity:1;transform:none;}}
 @keyframes inWord{to{opacity:1;clip-path:inset(0 0 0 0);}}
@@ -958,12 +972,12 @@ html.intro-on body{overflow:hidden;}
 </head>
 <body>
 <script>(function(){try{var q=/[?&]intro\b/.test(location.search);if(q||(!location.hash&&!/[?&]shots=/.test(location.search)&&!sessionStorage.getItem('oryunIntro')&&!matchMedia('(prefers-reduced-motion:reduce)').matches))document.documentElement.classList.add('intro-on');}catch(e){}})();</script>
-<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="in-tag">행복한 교회 건강한 교회</span></div></div>
+<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="in-tag">행복한 교회 건강한 교회</span></div><div class="in-dim2"></div><div class="in-id"><span class="w"><b>I</b><i>'M A </i><b>D</b><i>ISCIPLE</i></span><span class="ln"></span><img class="k" src="assets/motto-text-white.png" alt=""></div></div>
 <script>(function(){var d=document.documentElement,el=document.getElementById('intro');if(!d.classList.contains('intro-on')){el.remove();return;}
 try{sessionStorage.setItem('oryunIntro','1');}catch(e){}
 var im=new Image(),done=false;im.onload=function(){el.classList.add('ready');};im.src='assets/intro.jpg';
 function end(){if(done)return;done=true;el.classList.add('out');d.classList.remove('intro-keep');setTimeout(function(){d.classList.remove('intro-on');el.remove();},800);}
-el.addEventListener('click',end);setTimeout(end,3500);})();</script>
+el.addEventListener('click',end);setTimeout(end,6300);})();</script>
 
 <div id="cur"></div><div id="cur2"></div>
 <div id="prog"><div id="prog-bar"></div></div>
@@ -2955,7 +2969,7 @@ const OLD_MEDIA=window.SLIDE_MEDIA||[];
 const SM=window.SERMON||{},WK=window.WEEKLY||{items:[]};
 const SLIDE_MEDIA=[
   Object.assign({},OLD_MEDIA[3],{alt:'오륜교회 전경'}),
-  {type:'slideshow',tone:'dark',alt:'한 주간 사역',items:(WK.items||[]).filter(x=>x.photo&&!x.video).map(x=>x.photo)},
+  {type:'slideshow',tone:'dark',alt:'한 주간 사역',items:(WK.items||[]).filter(x=>x.photo&&!x.video).map(x=>x.pos?{src:x.photo,position:x.pos}:x.photo)},
   {type:'image',tone:'dark',src:SM.poster,alt:SM.title||'주일 설교',position:'50% 30%'},
   Object.assign({},OLD_MEDIA[0]),
   {type:'none'},
@@ -3065,6 +3079,33 @@ const FIRST_BASE='assets/video/timelapse-there-and-back.mp4';
   clip.addEventListener('playing',()=>clip.classList.add('on'));
   clip.addEventListener('ended',backToBase);
   clip.addEventListener('error',backToBase);
+})();
+
+// ── 네 번째 장면: 사진을 잠깐 보여 준 뒤 영상이 이어진다. 영상이 끝나면 다음 장면으로 넘어간다 (소리는 나지 않습니다) ──
+const FOURTH_CLIP='assets/video/vision-retreat.mp4',FOURTH_PHOTO_MS=3500;
+(function(){
+  const sl=slides[3],bg=sl&&sl.querySelector('.slide-bg');
+  if(!bg||!bg.querySelector('.photo-layer')||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const v=document.createElement('video');
+  v.className='video-layer clip';v.muted=true;v.playsInline=true;v.preload='none';
+  v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('webkit-playsinline','');
+  v.setAttribute('aria-hidden','true');v.dataset.idle='1';
+  bg.appendChild(v);sl._hold=true;
+  let t=null;
+  const live=()=>sl.classList.contains('active')&&!pageOpen&&!menuOpen;
+  const reset=()=>{clearTimeout(t);v.classList.remove('on');v.dataset.idle='1';v.pause();};
+  const fail=()=>{reset();sl._hold=false;if(sl.classList.contains('active'))resetAuto();};
+  const start=()=>{
+    if(!sl.classList.contains('active'))return;
+    if(!live()){t=setTimeout(start,1000);return;}
+    if(!v.getAttribute('src'))v.src=FOURTH_CLIP;
+    delete v.dataset.idle;try{v.currentTime=0;}catch(e){}
+    const p=v.play();if(p&&p.catch)p.catch(fail);
+  };
+  window._s4=on=>{reset();if(on&&sl._hold)t=setTimeout(start,FOURTH_PHOTO_MS);};
+  v.addEventListener('playing',()=>v.classList.add('on'));
+  v.addEventListener('ended',()=>{reset();if(live())next();});
+  v.addEventListener('error',fail);
 })();
 
 function stepShow(sh){
@@ -3335,8 +3376,10 @@ function next(){go(cs+1);}
 function prev(){go(cs-1);}
 function resetAuto(){
   clearInterval(autoTimer);
+  if(window._s4)window._s4(cs===3);
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   if(cs===HIS)return;                              // 역사 장면은 자동으로 넘기지 않는다
+  if(cs===3&&slides[3]._hold)return;               // 네 번째 장면은 영상이 끝나면 넘어간다
   if(cs===0&&slides[0]._seq)return;                // 첫 장면은 영상이 차례로 돌아가므로 자동으로 넘기지 않는다
   autoTimer=setInterval(()=>{if(!pageOpen&&!menuOpen&&!playerOpen&&!document.hidden&&!document.getElementById('phone-pop').classList.contains('on'))next();},SLIDE_INTERVAL);
 }
