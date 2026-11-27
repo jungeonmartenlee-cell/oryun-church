@@ -941,29 +941,24 @@ html.intro-on body{overflow:hidden;}
 #intro::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(10,18,48,.38) 0%,rgba(10,18,48,.72) 60%,rgba(6,10,28,.92) 100%);}
 #intro .in-c::before{content:'';position:absolute;left:50%;top:50%;width:min(150vmin,1100px);height:min(110vmin,800px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(7,12,36,.9) 0%,rgba(7,12,36,.72) 45%,rgba(7,12,36,0) 100%);opacity:0;animation:inDim 1s ease .55s forwards;z-index:-1;}
 #intro .in-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3.2vh,30px);padding:24px;}
-#intro .in-sym{width:clamp(96px,17vmin,170px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym 1s cubic-bezier(.2,1.2,.3,1) .7s forwards;}
-#intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .9s cubic-bezier(.2,.7,.2,1) 1.35s forwards;}
-#intro .in-tag{font-size:clamp(14px,2.3vmin,19px);letter-spacing:.14em;color:#c9d5f3;opacity:0;transform:translateY(8px);animation:inTag .7s ease 1.9s forwards;word-break:keep-all;text-align:center;}
+#intro .in-sym{width:clamp(96px,17vmin,170px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym 1s cubic-bezier(.2,1.2,.3,1) .5s forwards;}
+#intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .9s cubic-bezier(.2,.7,.2,1) 1.05s forwards;}
 #intro.out{opacity:0;transform:scale(1.05);transition:opacity .75s ease,transform .75s ease;pointer-events:none;}
-/* 둘째 장면: ID → I'M A DISCIPLE */
-#intro .in-c{animation:inLeave .6s ease 2.75s forwards;}
-#intro .in-dim2{position:absolute;inset:0;z-index:1;background:rgba(6,10,28,.58);opacity:0;animation:inDim .8s ease 2.75s forwards;}
-#intro .in-id{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3vh,30px);padding:24px;pointer-events:none;}
-#intro .in-id .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(46px,12.5vw,150px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.92);white-space:pre;opacity:0;transform:scale(1.55);animation:inId .75s cubic-bezier(.2,.9,.3,1) 3.05s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
-#intro .in-id .w b{font-weight:400;color:#8fd3ff;}
-#intro .in-id .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow 1s cubic-bezier(.3,.7,.2,1) 3.95s forwards;}
-#intro .in-id .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .6s ease 4.6s forwards;}
-#intro .in-id .k{width:clamp(150px,26vmin,270px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .8s ease 4.75s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
-@keyframes inLeave{to{opacity:0;transform:translateY(-14px);}}
+/* 로고 아래에서 ID 가 I'M A DISCIPLE 로 펼쳐진다 (한 화면에 함께 보임) */
+#intro .in-c .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .6s ease 1.75s forwards;margin-top:clamp(2px,1vh,10px);}
+#intro .in-c .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(40px,8.6vw,104px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.94);white-space:pre;opacity:0;transform:scale(1.5);animation:inId .7s cubic-bezier(.2,.9,.3,1) 1.9s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
+#intro .in-c .w b{font-weight:400;color:#8fd3ff;}
+#intro .in-c .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow 1s cubic-bezier(.3,.7,.2,1) 2.7s forwards;}
+#intro .in-c .k{width:clamp(140px,22vmin,230px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .8s ease 3.4s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
 @keyframes inId{to{opacity:1;transform:none;}}
 @keyframes inGrow{to{max-width:4.6em;opacity:1;}}
 @keyframes inLine{to{transform:none;}}
 @keyframes inDim{to{opacity:1;}}
 @media(orientation:portrait){
   #intro .in-photo{inset:-2%;}
-  #intro .in-c{justify-content:flex-start;padding-top:12vh;}
-  #intro .in-c::before{top:24%;}
-  #intro .in-id{justify-content:flex-start;padding-top:19vh;}
+  #intro .in-c{justify-content:flex-start;padding-top:9vh;}
+  #intro .in-c::before{top:26%;height:min(130vmin,900px);}
+  #intro .in-c .w{font-size:clamp(40px,11.5vw,104px);}
 }
 @keyframes inSym{to{opacity:1;transform:none;}}
 @keyframes inWord{to{opacity:1;clip-path:inset(0 0 0 0);}}
@@ -972,12 +967,12 @@ html.intro-on body{overflow:hidden;}
 </head>
 <body>
 <script>(function(){try{var q=/[?&]intro\b/.test(location.search);if(q||(!location.hash&&!/[?&]shots=/.test(location.search)&&!sessionStorage.getItem('oryunIntro')&&!matchMedia('(prefers-reduced-motion:reduce)').matches))document.documentElement.classList.add('intro-on');}catch(e){}})();</script>
-<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="in-tag">행복한 교회 건강한 교회</span></div><div class="in-dim2"></div><div class="in-id"><span class="w"><b>I</b><i>'M A </i><b>D</b><i>ISCIPLE</i></span><span class="ln"></span><img class="k" src="assets/motto-text-white.png" alt=""></div></div>
+<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="ln"></span><span class="w"><b>I</b><i>'M A </i><b>D</b><i>ISCIPLE</i></span><img class="k" src="assets/motto-text-white.png" alt=""></div></div>
 <script>(function(){var d=document.documentElement,el=document.getElementById('intro');if(!d.classList.contains('intro-on')){el.remove();return;}
 try{sessionStorage.setItem('oryunIntro','1');}catch(e){}
 var im=new Image(),done=false;im.onload=function(){el.classList.add('ready');};im.src='assets/intro.jpg';
 function end(){if(done)return;done=true;el.classList.add('out');d.classList.remove('intro-keep');setTimeout(function(){d.classList.remove('intro-on');el.remove();},800);}
-el.addEventListener('click',end);setTimeout(end,6300);})();</script>
+el.addEventListener('click',end);setTimeout(end,5200);})();</script>
 
 <div id="cur"></div><div id="cur2"></div>
 <div id="prog"><div id="prog-bar"></div></div>
