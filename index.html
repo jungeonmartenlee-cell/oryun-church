@@ -932,9 +932,38 @@ body.no-title .block-text{display:none;}
   .top-nav{justify-content:space-between;gap:0;padding:7px 10px;}
   .top-nav a{font-size:clamp(12.5px,3.5vw,14.5px);padding:8px 1.3vw;}
 }
+/* 처음 들어올 때 잠깐 보이는 시작 화면 */
+#intro{position:fixed;inset:0;z-index:5000;display:none;overflow:hidden;background:#0a1230;cursor:pointer;}
+html.intro-on #intro{display:block;}
+html.intro-on body{overflow:hidden;}
+#intro .in-photo{position:absolute;inset:-2% -30% -2% -2%;background:url(assets/intro.jpg) 56% 42%/cover no-repeat;opacity:0;transform:scale(1.14);transition:opacity 1.1s ease,transform 3.6s cubic-bezier(.2,.6,.2,1);}
+#intro.ready .in-photo{opacity:1;transform:scale(1.02);}
+#intro::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(10,18,48,.38) 0%,rgba(10,18,48,.72) 60%,rgba(6,10,28,.92) 100%);}
+#intro .in-c::before{content:'';position:absolute;left:50%;top:50%;width:min(150vmin,1100px);height:min(110vmin,800px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(7,12,36,.9) 0%,rgba(7,12,36,.72) 45%,rgba(7,12,36,0) 100%);opacity:0;animation:inDim 1s ease .55s forwards;z-index:-1;}
+#intro .in-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3.2vh,30px);padding:24px;}
+#intro .in-sym{width:clamp(96px,17vmin,170px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym 1s cubic-bezier(.2,1.2,.3,1) .7s forwards;}
+#intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .9s cubic-bezier(.2,.7,.2,1) 1.35s forwards;}
+#intro .in-tag{font-size:clamp(14px,2.3vmin,19px);letter-spacing:.14em;color:#c9d5f3;opacity:0;transform:translateY(8px);animation:inTag .7s ease 1.9s forwards;word-break:keep-all;text-align:center;}
+#intro.out{opacity:0;transform:scale(1.05);transition:opacity .75s ease,transform .75s ease;pointer-events:none;}
+@keyframes inDim{to{opacity:1;}}
+@media(orientation:portrait){
+  #intro .in-photo{inset:-2%;}
+  #intro .in-c{justify-content:flex-start;padding-top:12vh;}
+  #intro .in-c::before{top:24%;}
+}
+@keyframes inSym{to{opacity:1;transform:none;}}
+@keyframes inWord{to{opacity:1;clip-path:inset(0 0 0 0);}}
+@keyframes inTag{to{opacity:1;transform:none;}}
 </style>
 </head>
 <body>
+<script>(function(){try{var q=/[?&]intro\b/.test(location.search);if(q||(!location.hash&&!/[?&]shots=/.test(location.search)&&!sessionStorage.getItem('oryunIntro')&&!matchMedia('(prefers-reduced-motion:reduce)').matches))document.documentElement.classList.add('intro-on');}catch(e){}})();</script>
+<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="in-tag">행복한 교회 건강한 교회</span></div></div>
+<script>(function(){var d=document.documentElement,el=document.getElementById('intro');if(!d.classList.contains('intro-on')){el.remove();return;}
+try{sessionStorage.setItem('oryunIntro','1');}catch(e){}
+var im=new Image(),done=false;im.onload=function(){el.classList.add('ready');};im.src='assets/intro.jpg';
+function end(){if(done)return;done=true;el.classList.add('out');d.classList.remove('intro-keep');setTimeout(function(){d.classList.remove('intro-on');el.remove();},800);}
+el.addEventListener('click',end);setTimeout(end,3500);})();</script>
 
 <div id="cur"></div><div id="cur2"></div>
 <div id="prog"><div id="prog-bar"></div></div>
