@@ -578,6 +578,8 @@ body.page-open #header{background:rgba(255,255,255,.78);}
 /* 한 주간 사역: 상세 */
 .wk-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
 .wk-card{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg);}
+.wk-card{transition:box-shadow .5s ease;}
+.wk-card.pick{box-shadow:0 0 0 3px var(--blue),0 18px 40px -18px rgba(20,60,140,.45);}
 .wk-card img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;}
 .wk-card .b{padding:22px 24px 26px;}
 .wk-card .d{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:var(--blue);}
@@ -918,6 +920,8 @@ body.no-title .block-text{display:none;}
 .doc .btn{margin-top:18px;}
 .doc .acct-t td:first-child{white-space:nowrap;}
 @media(max-width:680px){.doc .acct-t td,.doc .acct-t th{padding-right:10px;font-size:13.5px;}.acct{gap:6px;}.acct i{padding:1px 7px;font-size:10.5px;}.doc .acct-t td:last-child{font-size:12.5px;word-break:break-all;}}
+/* 태블릿 세로 화면은 자리가 넉넉하니 한 주간 사역 목록을 모두 보여 준다 */
+@media(min-width:600px) and (max-width:820px) and (min-height:1000px){.week-list li.it:nth-child(n+5){display:flex;}}
 /* 휴대폰·태블릿 점검에서 고친 것 */
 @media(max-width:820px){
   .his-hint{top:calc(var(--head) + 62px);}
@@ -3214,7 +3218,7 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
     li.addEventListener('mouseleave',()=>{if(matchMedia('(hover:hover)').matches)popClose();});
     li.addEventListener('focus',()=>popOpen(li));li.addEventListener('blur',popClose);
   });
-  ul.onclick=e=>{const li=e.target.closest('li.it');if(!li)return;if(li.classList.contains('has-vid')&&matchMedia('(hover:none)').matches){ul.querySelectorAll('li.on').forEach(o=>o.classList.remove('on'));li.classList.add('on');popOpen(li);return;}if(matchMedia('(hover:none)').matches&&!li.classList.contains('on')){ul.querySelectorAll('li.on').forEach(o=>o.classList.remove('on'));li.classList.add('on');}else openPage('weekly');};
+  ul.onclick=e=>{const li=e.target.closest('li.it');if(!li)return;if(li.classList.contains('has-vid')&&matchMedia('(hover:none)').matches){ul.querySelectorAll('li.on').forEach(o=>o.classList.remove('on'));li.classList.add('on');popOpen(li);return;}if(matchMedia('(hover:none)').matches&&!li.classList.contains('on')){ul.querySelectorAll('li.on').forEach(o=>o.classList.remove('on'));li.classList.add('on');}else openWeekItem([...ul.querySelectorAll('li.it')].indexOf(li));};
   document.getElementById('week-tag').textContent='한 주간 사역 — '+(WK.range||WK.week||'');
   document.getElementById('wk-week').textContent=WK.week||'';
   document.getElementById('wk-range').textContent=WK.range||'이번 주';
@@ -3425,6 +3429,18 @@ function toggleMenu(){
 // ── PAGES ──
 const pagesEl=document.getElementById('pages');
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{root:pagesEl,threshold:.12});
+// 한 주간 사역 목록에서 항목을 누르면 상세 페이지를 열고 그 항목 카드가 보이는 곳까지 내려간다
+function openWeekItem(i){
+  openPage('weekly');
+  setTimeout(()=>{
+    const c=document.querySelectorAll('#wk-grid .wk-card')[i];if(!c)return;
+    document.querySelectorAll('#wk-grid .wk-card').forEach(e=>e.classList.add('in'));
+    const head=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--head'))||70;
+    const top=c.getBoundingClientRect().top-pagesEl.getBoundingClientRect().top+pagesEl.scrollTop-head-24;
+    pagesEl.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+    c.classList.add('pick');setTimeout(()=>c.classList.remove('pick'),2600);
+  },380);
+}
 function openPage(id,fromHash){
   let pg=document.getElementById('p-'+id);
   const dc=window.DOCS&&window.DOCS[id];
