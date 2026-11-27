@@ -940,16 +940,17 @@ html.intro-on body{overflow:hidden;}
 #intro.ready .in-photo{opacity:1;transform:scale(1.02);}
 #intro::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(10,18,48,.38) 0%,rgba(10,18,48,.72) 60%,rgba(6,10,28,.92) 100%);}
 #intro .in-c::before{content:'';position:absolute;left:50%;top:50%;width:min(150vmin,1100px);height:min(110vmin,800px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(7,12,36,.9) 0%,rgba(7,12,36,.72) 45%,rgba(7,12,36,0) 100%);opacity:0;animation:inDim 1s ease .55s forwards;z-index:-1;}
-#intro .in-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3.2vh,30px);padding:24px;}
-#intro .in-sym{width:clamp(96px,17vmin,170px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym 1s cubic-bezier(.2,1.2,.3,1) .5s forwards;}
+#intro .in-c{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(14px,2.6vh,24px);padding:24px;}
+#intro .in-sym{width:clamp(76px,13vmin,132px);height:auto;opacity:0;transform:scale(.62) translateY(14px);filter:drop-shadow(0 18px 40px rgba(0,0,0,.45));animation:inSym 1s cubic-bezier(.2,1.2,.3,1) .5s forwards;}
 #intro .in-word{width:clamp(190px,34vmin,330px);height:auto;clip-path:inset(0 100% 0 0);opacity:0;animation:inWord .9s cubic-bezier(.2,.7,.2,1) 1.05s forwards;}
 #intro.out{opacity:0;transform:scale(1.05);transition:opacity .75s ease,transform .75s ease;pointer-events:none;}
+#intro .in-tag{font-size:clamp(13px,2.1vmin,18px);letter-spacing:.14em;color:#c9d5f3;opacity:0;transform:translateY(8px);animation:inTag .7s ease 1.55s forwards;word-break:keep-all;text-align:center;margin-top:-4px;}
 /* 로고 아래에서 ID 가 I'M A DISCIPLE 로 펼쳐진다 (한 화면에 함께 보임) */
-#intro .in-c .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .6s ease 1.75s forwards;margin-top:clamp(2px,1vh,10px);}
-#intro .in-c .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(40px,8.6vw,104px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.94);white-space:pre;opacity:0;transform:scale(1.5);animation:inId .7s cubic-bezier(.2,.9,.3,1) 1.9s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
+#intro .in-c .ln{width:clamp(40px,7vmin,72px);height:2px;background:#8fd3ff;transform:scaleX(0);animation:inLine .6s ease 2.15s forwards;margin-top:clamp(2px,1vh,10px);}
+#intro .in-c .w{display:flex;align-items:baseline;font-family:'Bebas Neue','Arial Narrow',sans-serif;font-size:clamp(40px,8.6vw,104px);line-height:1;letter-spacing:.05em;color:rgba(255,255,255,.94);white-space:pre;opacity:0;transform:scale(1.5);animation:inId .7s cubic-bezier(.2,.9,.3,1) 2.3s forwards;text-shadow:0 14px 40px rgba(0,0,0,.45);}
 #intro .in-c .w b{font-weight:400;color:#8fd3ff;}
-#intro .in-c .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow 1s cubic-bezier(.3,.7,.2,1) 2.7s forwards;}
-#intro .in-c .k{width:clamp(140px,22vmin,230px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .8s ease 3.4s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
+#intro .in-c .w i{font-style:normal;display:inline-block;overflow:hidden;max-width:0;opacity:0;animation:inGrow 1s cubic-bezier(.3,.7,.2,1) 3.1s forwards;}
+#intro .in-c .k{width:clamp(140px,22vmin,230px);height:auto;opacity:0;transform:translateY(8px);animation:inTag .8s ease 3.8s forwards;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));}
 @keyframes inId{to{opacity:1;transform:none;}}
 @keyframes inGrow{to{max-width:4.6em;opacity:1;}}
 @keyframes inLine{to{transform:none;}}
@@ -967,12 +968,12 @@ html.intro-on body{overflow:hidden;}
 </head>
 <body>
 <script>(function(){try{var q=/[?&]intro\b/.test(location.search);if(q||(!location.hash&&!/[?&]shots=/.test(location.search)&&!sessionStorage.getItem('oryunIntro')&&!matchMedia('(prefers-reduced-motion:reduce)').matches))document.documentElement.classList.add('intro-on');}catch(e){}})();</script>
-<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="ln"></span><span class="w"><b>I</b><i>'M A </i><b>D</b><i>ISCIPLE</i></span><img class="k" src="assets/motto-text-white.png" alt=""></div></div>
+<div id="intro" aria-hidden="true"><div class="in-photo"></div><div class="in-c"><img class="in-sym" src="assets/symbol.png" alt=""><img class="in-word" src="assets/wordmark-white.png" alt=""><span class="in-tag">행복한 교회 건강한 교회</span><span class="ln"></span><span class="w"><b>I</b><i>'M A </i><b>D</b><i>ISCIPLE</i></span><img class="k" src="assets/motto-text-white.png" alt=""></div></div>
 <script>(function(){var d=document.documentElement,el=document.getElementById('intro');if(!d.classList.contains('intro-on')){el.remove();return;}
 try{sessionStorage.setItem('oryunIntro','1');}catch(e){}
 var im=new Image(),done=false;im.onload=function(){el.classList.add('ready');};im.src='assets/intro.jpg';
 function end(){if(done)return;done=true;el.classList.add('out');d.classList.remove('intro-keep');setTimeout(function(){d.classList.remove('intro-on');el.remove();},800);}
-el.addEventListener('click',end);setTimeout(end,5200);})();</script>
+el.addEventListener('click',end);setTimeout(end,5700);})();</script>
 
 <div id="cur"></div><div id="cur2"></div>
 <div id="prog"><div id="prog-bar"></div></div>
@@ -2964,7 +2965,7 @@ const OLD_MEDIA=window.SLIDE_MEDIA||[];
 const SM=window.SERMON||{},WK=window.WEEKLY||{items:[]};
 const SLIDE_MEDIA=[
   Object.assign({},OLD_MEDIA[3],{alt:'오륜교회 전경'}),
-  {type:'slideshow',tone:'dark',alt:'한 주간 사역',items:(WK.items||[]).filter(x=>x.photo&&!x.video).map(x=>x.pos?{src:x.photo,position:x.pos}:x.photo)},
+  {type:'slideshow',tone:'dark',alt:'한 주간 사역',items:(WK.items||[]).filter(x=>x.photo&&!x.video).sort((a,b)=>(b.bgFirst?1:0)-(a.bgFirst?1:0)).map(x=>x.pos?{src:x.photo,position:x.pos}:x.photo)},
   {type:'image',tone:'dark',src:SM.poster,alt:SM.title||'주일 설교',position:'50% 30%'},
   Object.assign({},OLD_MEDIA[0]),
   {type:'none'},
@@ -3200,7 +3201,7 @@ document.getElementById('player').addEventListener('click',e=>{if(e.target.id===
   document.getElementById('sm-sub').textContent=[SM.scripture,SM.preacher].filter(Boolean).join(' · ');
   document.getElementById('sm-kind').textContent=[(SM.date||'').replace(/-/g,'.'),SM.service].filter(Boolean).join(' · ');
   const ul=document.getElementById('week-list');
-  ul.innerHTML='<li class="wk">'+(WK.week||'')+'</li>'+(WK.items||[]).slice(0,5).map(x=>'<li class="it'+(x.video?' has-vid':'')+'" tabindex="0"'+(x.video?' data-video="'+x.video+'" data-poster="'+(x.photo||'')+'"':'')+'><i>'+x.date+'</i><span>'+x.title+(x.video?'<b class="vid-tag" aria-hidden="true">▶ 영상</b>':'')+'</span><div class="pv'+(x.photo&&!x.video?'':' noimg')+'">'+(x.photo&&!x.video?'<img src="'+x.photo+'" alt="" loading="lazy">':'')+'<div><em>'+[x.day,x.place].filter(Boolean).join(' · ')+'</em><p>'+(x.text||'')+'</p></div></div></li>').join('');
+  ul.innerHTML='<li class="wk">'+(WK.week||'')+'</li>'+(WK.items||[]).slice(0,7).map(x=>'<li class="it'+(x.video?' has-vid':'')+'" tabindex="0"'+(x.video?' data-video="'+x.video+'" data-poster="'+(x.photo||'')+'"':'')+'><i>'+x.date+'</i><span>'+x.title+(x.video?'<b class="vid-tag" aria-hidden="true">▶ 영상</b>':'')+'</span><div class="pv'+(x.photo&&!x.video?'':' noimg')+'">'+(x.photo&&!x.video?'<img src="'+x.photo+'" alt="" loading="lazy">':'')+'<div><em>'+[x.day,x.place].filter(Boolean).join(' · ')+'</em><p>'+(x.text||'')+'</p></div></div></li>').join('');
   // 영상이 있는 항목: 마우스를 올리면(휴대폰은 누르면) 화면 가운데에 큰 휴대폰이 떠서 재생된다
   const pop=document.getElementById('phone-pop'),pv=pop.querySelector('video');let popLi=null;
   const popOpen=li=>{if(popLi===li)return;popLi=li;if(pv.dataset.cur!==li.dataset.video){pv.dataset.cur=li.dataset.video;pv.poster=li.dataset.poster||'';pv.src=li.dataset.video;}
